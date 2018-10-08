@@ -8,8 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController {
     public function index() {
-        return new Response('<html><body><h1>Ja-No-Definitely</h1></body></html>'
-        );
+        $view = 'base.html.twig';
+         return $this->render($view);
+        
     }
 }
 
