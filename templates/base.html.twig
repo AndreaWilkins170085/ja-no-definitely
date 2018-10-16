@@ -2,12 +2,15 @@
 <html>
     <head>
        <meta charset="UTF-8">
-        <link href="//cdn.muicss.com/mui-0.9.41/css/mui.min.css" rel="stylesheet" type="text/css" />
-        <script src="//cdn.muicss.com/mui-0.9.41/js/mui.min.js"></script>
+        <link href="//cdn.muicss.com/mui-latest/css/mui.min.css" rel="stylesheet" type="text/css" />
+        <link href="static/style.css" rel="stylesheet" type="text/css" />
+        <script src="//cdn.muicss.com/mui-latest/js/mui.min.js"></script>
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
         
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
                 <link rel="stylesheet" href="{{ ('css/main.css') }}">
+                <script src="{{ ('js/home.js') }}"></script>
         {% endblock %}
     </head>
     <body>
