@@ -44,6 +44,18 @@
      padding-top: 30px;
    }
  }
+
+#pic{
+    background-color: white;
+    height: 175px;
+    width: 175px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+ #name{
+     padding-bottom: 10px;
+ }
  
  /**
   * Content CSS
@@ -54,3 +66,8 @@
      padding-top: 100px;
    }
  }
+
+ ul {
+    list-style: none;
+    padding-top: 5px;
+  }
