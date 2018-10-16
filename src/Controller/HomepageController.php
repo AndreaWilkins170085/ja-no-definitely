@@ -11,7 +11,7 @@ use App\Entity\UserProfile;
 class HomepageController extends AbstractController
 {
     /**
-    * @Route("/", name="home_view")
+    * @Route("/home", name="home_view")
     */
 
     public function viewHomepage()
