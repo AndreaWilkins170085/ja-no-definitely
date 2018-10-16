@@ -1,5 +1,5 @@
 <?php
-// src/Controller/HomepageController.php
+// src/Controller/ProfileController.php
 namespace App\Controller;
 
 
@@ -8,15 +8,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\UserProfile;
 
-class HomepageController extends AbstractController
+class ProfileController extends AbstractController
 {
     /**
-    * @Route("/home", name="home_view")
+    * @Route("/profile", name="profile_view")
     */
 
-    public function viewHomepage()
+    public function viewProfilepage()
     {
-    $view = 'home.html.twig';
+    $view = 'profile.html.twig';
     return $this->render($view);
     }
 }
