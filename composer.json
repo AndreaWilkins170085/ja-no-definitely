@@ -9,10 +9,12 @@
         "symfony/console": "*",
         "symfony/debug-pack": "^1.0",
         "symfony/flex": "^1.1",
+        "symfony/form": "*",
         "symfony/framework-bundle": "*",
         "symfony/maker-bundle": "^1.8",
         "symfony/orm-pack": "^1.0",
         "symfony/twig-bundle": "*",
+        "symfony/validator": "*",
         "symfony/web-server-bundle": "*",
         "symfony/yaml": "*"
     },
