@@ -4,6 +4,11 @@
    margin-top: 5%;
 }
 
+.login-background {
+  background: linear-gradient(to top, #D4D8D9, #ffffff);
+  height: 100%;
+}
+
 .login-con button{
     margin-left: 30%;
 }
