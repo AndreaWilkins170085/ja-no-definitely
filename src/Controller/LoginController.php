@@ -14,11 +14,16 @@ class LoginController extends AbstractController
     * @Route("/", name="login_view")
     */
 
-    public function viewLogin()
+    public function newUser(Request $request)
     {
+    $form = $this->createForm(Login::class, $user);
+    $form->handleRequest($request);
+    $form = $this->createForm(Register::class, $user);
+    $form->handleRequest($request);
     $view = 'login.html.twig';
-    return $this->render($view);
+    $model = array('form' => $form->createView());
+    return $this->render($view, $model);
     }
-}
 
+}
 ?>
