@@ -1,12 +1,21 @@
 .login-con{
-   width: 500px;
-   margin-left: 30%;
-   margin-top: 5%;
+  background-color: white;
+  border-radius: 5px;
+  width: 300px;
+  height: 400px;
+  margin-left: 60%;
+  margin-top: 18%;
+  float: left;
+  box-shadow: 2px 2px 15px 1px;
 }
 
 .login-background {
-  background: linear-gradient(to top, #D4D8D9, #ffffff);
-  height: 700px;
+  margin-top: -70px;
+  background-image: url("../images/login-background.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  height: 800px;
+  width: 100%;
 }
 
 .login-con button{
