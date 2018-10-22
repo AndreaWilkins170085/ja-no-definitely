@@ -17,9 +17,9 @@ class Answers
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
-    private $answer_category;
+    private $question_id;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -37,6 +37,11 @@ class Answers
     private $answer_downvotes;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $answer_author;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $answer_date;
@@ -46,14 +51,14 @@ class Answers
         return $this->id;
     }
 
-    public function getAnswerCategory(): ?string
+    public function getQuestionId(): ?int
     {
-        return $this->answer_category;
+        return $this->question_id;
     }
 
-    public function setAnswerCategory(string $answer_category): self
+    public function setQuestionId(int $question_id): self
     {
-        $this->answer_category = $answer_category;
+        $this->question_id = $question_id;
 
         return $this;
     }
@@ -90,6 +95,18 @@ class Answers
     public function setAnswerDownvotes(?int $answer_downvotes): self
     {
         $this->answer_downvotes = $answer_downvotes;
+
+        return $this;
+    }
+
+    public function getAnswerAuthor(): ?string
+    {
+        return $this->answer_author;
+    }
+
+    public function setAnswerAuthor(string $answer_author): self
+    {
+        $this->answer_author = $answer_author;
 
         return $this;
     }
