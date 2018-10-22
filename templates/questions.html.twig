@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Ja no definitely - Questions {% endblock %}
+
+{% block body %}
+<div>
+
+    <!--Side Bar-->
+   <div id="sidebar">
+      <div id="pic"></div>
+      <div id="name" class="mui--text-white mui--text-display1 mui--align-vertical">User Name</div>
+      <div class="nav">
+        <div class="mui-divider"></div>
+        <ul>
+          <li>
+            <strong>Categories</strong>
+            <ul>
+              <li><a href="#">Item 1</a></li>
+              <li><a href="#">Item 2</a></li>
+              <li><a href="#">Item 3</a></li>
+            </ul>
+          </li>
+          <li>
+            <strong>Edit Profile</strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!--Questions-->
+    <div id="content" class="mui-container-fluid">
+      <div class="mui-row">
+        <div class="mui-col-sm-10 mui-col-sm-offset-1">
+ 
+          {% for question_text in question %}
+                <li>{{ question.question_text }}</li>
+                <li>{{ question.question_author }}</li>
+                <li>{{ question.question_date }}</li>
+          {% endfor %}
+
+      </div>
+    </div>
+
+    {# ads #}
+  <div id="ad" class="mui-container-fluid">
+      <div class="mui-row">
+        AD!
+    </div>
+</div>
+
+</div>
+{% endblock %}

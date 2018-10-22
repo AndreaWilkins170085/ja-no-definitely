@@ -35,21 +35,25 @@
           {{ form_start(questionForm, {'attr': {'novalidate': 'novalidate'}}) }}
           {{ form_widget(questionForm) }}
           {{ form_end(questionForm) }}
-
+          <br>
+          {# <div class="mui-divider"></div>
+          <br>
           {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
           {{ form_widget(answerForm) }}
-          {{ form_end(answerForm) }}
-        
-          {# <div class="mui--text-black-54 mui--text-body2">Category</div>
-          <div class="mui-divider"></div>
-          <br>
-          <div class="mui--text-headline test">Question</div>
-          <div class="mui--text-black-54">Asked By <a href="#">User Name</a> x days ago</div>
-          <div> Question Text </div>
-          <div> <a>See answers</a> </div>
-          <br>
+          {{ form_end(answerForm) }} #}
 
+          <br>
+          <br>
+          {# <div class="mui--text-black-54 mui--text-body2">{{ category.category_name }}</div>
           <div class="mui-divider"></div>
+          <br>
+          <div class="mui--text-headline test">{{ question.question_text }}</div>
+          <div class="mui--text-black-54">Asked By <a href="#">{{ question.question_author }}</a> on {{ question.question_date }}</div>
+          <br>
+          <div> <a>See answers</a> </div>
+          <br> #}
+
+          {# <div class="mui-divider"></div>
           <br>
           <div class="mui--text-headline">Question</div>
           <div class="mui--text-black-54">Asked By <a href="#">User Name</a> x days ago</div>

@@ -32,6 +32,24 @@ class HomeController extends AbstractController
     $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView());
     return $this->render($view, $model);
     }
+
+    /**
+    * @Route("/question/{id}", name="question_view")
+    */
+    public function viewQuestion($id = "1")
+    {
+        $questionId = (int) $id;
+
+        $question = $this->getDoctrine()
+        ->getRepository(Questions::class)
+        ->find($questionId);
+
+        $model = array('question' => $question);
+        $view = 'questions.html.twig';
+
+        return $this->render($view, $model);
+    }
+
 }
 
 ?>
