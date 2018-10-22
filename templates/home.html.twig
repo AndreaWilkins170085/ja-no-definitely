@@ -31,8 +31,16 @@
     <div id="content" class="mui-container-fluid">
       <div class="mui-row">
         <div class="mui-col-sm-10 mui-col-sm-offset-1">
+
+          {{ form_start(questionForm, {'attr': {'novalidate': 'novalidate'}}) }}
+          {{ form_widget(questionForm) }}
+          {{ form_end(questionForm) }}
+
+          {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
+          {{ form_widget(answerForm) }}
+          {{ form_end(answerForm) }}
         
-          <div class="mui--text-black-54 mui--text-body2">Category</div>
+          {# <div class="mui--text-black-54 mui--text-body2">Category</div>
           <div class="mui-divider"></div>
           <br>
           <div class="mui--text-headline test">Question</div>
@@ -56,7 +64,7 @@
           <div class="mui--text-black-54">Asked By <a href="#">User Name</a> x days ago</div>
           <div> Question Text </div>
           <div> <a>See answers</a> </div>
-          <br>
+          <br> #}
           
       </div>
     </div>
