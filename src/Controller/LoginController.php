@@ -8,8 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 
-use App\Form\Login;
-use App\Form\Register;
+use App\Form\LoginType;
+use App\Form\RegisterType;
 
 class LoginController extends AbstractController
 {
