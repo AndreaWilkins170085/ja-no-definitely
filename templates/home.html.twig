@@ -51,16 +51,16 @@
 
           <ul>
           {% for questionId in question %}
-            <li>{{ question.question_text }}</li>
+            <li>{{ questionId.question_text }}</li>
           {% endfor %}
           </ul>
 
           <div class="mui--text-black-54 mui--text-body2">Category</div>
           <div class="mui-divider"></div>
           <br>
-          {# <div class="mui--text-headline">{{ question.question_text }}</div> #}
+          <div class="mui--text-headline">Question</div>
+          <br>
           <div class="mui--text-black-54">Asked By <a href="#">User Name</a> x days ago</div>
-          <div> Question Text </div>
           <div class="mui-divider"></div>
           <br>
           {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
@@ -72,26 +72,16 @@
           <div class="mui-divider"></div>
           <br>
           <div class="mui--text-headline">Question</div>
-          <div class="mui--text-black-54">Asked By <a href="#">User Name</a> x days ago</div>
-          <div> Question Text </div>
-          <div class="mui-divider"></div>
           <br>
-          {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
-          {{ form_widget(answerForm) }}
-          {{ form_end(answerForm) }}
+          <div class="mui--text-black-54">Asked By <a href="#">User Name</a> x days ago</div>
           <br>
 
           <div class="mui--text-black-54 mui--text-body2">Category</div>
           <div class="mui-divider"></div>
           <br>
           <div class="mui--text-headline">Question</div>
-          <div class="mui--text-black-54">Asked By <a href="#">User Name</a> x days ago</div>
-          <div> Question Text </div>
-          <div class="mui-divider"></div>
           <br>
-          {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
-          {{ form_widget(answerForm) }}
-          {{ form_end(answerForm) }}
+          <div class="mui--text-black-54">Asked By <a href="#">User Name</a> x days ago</div>
           <br>
           
       </div>

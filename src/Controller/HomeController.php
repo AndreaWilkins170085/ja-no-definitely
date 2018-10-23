@@ -30,7 +30,7 @@ class HomeController extends AbstractController
     $answerForm->handleRequest($request);
 
     $questionId = (int) $id;
-    $question = $this->getDoctrine()
+    $questionAsked = $this->getDoctrine()
     ->getRepository(Question::class)
     ->find($questionId);  
 
