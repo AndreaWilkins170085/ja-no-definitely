@@ -34,12 +34,16 @@ class HomeController extends AbstractController
     ->getRepository(Question::class)
     ->findAll(); 
     
-    $categorys = $this->getDoctrine()
-    ->getRepository(Category::class)
+    $answers = $this->getDoctrine()
+    ->getRepository(Answer::class)
     ->findAll(); 
 
+    $categorys = $this->getDoctrine()
+    ->getRepository(Category::class)
+    ->findAll();
+
     $view = 'home.html.twig';
-    $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 'categorys' => $categorys);
+    $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 'answers' => $answers, 'categorys' => $categorys);
     return $this->render($view, $model);
     }
 
