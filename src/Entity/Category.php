@@ -19,7 +19,7 @@ class Category
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $category_name;
+    public $category_name;
 
     public function getId(): ?int
     {

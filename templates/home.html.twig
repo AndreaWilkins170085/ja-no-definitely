@@ -28,25 +28,27 @@
           <br> #}
 
           <ul>
-          {% for questionId in question %}
-            <li>{{ questionId.question_text }}</li>
+          {% for category in categorys %}
+            <li>{{ category.category_name }}</li>
           {% endfor %}
           </ul>
 
-          <div class="mui--text-black-54 mui--text-body2">Category</div>
+          {% for question in questions %}
+          <div class="mui--text-black-54 mui--text-body2">{{ question.category_id }}</div>
           <div class="mui-divider"></div>
           <br>
-          <div class="mui--text-headline">Question</div>
+          <div class="mui--text-headline">{{ question.question_text }}</div>
           <br>
-          <div class="mui--text-black-54">Asked By <a href="#">User Name</a> x days ago</div>
+          <div class="mui--text-black-54">Asked By <a href="#">{{ question.question_author }}</a></div>
           <div class="mui-divider"></div>
           <br>
           {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
           {{ form_widget(answerForm) }}
           {{ form_end(answerForm) }}
           <br>
+          {% endfor %}
 
-          <div class="mui--text-black-54 mui--text-body2">Category</div>
+          {# <div class="mui--text-black-54 mui--text-body2">Category</div>
           <div class="mui-divider"></div>
           <br>
           <div class="mui--text-headline">Question</div>
@@ -60,7 +62,7 @@
           <div class="mui--text-headline">Question</div>
           <br>
           <div class="mui--text-black-54">Asked By <a href="#">User Name</a> x days ago</div>
-          <br>
+          <br> #}
           
       </div>
     </div>
