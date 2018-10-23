@@ -59,17 +59,17 @@ class LoginController extends AbstractController
 
 
 
-$test = hash( "sha256", "data");
-echo $test;
-echo '<br />';
-$test2 = hash( "sha256", "data");
-echo $test;
-echo '<br />';
+// $test = hash( "sha256", "data");
+// echo $test;
+// echo '<br />';
+// $test2 = hash( "sha256", "data1");
+// echo $test;
+// echo '<br />';
 
-if ($test === $test2){
-    echo "true";
-}else{
-    echo "false";
-}
+// if ($test === $test2){
+//     echo "true";
+// }else{
+//     echo "false";
+// }
 
 ?>
