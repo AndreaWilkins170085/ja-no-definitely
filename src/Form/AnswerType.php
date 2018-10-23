@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class Answer extends AbstractType
+class AnswerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
