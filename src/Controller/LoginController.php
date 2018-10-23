@@ -62,7 +62,7 @@ class LoginController extends AbstractController
 // $test = hash( "sha256", "data");
 // echo $test;
 // echo '<br />';
-// $test2 = hash( "sha256", "data");
+// $test2 = hash( "sha256", "data1");
 // echo $test;
 // echo '<br />';
 
