@@ -173,3 +173,27 @@
    text-decoration: underline;
  }
  
+
+ #ad {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    right: 0;
+    overflow: auto;
+    z-index: 2;
+    background-color: #fff;
+    transition: transform 0.2s;
+  }
+
+  @media (min-width: 768px) {
+    #ad {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 200px;
+      height: 100%;
+      padding-top: 30px;
+    }
+  }
