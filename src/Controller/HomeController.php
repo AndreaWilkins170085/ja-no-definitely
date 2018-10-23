@@ -34,9 +34,9 @@ class HomeController extends AbstractController
     }
 
     /**
-    * @Route("/question/{id}", name="question_view")
+    * @Route("/home", name="question_view")
     */
-    public function viewQuestion($id = "1")
+    public function viewQuestion()
     {
         $questionId = (int) $id;
 
