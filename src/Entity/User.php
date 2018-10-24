@@ -23,18 +23,30 @@ class User
     private $id;
 
     /**
-    * @ORM\Column(type="string", length=255)
-    * @Assert\NotBlank()
-    * @Assert\Email()
+    * @ORM\Column(type="string", length=255, nullable=true)
     */
 
-    private $email;
+    private $name;
+
+    /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    */
+
+    private $surname;
 
     /**
     * @ORM\Column(type="string", length=255, nullable=true)
     */
 
     private $username;
+
+    /**
+    * @ORM\Column(type="string", length=255)
+    * @Assert\NotBlank()
+    * @Assert\Email()
+    */
+
+    private $email;
 
     /**
     * @Assert\NotBlank()
@@ -80,6 +92,30 @@ class User
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSurname(): ?string
+    {
+        return $this->surname;
+    }
+
+    public function setSurname(string $surname): self
+    {
+        $this->surname = $surname;
 
         return $this;
     }
