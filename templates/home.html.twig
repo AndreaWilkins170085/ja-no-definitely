@@ -23,20 +23,31 @@
           <div class="mui-divider"></div>
           <br>
           <div class="mui--text-headline">{{ question.question_text }}</div>
-          <br>
           <div class="mui--text-black-54">Asked By <a href="#">{{ question.question_author }}</a></div>
-          <div class="mui-divider"></div>
+          <br>
+          <br>
+
+          {# <div id="sidedrawer" class="mui--no-user-select">
+            <div class="mui-divider"></div>
+            <ul>
+              <li>
+                <strong>Answers</strong>
+                <ul>
+                  {% for answer in answers %}
+                    <li><a>{{ answer.answer_author }}</a></li>
+                    <li><a>{{ answer.answer_text }}</a></li>
+                  {% endfor %}
+                </ul>
+              </li>
+            </ul>
+          </div> #}
+
           {# <br>
           {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
           {{ form_widget(answerForm) }}
           {{ form_end(answerForm) }}
-          <br> #}
-          <br>
-          {# <div class="mui--text-black-54 mui--text-body2">{{ answer.answer_author }}</div>
-          <div class="mui-divider"></div>
-          <br>
-          <div class="mui--text-black-54">Asked By <a href="#">{{ answer.answer_text }}</a></div> #}
-          <br>
+          <br> 
+          <br>#}
           {% endfor %}
           
       </div>
