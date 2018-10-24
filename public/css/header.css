@@ -122,14 +122,20 @@
    color: #fff;
    text-decoration: none;
  }
- 
+
+ #name{
+  color: white;
+  width: 100%;
+  margin-left: 30%;
+}
+
  
  /**
   * Sidedrawer CSS
   */
  
  #sidedrawer-brand {
-   padding-left: 20px;
+   
  }
  
  #sidedrawer ul {
@@ -197,3 +203,27 @@
       padding-top: 30px;
     }
   }
+
+  #profile-header-image{
+    background-color: white;
+    height: 120px;
+    width: 120px;
+    margin-left: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 100px;
+    border-color: aqua;
+    border-style: solid;
+  }
+
+#profile-header-name{
+  text-align: right;
+  margin: 0;
+  margin-right: 10px;
+}
+
+#profile-header-surname{
+  text-align: right;
+  margin: 0;
+  margin-right: 10px;
+}
