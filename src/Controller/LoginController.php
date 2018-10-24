@@ -21,7 +21,7 @@ class LoginController extends AbstractController
     public function viewLogin(Request $request)
     {
     $user = new User();
-    $loginForm = $this->createForm(Login::class, $user);
+    $loginForm = $this->createForm(LoginType::class, $user);
     $loginForm->handleRequest($request);
 
     $categorys = $this->getDoctrine()
@@ -39,7 +39,7 @@ class LoginController extends AbstractController
         return $this->redirectToRoute('home_view');
     }
 
-    $registerForm = $this->createForm(Register::class, $user);
+    $registerForm = $this->createForm(RegisterType::class, $user);
     $registerForm->handleRequest($request);
 
     if ($registerForm->isSubmitted() && $registerForm->isValid()) {

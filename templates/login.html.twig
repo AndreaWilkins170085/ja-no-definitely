@@ -1,30 +1,48 @@
-{% extends "base.html.twig" %}
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta charset="UTF-8">
+        <link href="//cdn.muicss.com/mui-latest/css/mui.min.css" rel="stylesheet" type="text/css" />
+        <script src="//cdn.muicss.com/mui-latest/js/mui.min.js"></script>
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="{{ ('js/main.js') }}"></script>
+        <link rel="stylesheet" href="{{ ('css/main.css') }}">
+        <link rel="stylesheet" href="{{ ('css/header.css') }}">
+        
+        <title>{% block title %}Ja no definitely - Login {% endblock %}</title>
+        {% block stylesheets %}
+                
+        {% endblock %}
+    </head>
+    <body>
+      {% block body %}
+        <div class="login-background">
+        <div class="login-con">
+        <ul class="mui-tabs__bar mui-tabs__bar--justified">
+          <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li>
+          <li><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Register</a></li>
+        </ul>
 
-{% block title %}Ja no definitely - Login {% endblock %}
+        <div class="mui-tabs__pane mui--is-active" id="pane-justified-1">
+
+          {{ form_start(loginForm, {'attr': {'novalidate': 'novalidate'}}) }}
+          {{ form_widget(loginForm) }}
+          {{ form_end(loginForm) }}
+        </div>
+
+        <div class="mui-tabs__pane" id="pane-justified-2">
+
+          {{ form_start(registerForm, {'attr': {'novalidate': 'novalidate'}}) }}
+          {{ form_widget(registerForm) }}
+          {{ form_end(registerForm) }}
+        </div>
+        </div>
+
+      </div>
+      {% endblock %}
+    </body>  
+</html>
 
 
-{% block body %}
-<div class="login-background">
-  <div class="login-con">
-  <ul class="mui-tabs__bar mui-tabs__bar--justified">
-    <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li>
-    <li><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Register</a></li>
-  </ul>
 
-  <div class="mui-tabs__pane mui--is-active" id="pane-justified-1">
 
-    {{ form_start(loginForm, {'attr': {'novalidate': 'novalidate'}}) }}
-    {{ form_widget(loginForm) }}
-    {{ form_end(loginForm) }}
-  </div>
-
-  <div class="mui-tabs__pane" id="pane-justified-2">
-
-    {{ form_start(registerForm, {'attr': {'novalidate': 'novalidate'}}) }}
-    {{ form_widget(registerForm) }}
-    {{ form_end(registerForm) }}
-  </div>
-  </div>
-
-</div>
-{% endblock %}
