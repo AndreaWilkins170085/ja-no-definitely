@@ -18,36 +18,25 @@
 
     <div id="sidedrawer" class="mui--no-user-select">
       <div id="sidedrawer-brand" class="mui--appbar-line-height">
-        <span class="mui--text-title">Brand.io</span>
+        <span class="mui--text-title"><a href="/home">Ja No Definitely</a></span>
       </div>
+
       <div class="mui-divider"></div>
       <ul>
         <li>
-          <strong>Category 1</strong>
+          <strong>Categories</strong>
           <ul>
-            <li><a href="#">Item 1</a></li>
-            <li><a href="#">Item 2</a></li>
-            <li><a href="#">Item 3</a></li>
+            {% for category in categorys %}
+              <li><a>{{ category.category_name }}</a></li>
+            {% endfor %}
           </ul>
         </li>
         <li>
-          <strong>Category 2</strong>
-          <ul>
-            <li><a href="#">Item 1</a></li>
-            <li><a href="#">Item 2</a></li>
-            <li><a href="#">Item 3</a></li>
-          </ul>
-        </li>
-        <li>
-          <strong>Category 3</strong>
-          <ul>
-            <li><a href="#">Item 1</a></li>
-            <li><a href="#">Item 2</a></li>
-            <li><a href="#">Item 3</a></li>
-          </ul>
+          <strong><a href="/profile">View Profile</a></strong>
         </li>
       </ul>
     </div>
+
     <header id="header">
       <div class="mui-appbar mui--appbar-line-height">
         <div class="mui-container-fluid">

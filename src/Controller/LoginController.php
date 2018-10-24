@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
+use App\Entity\Category;
 
 use App\Form\LoginType;
 use App\Form\RegisterType;
@@ -22,6 +23,10 @@ class LoginController extends AbstractController
     $user = new User();
     $loginForm = $this->createForm(Login::class, $user);
     $loginForm->handleRequest($request);
+
+    $categorys = $this->getDoctrine()
+    ->getRepository(Category::class)
+    ->findAll(); 
 
     if ($loginForm->isSubmitted() && $loginForm->isValid()) {
         // $form->getData() holds the submitted values
@@ -51,7 +56,7 @@ class LoginController extends AbstractController
     
     
     $view = 'login.html.twig';
-    $model = array('loginForm' => $loginForm->createView(), 'registerForm' => $registerForm->createView());
+    $model = array('loginForm' => $loginForm->createView(), 'registerForm' => $registerForm->createView(), 'categorys'=>$categorys);
     return $this->render($view, $model);
     }
 

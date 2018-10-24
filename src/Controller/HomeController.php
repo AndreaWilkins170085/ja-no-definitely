@@ -11,6 +11,7 @@ use App\Entity\Question;
 use App\Form\QuestionType;
 use App\Entity\Answer;
 use App\Form\AnswerType;
+use App\Entity\Category;
 
 class HomeController extends AbstractController
 {
@@ -18,7 +19,7 @@ class HomeController extends AbstractController
     * @Route("/home", name="home_view")
     */
 
-    public function viewHomepage(Request $request, $id = "1")
+    public function viewHomepage(Request $request)
     { 
 
     $question = new Question();
@@ -29,13 +30,20 @@ class HomeController extends AbstractController
     $answerForm = $this->createForm(AnswerType::class, $answer);
     $answerForm->handleRequest($request);
 
-    $questionId = (int) $id;
-    $questionAsked = $this->getDoctrine()
+    $questions = $this->getDoctrine()
     ->getRepository(Question::class)
-    ->find($questionId);  
+    ->findAll(); 
+    
+    $answers = $this->getDoctrine()
+    ->getRepository(Answer::class)
+    ->findAll(); 
+
+    $categorys = $this->getDoctrine()
+    ->getRepository(Category::class)
+    ->findAll();
 
     $view = 'home.html.twig';
-    $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'question' => $question);
+    $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 'answers' => $answers, 'categorys' => $categorys);
     return $this->render($view, $model);
     }
 
