@@ -10,14 +10,16 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class Register extends AbstractType
+class RegisterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('password', PasswordType::class)
+            ->add('name', TextType::class, array('label' => false))
+            ->add('surname', TextType::class, array('label' => false))
+            ->add('username', TextType::class, array('label' => false))
+            ->add('email', EmailType::class, array('label' => false))
+            ->add('password', PasswordType::class, array('label' => false))
             ->add('loginFB', SubmitType::class, ['label' => 'Sign Up with Facebook'])
             ->add('submit', SubmitType::class, ['label' => 'Register']);
         ;

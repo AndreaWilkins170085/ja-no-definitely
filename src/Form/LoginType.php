@@ -1,25 +1,23 @@
 <?php
 
 namespace App\Form;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class Answer extends AbstractType
+class LoginType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('answer_author', HiddenType::class)
-            ->add('answer_date', HiddenType::class)
-            ->add('question_id', HiddenType::class)
-            ->add('answer_text', TextType::class)
-            ->add('submit', SubmitType::class, ['label' => 'Answer!']);
+            ->add('email', EmailType::class, array('label' => false))
+            ->add('password', PasswordType::class, array('label' => false))
+            ->add('submit', SubmitType::class);
         ;
     }
 }

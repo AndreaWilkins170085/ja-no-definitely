@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\QuestionsRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
  */
-class Questions
+class Question
 {
     /**
      * @ORM\Id()
@@ -22,32 +22,32 @@ class Questions
     /**
      * @ORM\Column(type="integer")
      */
-    private $category_id;
+    public $category_id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $question_text;
+    public $question_text;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $question_upvotes;
+    public $question_upvotes;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $question_downvotes;
+    public $question_downvotes;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $question_author;
+    public $question_author;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $question_date;
+    public $question_date;
 
     public function getId(): ?int
     {

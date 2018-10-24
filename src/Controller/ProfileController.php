@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\UserProfile;
+use App\Entity\Category;
 
 class ProfileController extends AbstractController
 {
@@ -16,8 +17,14 @@ class ProfileController extends AbstractController
 
     public function viewProfilepage()
     {
-    $view = 'profile.html.twig';
-    return $this->render($view);
+
+        $categorys = $this->getDoctrine()
+        ->getRepository(Category::class)
+        ->findAll(); 
+
+        $view = 'profile.html.twig';
+        $model = array('categorys' => $categorys);
+        return $this->render($view, $model);
     }
 }
 

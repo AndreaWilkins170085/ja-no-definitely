@@ -7,9 +7,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
+use App\Entity\Category;
 
-use App\Form\Login;
-use App\Form\Register;
+use App\Form\LoginType;
+use App\Form\RegisterType;
 
 class LoginController extends AbstractController
 {
@@ -20,8 +21,12 @@ class LoginController extends AbstractController
     public function viewLogin(Request $request)
     {
     $user = new User();
-    $loginForm = $this->createForm(Login::class, $user);
+    $loginForm = $this->createForm(LoginType::class, $user);
     $loginForm->handleRequest($request);
+
+    $categorys = $this->getDoctrine()
+    ->getRepository(Category::class)
+    ->findAll(); 
 
     if ($loginForm->isSubmitted() && $loginForm->isValid()) {
         // $form->getData() holds the submitted values
@@ -34,7 +39,7 @@ class LoginController extends AbstractController
         return $this->redirectToRoute('home_view');
     }
 
-    $registerForm = $this->createForm(Register::class, $user);
+    $registerForm = $this->createForm(RegisterType::class, $user);
     $registerForm->handleRequest($request);
 
     if ($registerForm->isSubmitted() && $registerForm->isValid()) {
@@ -51,7 +56,7 @@ class LoginController extends AbstractController
     
     
     $view = 'login.html.twig';
-    $model = array('loginForm' => $loginForm->createView(), 'registerForm' => $registerForm->createView());
+    $model = array('loginForm' => $loginForm->createView(), 'registerForm' => $registerForm->createView(), 'categorys'=>$categorys);
     return $this->render($view, $model);
     }
 
@@ -59,17 +64,17 @@ class LoginController extends AbstractController
 
 
 
-$test = hash( "sha256", "data");
-echo $test;
-echo '<br />';
-$test2 = hash( "sha256", "data");
-echo $test;
-echo '<br />';
+// $test = hash( "sha256", "data");
+// echo $test;
+// echo '<br />';
+// $test2 = hash( "sha256", "data1");
+// echo $test;
+// echo '<br />';
 
-if ($test === $test2){
-    echo "true";
-}else{
-    echo "false";
-}
+// if ($test === $test2){
+//     echo "true";
+// }else{
+//     echo "false";
+// }
 
 ?>
