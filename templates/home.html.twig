@@ -17,6 +17,15 @@
           <br>
 
           <br>
+          <br>
+          <div class="mui-divider"></div>
+          <br>
+          <div class="mui--text-headline test">{{ question.question_text }}</div>
+          <div class="mui--text-black-54">Asked By <a href="#">{{ question.question_author }}</a> on {{ question.question_date }}</div>
+          <br>
+          <div> <a>See answers</a> </div>
+          <br>
+
 
           {% for question in questions %}
           <div class="mui--text-black-54 mui--text-body2">{{ question.category_id }}</div>
