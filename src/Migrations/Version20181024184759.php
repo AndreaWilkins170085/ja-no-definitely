@@ -8,7 +8,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20181023102808 extends AbstractMigration
+final class Version20181024184759 extends AbstractMigration
 {
     public function up(Schema $schema) : void
     {
@@ -16,11 +16,13 @@ final class Version20181023102808 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('DROP SEQUENCE questions_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE answers_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE users_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE answers_id_seq CASCADE');
         $this->addSql('CREATE SEQUENCE answer_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE question_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('DROP TABLE users');
+        $this->addSql('ALTER TABLE "user" ADD name VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE "user" ADD surname VARCHAR(255) DEFAULT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -32,8 +34,10 @@ final class Version20181023102808 extends AbstractMigration
         $this->addSql('DROP SEQUENCE answer_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE question_id_seq CASCADE');
         $this->addSql('CREATE SEQUENCE questions_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql('CREATE SEQUENCE answers_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE users_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE answers_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE TABLE users (id INT NOT NULL, username VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('ALTER TABLE "user" DROP name');
+        $this->addSql('ALTER TABLE "user" DROP surname');
     }
 }

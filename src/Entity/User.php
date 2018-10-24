@@ -20,25 +20,25 @@ class User
     * @ORM\Column(type="integer")
     */
 
-    private $id;
+    public $id;
 
     /**
     * @ORM\Column(type="string", length=255, nullable=true)
     */
 
-    private $name;
+    public $name;
 
     /**
     * @ORM\Column(type="string", length=255, nullable=true)
     */
 
-    private $surname;
+    public $surname;
 
     /**
     * @ORM\Column(type="string", length=255, nullable=true)
     */
 
-    private $username;
+    public $username;
 
     /**
     * @ORM\Column(type="string", length=255)
@@ -46,13 +46,13 @@ class User
     * @Assert\Email()
     */
 
-    private $email;
+    public $email;
 
     /**
     * @Assert\NotBlank()
     */
     
-    private $password;
+    public $password;
 
 
     public function getId(): ?int
