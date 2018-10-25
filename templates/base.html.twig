@@ -37,7 +37,7 @@
           <strong>Categories</strong>
           <ul>
             {% for category in categorys %}
-              <li><a>{{ category.category_name }}</a></li>
+              <li><a href="/category/{{ category.id }}">{{ category.category_name }}</a></li>
             {% endfor %}
           </ul>
         </li>

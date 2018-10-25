@@ -1,9 +1,11 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Ja no definitely - Home {% endblock %}
+{% block title %}Ja no definitely - CategoryName {% endblock %}
 
 {% block body %}
 <div>
+
+<h1>Category Name</h1>
 
     <!--Questions-->
     <div id="content" class="mui-container-fluid">
@@ -37,27 +39,6 @@
           <br>
           <br>
 
-          {# <div id="sidedrawer" class="mui--no-user-select">
-            <div class="mui-divider"></div>
-            <ul>
-              <li>
-                <strong>Answers</strong>
-                <ul>
-                  {% for answer in answers %}
-                    <li><a>{{ answer.answer_author }}</a></li>
-                    <li><a>{{ answer.answer_text }}</a></li>
-                  {% endfor %}
-                </ul>
-              </li>
-            </ul>
-          </div> #}
-
-          {# <br>
-          {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
-          {{ form_widget(answerForm) }}
-          {{ form_end(answerForm) }}
-          <br> 
-          <br>#}
           {% endfor %}
           
       </div>
