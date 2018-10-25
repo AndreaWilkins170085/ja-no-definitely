@@ -34,3 +34,12 @@ INSERT INTO "public"."category"(id, category_name) VALUES (7, 'Sun and Surf');
 
 
 5. php /bin/console server:start or run
+
+6. //add password and user type
+
+ALTER TABLE "public"."user" ADD type varchar(255);
+ALTER TABLE "public"."user" ADD password varchar(255);
+
+UPDATE "public"."user" SET type = 'admin', password = 'alaska' WHERE id = 1;
+UPDATE "public"."user" SET type = 'admin', password = 'togo' WHERE id = 2;
+UPDATE "public"."user" SET type = 'admin', password = 'max' WHERE id = 3;
