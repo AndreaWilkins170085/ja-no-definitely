@@ -1,11 +1,18 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Ja no definitely - CategoryName {% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ ('/css/main.css') }}">
+    <link rel="stylesheet" href="{{ ('/css/header.css') }}">  
+    <script src="{{ ('/js/main.js') }}"></script>    
+{% endblock %}
+        
+
+{% block title %}Ja no definitely - {{ category.category_name}} {% endblock %}
 
 {% block body %}
 <div>
 
-<h1>Category Name</h1>
+<span class="mui--text-title" id="category_title">{{ category.category_name}}</span>
 
     <!--Questions-->
     <div id="content" class="mui-container-fluid">

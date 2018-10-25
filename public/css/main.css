@@ -1,3 +1,5 @@
+/* LOGIN PAGE */
+
 #login-con{
   background-color: white;
   border-radius: 5px;
@@ -47,6 +49,8 @@
   color: #cc5500;
 }
 
+/* HOME PAGE */
+
 #company_name {
   color: white;
   margin-left: 10%;
@@ -63,4 +67,14 @@ textarea {
     margin-left: 13%;
     margin-top: 22%;
   }
+}
+
+/* CATEGORY PAGE */
+
+#category_title{
+  color: black;
+  width: 100%;
+  margin-left: 41%;
+  padding-top: 40px;
+  padding-bottom: 50px;
 }
