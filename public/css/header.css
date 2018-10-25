@@ -31,6 +31,20 @@
    z-index: 2;
    transition: left 0.2s;
    background-color: white;
+   color: black;
+ }
+
+ #burger-menu{
+   color: black;
+ }
+
+ .mui-appbar{
+   color: black;
+   background-color: white;
+   border-bottom: black;
+   border-bottom-style: solid;
+   border-width: 5px;
+
  }
  
  #sidedrawer {
@@ -128,7 +142,7 @@
  }
 
  #name{
-  color: white;
+  color: black;
   width: 100%;
   margin-left: 30%;
 }
@@ -179,11 +193,18 @@
   background-color: white;
    color: rgba(0,0,0,0.5);
    border-top: black;
+   border-top-style: solid;
+   border-width: 5px;
+   height: 100px;
+   bottom: 0;
+   overflow: auto;
+    z-index: 2;
  }
  
  #footer a {
    color: #fff;
    text-decoration: underline;
+
  }
  
  /**
@@ -201,6 +222,7 @@
     z-index: 2;
     background-color: #fff;
     transition: transform 0.2s;
+    
   }
 
   @media (min-width: 768px) {
@@ -255,7 +277,6 @@
   margin: 0;
   width: 72%;
   }
-
 
 
 #content{
