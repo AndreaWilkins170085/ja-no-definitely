@@ -30,6 +30,7 @@
    left: 0;
    z-index: 2;
    transition: left 0.2s;
+   background-color: white;
  }
  
  #sidedrawer {
@@ -49,7 +50,7 @@
    overflow-x: hidden;
    margin-left: 0px;
    transition: margin-left 0.2s;
-   
+   background-color: white;
    /* sticky bottom */
    box-sizing: border-box;
    margin-bottom: -160px;
@@ -61,11 +62,14 @@
    height: 160px;
    margin-left: 0px;
    transition: margin-left 0.2s;
+   background-color: white;
+   border-top : darkgray;
  }
  
  @media (min-width: 768px) {
    #header {
      left: 200px;
+     background-color: white;
    }
    
    #sidedrawer {
@@ -135,7 +139,9 @@
   */
  
  #sidedrawer-brand {
-   
+  background-color: #cc5500;
+  margin-top: -40px;
+  height: 200px;
  }
  
  #sidedrawer ul {
@@ -170,8 +176,9 @@
   */
  
  #footer {
-   background-color: #0288D1;
-   color: #fff;
+  background-color: white;
+   color: rgba(0,0,0,0.5);
+   border-top: black;
  }
  
  #footer a {
@@ -206,13 +213,13 @@
 
   #profile-header-image{
     background-color: white;
-    height: 120px;
-    width: 120px;
-    margin-left: 40px;
-    margin-top: 10px;
+    width: 70px;
+    height: 70px;
+    margin-left: 65px;
+    margin-top: 40px;
     margin-bottom: 10px;
     border-radius: 100px;
-    border-color: aqua;
+    border-color: gray;
     border-style: solid;
   }
 

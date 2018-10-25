@@ -3,7 +3,7 @@
   border-radius: 5px;
   width: 300px;
   height: 400px;
-  margin-left: 60%;
+  margin-left: 40%;
   margin-top: 10%;
   float: left;
   box-shadow: 2px 2px 15px 1px;
@@ -27,8 +27,48 @@
   margin-left: 30%;
 }
 
-input {
+#login-con input {
   display: block;
+  margin-left: 8%;
+  width: 230px;
+  margin-top: 25px;
+}
+
+#login_submit {
+  display: block;
+  margin-left: 8%;
+  width: 230px;
+  margin-top: 10px;
+  height: 30px;
+  background-color: #cc5500;
+}
+
+#login_highlight a{
+  color: #cc5500;
+}
+
+#company_name {
+  color: white;
+  margin-left: 10%;
+  padding-top: 5%;
+}
+
+#content-wrapper {
+  background-color: white;
+}
+
+#sidedrawer-brand {
+  background-color: #cc5500;
+  margin-top: -10px;
+}
+
+#profile-header-image {
+  width: 40px;
+  height: 40px;
+}
+
+#header {
+  background-color: white;
 }
  
 @media (max-width: 576px) {
