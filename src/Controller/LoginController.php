@@ -7,8 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
-use App\Entity\Category;
-
 use App\Form\LoginType;
 use App\Form\RegisterType;
 
@@ -18,46 +16,52 @@ class LoginController extends AbstractController
     * @Route("/", name="login_view")
     */
 
-    public function viewLogin(Request $request)
+    public function userRegister(Request $request)
     {
-    $user = new User();
-    $loginForm = $this->createForm(LoginType::class, $user);
-    $loginForm->handleRequest($request);
+        $user = new User();
 
-    $categorys = $this->getDoctrine()
-    ->getRepository(Category::class)
-    ->findAll(); 
+        $registerForm = $this->createForm(RegisterType::class, $user);
+        $registerForm->handleRequest($request);
 
-    if ($loginForm->isSubmitted() && $loginForm->isValid()) {
-        // $form->getData() holds the submitted values
-        $user = $loginForm->getData();
+        if ($registerForm->isSubmitted() && $registerForm->isValid()) {
+            // $form->getData() holds the submitted values
+            $user = $registerForm->getData();
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
-        
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            
+            return $this->redirectToRoute('home_view');
+        }
 
-        return $this->redirectToRoute('home_view');
+        $view = 'login.html.twig';
+        $model = array('registerForm' => $registerForm->createView());
+
+        return $this->render($view, $model);
     }
 
-    $registerForm = $this->createForm(RegisterType::class, $user);
-    $registerForm->handleRequest($request);
-
-    if ($registerForm->isSubmitted() && $registerForm->isValid()) {
-        // $form->getData() holds the submitted values
-        $user = $registerForm->getData();
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
-        $entityManager->flush();
-        
-
-        return $this->redirectToRoute('home_view');
-    }
     
-    
-    $view = 'login.html.twig';
-    $model = array('loginForm' => $loginForm->createView(), 'registerForm' => $registerForm->createView(), 'categorys'=>$categorys);
-    return $this->render($view, $model);
+
+    public function userLogin(Request $request)
+    {
+        $loginForm = $this->createForm(LoginType::class, $user);
+        $loginForm->handleRequest($request);
+ 
+
+        if ($loginForm->isSubmitted() && $loginForm->isValid()) {
+            // $form->getData() holds the submitted values
+            $user = $loginForm->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+
+            return $this->redirectToRoute('home_view');
+        }
+
+        $view = 'login.html.twig';
+        $model = array('loginForm' => $loginForm->createView());
+
+        return $this->render($view, $model);
+
     }
 
 }

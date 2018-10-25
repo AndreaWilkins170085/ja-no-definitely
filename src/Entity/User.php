@@ -54,6 +54,18 @@ class User
     
     public $password;
 
+    /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    */
+
+    public $type;
+
+    /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    */
+
+    public $image_path;
+
 
     public function getId(): ?int
     {
@@ -116,6 +128,30 @@ class User
     public function setSurname(string $surname): self
     {
         $this->surname = $surname;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getImagePath(): ?string
+    {
+        return $this->image_path;
+    }
+
+    public function setImagePath(string $simage_path): self
+    {
+        $this->image_path = $image_path;
 
         return $this;
     }
