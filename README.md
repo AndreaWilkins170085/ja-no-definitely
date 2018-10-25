@@ -39,7 +39,9 @@ INSERT INTO "public"."category"(id, category_name) VALUES (7, 'Sun and Surf');
 
 ALTER TABLE "public"."user" ADD type varchar(255);
 ALTER TABLE "public"."user" ADD password varchar(255);
+ALTER TABLE "public"."user" ADD image_path varchar(255);
 
 UPDATE "public"."user" SET type = 'admin', password = 'alaska' WHERE id = 1;
 UPDATE "public"."user" SET type = 'admin', password = 'togo' WHERE id = 2;
 UPDATE "public"."user" SET type = 'admin', password = 'max' WHERE id = 3;
+UPDATE "public"."user" SET image_path = 'default_user_pic.jpg';

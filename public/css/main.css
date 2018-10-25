@@ -52,6 +52,11 @@
   margin-left: 10%;
   padding-top: 5%;
 }
+
+textarea {
+  width: 700px;
+  height: 120px;
+}
  
 @media (max-width: 576px) {
   #login-con{

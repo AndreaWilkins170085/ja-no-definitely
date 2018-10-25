@@ -57,7 +57,7 @@
    z-index: 2;
    background-color: #fff;
    transition: transform 0.2s;
-   border-right: darkgray;
+   box-shadow: 1px 1px 10px 1px #B8B8B8;
  }
  
  #content-wrapper {

@@ -12,7 +12,8 @@
         <div class="mui-col-sm-10 mui-col-sm-offset-1">
 
           {{ form_start(questionForm, {'attr': {'novalidate': 'novalidate'}}) }}
-          {{ form_widget(questionForm) }}
+          {{ form_widget(questionForm.question_text, {'attr': {'placeholder': 'Ask a question...'} }) }}
+          {{ form_widget(questionForm.category_id, {'attr': {'placeholder': 'Category'} }) }}
           {{ form_end(questionForm) }}
           <br>
 
