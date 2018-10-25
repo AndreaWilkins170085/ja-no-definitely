@@ -13,21 +13,21 @@ class ProfileController extends AbstractController
 {
     
     /**
-    * @Route("/profile/{id}", name="profile_view")
+    * @Route("/profile", name="profile_view")
     */
-    public function viewProfilepage($id = "1")
+    public function viewProfilepage()
     {
-        $userId = (int) $id;
-        $user = $this->getDoctrine()
-        ->getRepository(User::class)
-        ->find($userId);
+        // $userId = (int) $id;
+        // $user = $this->getDoctrine()
+        // ->getRepository(User::class)
+        // ->find($userId);
 
         $categorys = $this->getDoctrine()
         ->getRepository(Category::class)
         ->findAll();
 
         $view = 'profile.html.twig';
-        $model = array('user' => $user, 'categorys' => $categorys);
+        $model = array('categorys' => $categorys);
         return $this->render($view, $model);
     }
 
