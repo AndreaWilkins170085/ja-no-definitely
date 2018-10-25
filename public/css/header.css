@@ -258,10 +258,10 @@
 }
 
 #logout-button{
-  margin-left: 25%;
-  margin-top: 130%;
+  margin-left: 50px;
   background-color: #cc5500;
   position: fixed;
+  bottom: 17%;
 }
 
 #body-content{
