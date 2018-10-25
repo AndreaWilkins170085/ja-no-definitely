@@ -2,6 +2,7 @@
 <html>
     <head>
        <meta charset="UTF-8">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="//cdn.muicss.com/mui-latest/css/mui.min.css" rel="stylesheet" type="text/css" />
         <script src="//cdn.muicss.com/mui-latest/js/mui.min.js"></script>
         <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -42,6 +43,7 @@
           <strong><a href="/profile">View Profile</a></strong>
         </li>
       </ul>
+      <button class="mui-btn mui-btn--small mui-btn--primary" id="logout-button"><i class="fa fa-power-off"></i> Log out</button>
     </div>
 
     <header id="header">
@@ -57,7 +59,7 @@
     <div id="content-wrapper">
       <div class="mui--appbar-height"></div>
       <div class="mui-container-fluid">
-        <main class="container">
+        <main class="container" id="body-content">
              {% block body %}{% endblock %}
         </main>
         </div>

@@ -186,6 +186,9 @@
    text-decoration: underline;
  }
  
+ /**
+  * Content CSS
+  */
 
  #ad {
     position: fixed;
@@ -233,4 +236,29 @@
   text-align: right;
   margin: 0;
   margin-right: 10px;
+}
+
+#logout-button{
+  margin-left: 25%;
+  bottom: 0;
+}
+
+#body-content{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  #body-content {
+  padding: 0;
+  margin: 0;
+  width: 72%;
+  }
+
+
+
+#content{
+  padding: 0;
+  margin: 0;
 }
