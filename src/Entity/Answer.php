@@ -17,11 +17,6 @@ class Answer
     public $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    public $question_id;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     public $answer_text;
@@ -46,21 +41,14 @@ class Answer
      */
     public $answer_date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="answers")
+     */
+    private $question;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getQuestionId(): ?int
-    {
-        return $this->question_id;
-    }
-
-    public function setQuestionId(int $question_id): self
-    {
-        $this->question_id = $question_id;
-
-        return $this;
     }
 
     public function getAnswerText(): ?string
@@ -119,6 +107,18 @@ class Answer
     public function setAnswerDate(\DateTimeInterface $answer_date): self
     {
         $this->answer_date = $answer_date;
+
+        return $this;
+    }
+
+    public function getQuestion(): ?Question
+    {
+        return $this->question;
+    }
+
+    public function setQuestion(?Question $question): self
+    {
+        $this->question = $question;
 
         return $this;
     }
