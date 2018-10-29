@@ -20,7 +20,7 @@ class ProfileController extends AbstractController
     {
 
         $userId = (int) $id;
-        $users = $this->getDoctrine()
+        $useraccount = $this->getDoctrine()
         ->getRepository(UserAccount::class)
         ->find($userId);
 
@@ -29,7 +29,7 @@ class ProfileController extends AbstractController
         ->findAll();
 
         $view = 'profile.html.twig';
-        $model = array('categorys' => $categorys, 'users' => $users);
+        $model = array('categorys' => $categorys, 'useraccount' => $useraccount);
         return $this->render($view, $model);
     }
 
