@@ -96,7 +96,11 @@ textarea {
 
 .right{
   float: right;
+  margin-left: 5px;
+  text-decoration: none;
 }
+
+
 
 
 /* CATEGORY PAGE */
