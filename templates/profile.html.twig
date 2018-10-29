@@ -15,8 +15,20 @@
           <li><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Posts</a></li>
           <li><a data-mui-toggle="tab" data-mui-controls="pane-justified-3">Settings</a></li>
         </ul>
-        <div class="mui-tabs__pane mui--is-active" id="pane-justified-1">About me</div>
+        <div class="mui-tabs__pane mui--is-active" id="pane-justified-1">About me
+
+        {# {% for user in users %}
+          <br>
+          <div class="mui--text-headline">Username : {{ user.username }}</div>
+          <div class="mui--text-black-54">Full Name : {{ user.name }} {{user.surname}}</div>
+          <div class="mui--text-black-54">User Type : {{ user.type }} </div>
+          <br>
+          <br>
+        {% endfor %}#}
+        </div> 
+
         <div class="mui-tabs__pane" id="pane-justified-2">Posts</div>
+
         <div class="mui-tabs__pane" id="pane-justified-3">Settings</div>
     </div>
 {% endblock %}

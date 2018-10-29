@@ -14,37 +14,37 @@ class Answer
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    public $id;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $question_id;
+    public $question_id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $answer_text;
+    public $answer_text;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $answer_upvotes;
+    public $answer_upvotes;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $answer_downvotes;
+    public $answer_downvotes;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $answer_author;
+    public $answer_author;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $answer_date;
+    public $answer_date;
 
     public function getId(): ?int
     {

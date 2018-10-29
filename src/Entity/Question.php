@@ -14,15 +14,10 @@ class Question
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\Column(type="integer")
      */
-    private $id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    public $category_id;
+    public $id;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -49,21 +44,14 @@ class Question
      */
     public $question_date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="questions")
+     */
+    public $category;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCategoryId(): ?int
-    {
-        return $this->category_id;
-    }
-
-    public function setCategoryId(int $category_id): self
-    {
-        $this->category_id = $category_id;
-
-        return $this;
     }
 
     public function getQuestionText(): ?string
@@ -122,6 +110,18 @@ class Question
     public function setQuestionDate(\DateTimeInterface $question_date): self
     {
         $this->question_date = $question_date;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

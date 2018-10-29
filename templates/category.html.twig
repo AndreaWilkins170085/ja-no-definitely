@@ -1,12 +1,5 @@
 {% extends "base.html.twig" %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ ('/css/main.css') }}">
-    <link rel="stylesheet" href="{{ ('/css/header.css') }}">  
-    <script src="{{ ('/js/main.js') }}"></script>    
-{% endblock %}
-        
-
 {% block title %}Ja no definitely - {{ category.category_name}} {% endblock %}
 
 {% block body %}
@@ -22,7 +15,7 @@
 
           {{ form_start(questionForm, {'attr': {'novalidate': 'novalidate'}}) }}
           {{ form_widget(questionForm.question_text, {'attr': {'placeholder': 'Ask a question...'} }) }}
-          {{ form_widget(questionForm.category_id, {'attr': {'placeholder': 'Category'} }) }}
+          {{ form_widget(questionForm.category, {'attr': {'placeholder': 'Category'} }) }}
           {{ form_end(questionForm) }}
           <br>
 
@@ -37,8 +30,8 @@
           <br> #}
 
 
-          {% for question in questions %}
-          <div class="mui--text-black-54 mui--text-body2">{{ question.category_id }}</div>
+          {% for questions in category %}
+          {# <div class="mui--text-black-54 mui--text-body2">{{ question.category_id }}</div> #}
           <div class="mui-divider"></div>
           <br>
           <div class="mui--text-headline">{{ question.question_text }}</div>

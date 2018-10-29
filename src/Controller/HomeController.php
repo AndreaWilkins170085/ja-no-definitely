@@ -22,6 +22,7 @@ class HomeController extends AbstractController
     public function viewHomepage(Request $request)
     { 
 
+    // FORMS
     $question = new Question();
     $questionForm = $this->createForm(QuestionType::class, $question);
     $questionForm->handleRequest($request);
@@ -30,6 +31,7 @@ class HomeController extends AbstractController
     $answerForm = $this->createForm(AnswerType::class, $answer);
     $answerForm->handleRequest($request);
 
+    //DATA
     $questions = $this->getDoctrine()
     ->getRepository(Question::class)
     ->findAll(); 
@@ -42,8 +44,11 @@ class HomeController extends AbstractController
     ->getRepository(Category::class)
     ->findAll();
 
+    // $category = $questions -> getCategory() -> getCategoryName();
+
     $view = 'home.html.twig';
-    $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 'answers' => $answers, 'categorys' => $categorys);
+    $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 'answers' => $answers, 
+    'categorys' => $categorys);
     return $this->render($view, $model);
     }
 

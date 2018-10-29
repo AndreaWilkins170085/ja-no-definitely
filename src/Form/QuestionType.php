@@ -17,18 +17,18 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('question_author', HiddenType::class)
+            ->add('question_author', HiddenType::class, ['data' => '{{ user.id }}'])
             ->add('question_date', HiddenType::class)
-            ->add('category_id', ChoiceType::class, array(
+            ->add('category', ChoiceType::class, array(
                 'choices' => array(
                     'Categories' => array (
-                        'Wildlife and plants' => 'Wildlife and plants', 
-                        'Geography and climate' => 'Geography and climate',
-                        'Food and shopping' => 'Food and shopping',
-                        'Adventure Experiences' => 'Adventure Experiences',
-                        'Cultural Experiences' => 'Cultural Experiences',
-                        'Big City Life' => 'Big City Life',
-                        'Sun and Surf' => 'Sun and Surf'
+                        'Wildlife and plants' => 1, 
+                        'Geography and climate' => 2,
+                        'Food and shopping' => 3,
+                        'Adventure Experiences' => 4,
+                        'Cultural Experiences' => 5,
+                        'Big City Life' => 6,
+                        'Sun and Surf' => 7
                     ),
                 ),
             ))

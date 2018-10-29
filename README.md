@@ -45,3 +45,18 @@ UPDATE "public"."user" SET type = 'admin', password = 'alaska' WHERE id = 1;
 UPDATE "public"."user" SET type = 'admin', password = 'togo' WHERE id = 2;
 UPDATE "public"."user" SET type = 'admin', password = 'max' WHERE id = 3;
 UPDATE "public"."user" SET image_path = 'default_user_pic.jpg';
+
+NB Hey guys, I had to delete and reimplement the category_id in Question as a relation so pls re-add the following after youve done a migration:
+
+UPDATE "public"."question" SET category_id = 7 WHERE id = 1;
+UPDATE "public"."question" SET category_id = 1 WHERE id = 2;
+UPDATE "public"."question" SET category_id = 5 WHERE id = 3;
+
+I also had to delete and reimplement the question_id in Answer as a relation so pls re-add the following after youve done a migration:
+
+UPDATE "public"."answer" SET category_id = 1 WHERE id = 1;
+UPDATE "public"."answer" SET category_id = 1 WHERE id = 2;
+UPDATE "public"."answer" SET category_id = 2 WHERE id = 3;
+UPDATE "public"."answer" SET category_id = 2 WHERE id = 4;
+UPDATE "public"."answer" SET category_id = 3 WHERE id = 5;
+UPDATE "public"."answer" SET category_id = 3 WHERE id = 6;
