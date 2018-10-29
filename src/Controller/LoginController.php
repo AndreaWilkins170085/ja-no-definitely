@@ -16,56 +16,43 @@ class LoginController extends AbstractController
     * @Route("/", name="login_view")
     */
 
-    public function userRegister(Request $request)
-    {
-        $user = new UserAccount();
-
-        $registerForm = $this->createForm(RegisterType::class, $user );
-        $registerForm->handleRequest($request);
-
-        
-
-        if ($registerForm->isSubmitted() && $registerForm->isValid()) {
-            // $form->getData() holds the submitted values
-            $user = $registerForm->getData();
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-            
-            return $this->redirectToRoute('home_view');
-        }
-
-        $view = 'login.html.twig';
-        $model = array('registerForm' => $registerForm->createView());
-
-        return $this->render($view, $model);
-    }
-
-    
-
     public function userLogin(Request $request)
     {
-        $loginForm = $this->createForm(LoginType::class, $user);
-        $loginForm->handleRequest($request);
+
+            $userReg = new UserAccount();
+
+            $loginForm = $this->createForm(LoginType::class);
+            $loginForm->handleRequest($request);
  
 
-        if ($loginForm->isSubmitted() && $loginForm->isValid()) {
-            // $form->getData() holds the submitted values
-            $user = $loginForm->getData();
+            // if ($loginForm->isSubmitted() && $loginForm->isValid()) {
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
+            //     $userLog = $loginForm->getData();
+            //     $entityManager = $this->getDoctrine()->getManager();
+            //     $entityManager->persist($userLog);
+            //     $entityManager->flush();
 
-            return $this->redirectToRoute('home_view');
+            //     return $this->redirectToRoute('home_view');
+            // }
+
+            $registerForm = $this->createForm(RegisterType::class, $userReg );
+            $registerForm->handleRequest($request);
+
+            if ($registerForm->isSubmitted() && $registerForm->isValid()) {
+
+                $userReg = $registerForm->getData();
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($userReg);
+                $entityManager->flush();
+                    
+                return $this->redirectToRoute('home_view');
+            }
+
+            $view = 'login.html.twig';
+            $model = array('loginForm' => $loginForm->createView(), 'registerForm' => $registerForm->createView());
+
+            return $this->render($view, $model);
         }
-
-        $view = 'login.html.twig';
-        $model = array('loginForm' => $loginForm->createView());
-
-        return $this->render($view, $model);
-
-    }
 
 }
 
