@@ -32,15 +32,15 @@
 
           <br>
           <div class="mui--text-black-54 mui--text-body2">{{ question.category.categoryName }}</div>
-
-          {# <div class="mui--text-black-54 mui--text-body2">{{ question.category }}</div> #}
-
+          <br>
           <div class="mui-divider"></div>
           <br>
-          <div class="mui--text-headline">{{ question.question_text }}</div>
+          <div class="mui--text-headline"> 
+            <div id="profile-image"></div>
+            <div id="question-text">{{ question.question_text }}</div>
+          </div>
           <div class="mui--text-black-54">Asked By <a href="/profile/{id}">{{ question.question_author }}</a></div>
           <br>
-
           
           {# Answer Question #}
           {# <br>
@@ -51,19 +51,18 @@
           <br>
           <br> #}
 
-          {#  #}
-          {% endfor %}
-
           {# Answers #}
-            
+          
           {% for answer in answers %}
-          <div class="mui--text-black-54 mui--text-body2">{{ answer.answer_author }}</div>
+          <div class="mui--text-black-54 mui--text-body2"><a href="/profile/{id}">{{ answer.answer_author }}</a></div>
           <div class="mui-divider"></div>
           <br>
           <div class="mui--text-black-54">{{ answer.answer_text }}</div>
           <br>
           {% endfor %}
-          
+
+          {% endfor %}
+
       </div>
 
 

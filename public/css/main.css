@@ -49,6 +49,22 @@
   color: #cc5500;
 }
 
+/* ALL PAGES */
+
+#profile-image{
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  border-color: gray;
+  border-style: solid;
+  float: left;
+  margin-right: 10px;
+  margin-top: 4px;
+  margin-bottom: 5px;
+}
+
+
 /* HOME PAGE */
 
 #company_name {

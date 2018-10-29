@@ -18,7 +18,7 @@ class AnswerType extends AbstractType
         $builder
             ->add('answer_author', HiddenType::class)
             ->add('answer_date', HiddenType::class)
-            ->add('question_id', HiddenType::class)
+            // ->add('question_id', HiddenType::class)
             ->add('answer_text', TextareaType::class)
             ->add('submit', SubmitType::class, ['label' => 'Answer!']);
         ;

@@ -44,7 +44,7 @@ class Answer
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="answers")
      */
-    private $question;
+    public $question;
 
     public function getId(): ?int
     {

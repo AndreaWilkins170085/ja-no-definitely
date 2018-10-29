@@ -52,7 +52,7 @@ class Question
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="question")
      */
-    private $answers;
+    public $answers;
 
     public function __construct()
     {
