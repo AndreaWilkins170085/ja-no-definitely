@@ -1,6 +1,8 @@
 console.log("ready!");
 
 
+
+
 jQuery(function($) {
     var $bodyEl = $('body'),
         $sidedrawerEl = $('#sidedrawer');
@@ -10,6 +12,7 @@ jQuery(function($) {
     // Toggle Sidedrawer
     // ==========================================================================
     function showSidedrawer() {
+      
       // show overlay
       var options = {
         onclose: function() {
@@ -18,18 +21,23 @@ jQuery(function($) {
             .appendTo(document.body);
         }
       };
+
       
       var $overlayEl = $(mui.overlay('on', options));
       
       // show element
       $sidedrawerEl.appendTo($overlayEl);
       setTimeout(function() {
+        
         $sidedrawerEl.addClass('active');
       }, 20);
     }
     
     
     function hideSidedrawer() {
+     
+      console.log("closed");
+      
       $bodyEl.toggleClass('hide-sidedrawer');
     }
     
@@ -52,3 +60,7 @@ jQuery(function($) {
     });
   });
   
+
+
+
+

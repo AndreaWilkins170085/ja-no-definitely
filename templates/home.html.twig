@@ -10,59 +10,56 @@
     <br>
       <div class="mui-row">
         <div class="mui-col-sm-10 mui-col-sm-offset-1">
-
-          {{ form_start(questionForm, {'attr': {'novalidate': 'novalidate'}}) }}
+          <div class="mui-panel mui-col-sm-12">
+        
+          <div class="mui-form">
+          {{ form_start(questionForm, {'attr': {'novalidate': 'novalidate' }}) }}
+          <div class="mui-textfield">
           {{ form_widget(questionForm.question_text, {'attr': {'placeholder': 'Ask a question...'} }) }}
-          {{ form_widget(questionForm.category, {'attr': {'placeholder': 'Category'} }) }}
+          </div>
+          <div class="mui-select" id="category-drop">
+          {{ form_widget(questionForm.category, {'attr': {'placeholder': 'Category' } }) }}
+          </div>
           {{ form_end(questionForm) }}
+          </div>
+          </div>
+
           <br>
 
-          {# <br>
+          <h3>Top Posts</h3>
           <br>
-          <div class="mui-divider"></div>
-          <br>
-          <div class="mui--text-headline test">{{ question.question_text }}</div>
-          <div class="mui--text-black-54">Asked By <a href="#">{{ question.question_author }}</a> on {{ question.question_date }}</div>
-          <br>
-          <div> <a>See answers</a> </div>
-          <br> #}
 
 
           {% for question in questions %}
 
+          <div class="mui-panel mui-col-sm-12">
+          <div class="mui--text-black-54"><div id="profile-image"></div> <a href="/profile" class="question-author">{{ question.question_author }}</a></div>
           <br>
+          <div class="mui--text-title">{{ question.question_text }}</div>
           <div class="mui--text-black-54 mui--text-body2">{{ question.category.categoryName }}</div>
-          <br>
-          <div class="mui-divider"></div>
-          <br>
-          <div class="mui--text-headline"> 
-            <div id="profile-image"></div>
-            <div id="question-text">{{ question.question_text }}</div>
-          </div>
-          <div class="mui--text-black-54">Asked By <a href="/profile">{{ question.question_author }}</a></div>
-          <br>
           
           {# Answer Question #}
-          {# <br>
-          {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
-          {{ form_widget(answerForm) }}
+          <div class="mui-form">
+           {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
+           <div class="mui-textfield">
+           {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
+          </div>
           {{ form_end(answerForm) }}
-          <br> 
-          <br>
-          <br> #}
-
           {# Answers #}
-          
+          </div>
           {% for answer in answers %}
           <div class="mui--text-black-54 mui--text-body2"><a href="/profile/{id}">{{ answer.answer_author }}</a></div>
           <div class="mui-divider"></div>
           <br>
           <div class="mui--text-black-54">{{ answer.answer_text }}</div>
           <br>
+          
           {% endfor %}
+          </div>
+          
 
           {% endfor %}
-
+          </div>     
       </div>
 
 

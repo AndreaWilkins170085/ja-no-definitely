@@ -85,6 +85,20 @@ textarea {
   }
 }
 
+#category-drop{
+  width: 30%;
+}
+
+.question-author{
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.right{
+  float: right;
+}
+
+
 /* CATEGORY PAGE */
 
 #category_title{
@@ -93,4 +107,31 @@ textarea {
   margin-left: 41%;
   padding-top: 40px;
   padding-bottom: 50px;
+}
+
+
+
+.collapsible-header {
+  display: flex;
+  padding: 1rem;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.collapsible-header i {
+  padding-right: 1rem;
+}
+
+.collapsible-body {
+  box-sizing: border-box;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.15s ease-out;
+}
+
+.collapsible-body > p {
+  padding: 2rem;
+  margin: 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
 }
