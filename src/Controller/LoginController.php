@@ -25,15 +25,11 @@ class LoginController extends AbstractController
             $loginForm->handleRequest($request);
  
 
-            // if ($loginForm->isSubmitted() && $loginForm->isValid()) {
+            if ($loginForm->isSubmitted() && $loginForm->isValid()) {
 
-            //     $userLog = $loginForm->getData();
-            //     $entityManager = $this->getDoctrine()->getManager();
-            //     $entityManager->persist($userLog);
-            //     $entityManager->flush();
-
-            //     return $this->redirectToRoute('home_view');
-            // }
+                $userLog = $loginForm->getData();
+                return $this->redirectToRoute('home_view');
+            }
 
             $registerForm = $this->createForm(RegisterType::class, $userReg );
             $registerForm->handleRequest($request);
