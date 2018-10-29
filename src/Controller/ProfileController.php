@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\User;
+use App\Entity\UserAccount;
 use App\Entity\Category;
 
 class ProfileController extends AbstractController
@@ -21,7 +21,7 @@ class ProfileController extends AbstractController
 
         $userId = (int) $id;
         $users = $this->getDoctrine()
-        ->getRepository(User::class)
+        ->getRepository(UserAccount::class)
         ->find($userId);
 
         $categorys = $this->getDoctrine()
