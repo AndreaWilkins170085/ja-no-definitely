@@ -16,6 +16,7 @@
           {{ form_widget(questionForm.category, {'attr': {'placeholder': 'Category'} }) }}
           {{ form_end(questionForm) }}
           <br>
+          <br>
 
           {# <br>
           <br>
@@ -27,6 +28,8 @@
           <div> <a>See answers</a> </div>
           <br> #}
 
+          <span class="mui--text-title" id="category_title">Top Questions</span>
+          <br>
 
           {% for question in questions %}
 
@@ -40,16 +43,14 @@
             <div id="question-text">{{ question.question_text }}</div>
           </div>
           <div class="mui--text-black-54">Asked By <a href="/profile">{{ question.question_author }}</a></div>
-          <br>
+          
           
           {# Answer Question #}
-          {# <br>
+          <br>
           {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
           {{ form_widget(answerForm) }}
           {{ form_end(answerForm) }}
           <br> 
-          <br>
-          <br> #}
 
           {# Answers #}
           
