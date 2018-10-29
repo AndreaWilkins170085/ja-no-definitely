@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\User;
+use App\Entity\UserAccount;
 use App\Form\LoginType;
 use App\Form\RegisterType;
 
@@ -18,10 +18,12 @@ class LoginController extends AbstractController
 
     public function userRegister(Request $request)
     {
-        $user = new User();
+        $user = new UserAccount();
 
-        $registerForm = $this->createForm(RegisterType::class, $user);
+        $registerForm = $this->createForm(RegisterType::class, $user );
         $registerForm->handleRequest($request);
+
+        
 
         if ($registerForm->isSubmitted() && $registerForm->isValid()) {
             // $form->getData() holds the submitted values
@@ -29,6 +31,7 @@ class LoginController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
+            $entityManager->flush();
             
             return $this->redirectToRoute('home_view');
         }

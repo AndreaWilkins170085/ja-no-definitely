@@ -54,7 +54,7 @@
    width: 200px;
    left: -200px;
    overflow: auto;
-   z-index: 2;
+   z-index: 3;
    background-color: #fff;
    transition: transform 0.2s;
    box-shadow: 1px 1px 10px 1px #B8B8B8;

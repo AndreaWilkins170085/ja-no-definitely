@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
 */
 
-class User
+class UserAccount
 {
 
    /**
