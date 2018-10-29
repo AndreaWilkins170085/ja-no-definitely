@@ -20,7 +20,7 @@ class HomeController extends AbstractController
     */
 
     public function viewHomepage(Request $request)
-    { 
+    {
 
     // FORMS
     $question = new Question();

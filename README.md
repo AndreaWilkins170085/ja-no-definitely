@@ -7,9 +7,9 @@ Follow these steps to get it running:
 3. php bin/console doctrine:migration:migrate
 4. 
 
-INSERT INTO "public"."user"(id, email, username, name, surname ) VALUES (1, 'asleigh@email.com', 'ashleighknowsbest', 'Ashleigh', 'Parsons');
-INSERT INTO "public"."user"(id, email, username, name, surname ) VALUES (2, 'andrea@email.com', 'andreaknowsbest', 'Andrea', 'Wilkins');
-INSERT INTO "public"."user"(id, email, username, name, surname ) VALUES (3, 'leo@email.com', 'leoknowsbest', 'Leo', 'Kuyper');
+INSERT INTO "public"."user_account"(id, email, username, name, surname, image_path, type ) VALUES (1, 'asleigh@email.com', 'ashleighknowsbest', 'Ashleigh', 'Parsons', 'default_img.jpg', 'admin');
+INSERT INTO "public"."user_account"(id, email, username, name, surname, image_path, type ) VALUES (2, 'andrea@email.com', 'andreaknowsbest', 'Andrea', 'Wilkins', 'default_img.jpg', 'admin');
+INSERT INTO "public"."user_account"(id, email, username, name, surname, image_path, type ) VALUES (3, 'leo@email.com', 'leoknowsbest', 'Leo', 'Kuyper', 'default_img.jpg', 'admin');
 
 //Timestamp does not want to insert correctly....
 
@@ -44,7 +44,7 @@ ALTER TABLE "public"."user" ADD image_path varchar(255);
 UPDATE "public"."user" SET type = 'admin', password = 'alaska' WHERE id = 1;
 UPDATE "public"."user" SET type = 'admin', password = 'togo' WHERE id = 2;
 UPDATE "public"."user" SET type = 'admin', password = 'max' WHERE id = 3;
-UPDATE "public"."user" SET image_path = 'default_user_pic.jpg';
+UPDATE "public"."user" SET image_path = 'default_img.jpg';
 
 NB Hey guys, I had to delete and reimplement the category_id in Question as a relation so pls re-add the following after youve done a migration:
 
@@ -54,9 +54,9 @@ UPDATE "public"."question" SET category_id = 5 WHERE id = 3;
 
 I also had to delete and reimplement the question_id in Answer as a relation so pls re-add the following after youve done a migration:
 
-UPDATE "public"."answer" SET category_id = 1 WHERE id = 1;
-UPDATE "public"."answer" SET category_id = 1 WHERE id = 2;
-UPDATE "public"."answer" SET category_id = 2 WHERE id = 3;
-UPDATE "public"."answer" SET category_id = 2 WHERE id = 4;
-UPDATE "public"."answer" SET category_id = 3 WHERE id = 5;
-UPDATE "public"."answer" SET category_id = 3 WHERE id = 6;
+UPDATE "public"."answer" SET question_id = 1 WHERE id = 1;
+UPDATE "public"."answer" SET question_id = 1 WHERE id = 2;
+UPDATE "public"."answer" SET question_id = 2 WHERE id = 3;
+UPDATE "public"."answer" SET question_id = 2 WHERE id = 4;
+UPDATE "public"."answer" SET question_id = 3 WHERE id = 5;
+UPDATE "public"."answer" SET question_id = 3 WHERE id = 6;

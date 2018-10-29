@@ -15,12 +15,12 @@ class NavController extends AbstractController
     public function viewSidebar(Request $request)
     { 
     
-    $categorys = $this->getDoctrine()
+    $categories = $this->getDoctrine()
     ->getRepository(Category::class)
     ->findAll(); 
 
     $view = 'base.html.twig';
-    $model = array('categorys' => $categorys);
+    $model = array('categorys' => $categories);
     return $this->render($view, $model);
     }
 

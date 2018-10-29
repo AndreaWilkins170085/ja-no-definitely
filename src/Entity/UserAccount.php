@@ -149,7 +149,7 @@ class UserAccount
         return $this->image_path;
     }
 
-    public function setImagePath(string $simage_path): self
+    public function setImagePath(string $image_path): self
     {
         $this->image_path = $image_path;
 

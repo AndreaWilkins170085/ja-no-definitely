@@ -283,7 +283,19 @@
   margin: 0;
   width: 72%;
   }
+}
 
+@media (max-width: 576px) {
+  #login-con{
+    margin-left: 13%;
+    margin-top: 22%;
+  }
+
+  .mui-appbar{
+    color: white;
+    background-color: #cc5500;
+  }
+}
 
 #content{
   padding: 0;

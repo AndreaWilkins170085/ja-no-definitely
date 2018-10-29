@@ -11,11 +11,17 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use App\Entity\Category;
 
 class QuestionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        // $categories = $this->getDoctrine()
+        // ->getRepository(Category::class)
+        // ->findAll();
+
         $builder
             ->add('question_author', HiddenType::class, ['data' => '{{ user.id }}'])
             ->add('question_date', HiddenType::class)
@@ -30,7 +36,8 @@ class QuestionType extends AbstractType
                         'Big City Life' => 6,
                         'Sun and Surf' => 7
                     ),
-                ),
+                    //$categories
+                )
             ))
             ->add('question_text', TextareaType::class, ['label' => false])
             ->add('submit', SubmitType::class, ['label' => "Ask"]);
