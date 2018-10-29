@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
@@ -13,21 +14,22 @@ class ProfileController extends AbstractController
 {
     
     /**
-    * @Route("/profile", name="profile_view")
+    * @Route("/profile/{id}", name="profile_view")
     */
-    public function viewProfilepage()
+    public function viewProfilepage(Request $request, $id="1")
     {
-        // $userId = (int) $id;
-        // $user = $this->getDoctrine()
-        // ->getRepository(User::class)
-        // ->find($userId);
+
+        $userId = (int) $id;
+        $users = $this->getDoctrine()
+        ->getRepository(User::class)
+        ->find($userId);
 
         $categorys = $this->getDoctrine()
         ->getRepository(Category::class)
         ->findAll();
 
         $view = 'profile.html.twig';
-        $model = array('categorys' => $categorys);
+        $model = array('categorys' => $categorys, 'users' => $users);
         return $this->render($view, $model);
     }
 

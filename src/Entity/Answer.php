@@ -14,53 +14,41 @@ class Answer
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $question_id;
+    public $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $answer_text;
+    public $answer_text;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $answer_upvotes;
+    public $answer_upvotes;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $answer_downvotes;
+    public $answer_downvotes;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $answer_author;
+    public $answer_author;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $answer_date;
+    public $answer_date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="answers")
+     */
+    private $question;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getQuestionId(): ?int
-    {
-        return $this->question_id;
-    }
-
-    public function setQuestionId(int $question_id): self
-    {
-        $this->question_id = $question_id;
-
-        return $this;
     }
 
     public function getAnswerText(): ?string
@@ -119,6 +107,18 @@ class Answer
     public function setAnswerDate(\DateTimeInterface $answer_date): self
     {
         $this->answer_date = $answer_date;
+
+        return $this;
+    }
+
+    public function getQuestion(): ?Question
+    {
+        return $this->question;
+    }
+
+    public function setQuestion(?Question $question): self
+    {
+        $this->question = $question;
 
         return $this;
     }

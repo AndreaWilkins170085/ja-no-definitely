@@ -48,7 +48,8 @@ class CategoryController extends AbstractController
     ->findAll();
 
     $view = 'category.html.twig';
-    $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 'answers' => $answers, 'categorys' => $categorys, 'category' => $category);
+    $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 
+    'answers' => $answers, 'categorys' => $categorys, 'category' => $category);
     return $this->render($view, $model);
     }
 
