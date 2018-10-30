@@ -51,3 +51,9 @@ UPDATE "public"."answer" SET question_id = 2 WHERE id = 3;
 UPDATE "public"."answer" SET question_id = 2 WHERE id = 4;
 UPDATE "public"."answer" SET question_id = 3 WHERE id = 5;
 UPDATE "public"."answer" SET question_id = 3 WHERE id = 6;
+
+After running a migration, add the following for author_id :
+
+UPDATE "public"."question" SET author_id = 1 WHERE id = 1;
+UPDATE "public"."question" SET author_id = 2 WHERE id = 2;
+UPDATE "public"."question" SET author_id = 3 WHERE id = 3;
