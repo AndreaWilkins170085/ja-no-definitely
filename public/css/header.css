@@ -87,22 +87,24 @@
  body.hide-sidedrawer #sidedrawer {
   box-shadow: 0px 0px 0px 0px;
 }
-@media (max-width: 768px) {
-  #header-color{
-    background-color: #cc5500;
-   }
-   body.mui-scroll-lock #header-color{
-    background-color: white;
-   }
 
-}
  @media (min-width: 768px) {
+
+  body.hide-sidedrawer #name{
+    color: white;
+  }
+
+  body.hide-sidedrawer #burger-menu{
+    color: white;
+  }
+
    #header {
      left: 200px;
      background-color: white;
    }
    
    #sidedrawer {
+     color: white;
      transform: translate(200px);
    }
    
@@ -149,7 +151,7 @@
   */
  
  .sidedrawer-toggle {
-   color:black;
+   color:white;
    cursor: pointer;
    font-size: 20px;
    line-height: 20px;
@@ -305,10 +307,25 @@
   }
 }
 
+
 @media (max-width: 576px) {
+  #header-color{
+    background-color: #cc5500;
+   }
+   body.mui-scroll-lock #header-color{
+    background-color: white;
+   }
   #login-con{
     margin-left: 13%;
     margin-top: 22%;
+  }
+
+  #name{
+    color: white;
+  }
+
+  #burger-menu{
+    color: white;
   }
 
   .mui-appbar{

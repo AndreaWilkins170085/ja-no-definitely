@@ -7,9 +7,9 @@ Follow these steps to get it running:
 3. php bin/console doctrine:migration:migrate
 4. 
 
-INSERT INTO "public"."user_account"(id, email, username, name, surname, image_path, type ) VALUES (1, 'asleigh@email.com', 'ashleighknowsbest', 'Ashleigh', 'Parsons', 'default_img.jpg', 'admin');
-INSERT INTO "public"."user_account"(id, email, username, name, surname, image_path, type ) VALUES (2, 'andrea@email.com', 'andreaknowsbest', 'Andrea', 'Wilkins', 'default_img.jpg', 'admin');
-INSERT INTO "public"."user_account"(id, email, username, name, surname, image_path, type ) VALUES (3, 'leo@email.com', 'leoknowsbest', 'Leo', 'Kuyper', 'default_img.jpg', 'admin');
+INSERT INTO "public"."user_account"(id, email, username, name, surname, image_path, type, password ) VALUES (1, 'asleigh@email.com', 'ashleighknowsbest', 'Ashleigh', 'Parsons', 'default_img.jpg', 'admin', 'alaska');
+INSERT INTO "public"."user_account"(id, email, username, name, surname, image_path, type, password ) VALUES (2, 'andrea@email.com', 'andreaknowsbest', 'Andrea', 'Wilkins', 'default_img.jpg', 'admin','togo');
+INSERT INTO "public"."user_account"(id, email, username, name, surname, image_path, type, password ) VALUES (3, 'leo@email.com', 'leoknowsbest', 'Leo', 'Kuyper', 'default_img.jpg', 'admin', 'max');
 
 //Timestamp does not want to insert correctly....
 
@@ -37,14 +37,6 @@ INSERT INTO "public"."category"(id, category_name) VALUES (7, 'Sun and Surf');
 
 6. //add password and user type
 
-ALTER TABLE "public"."user" ADD type varchar(255);
-ALTER TABLE "public"."user" ADD password varchar(255);
-ALTER TABLE "public"."user" ADD image_path varchar(255);
-
-UPDATE "public"."user" SET type = 'admin', password = 'alaska' WHERE id = 1;
-UPDATE "public"."user" SET type = 'admin', password = 'togo' WHERE id = 2;
-UPDATE "public"."user" SET type = 'admin', password = 'max' WHERE id = 3;
-UPDATE "public"."user" SET image_path = 'default_img.jpg';
 
 NB Hey guys, I had to delete and reimplement the category_id in Question as a relation so pls re-add the following after youve done a migration:
 
