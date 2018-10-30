@@ -37,7 +37,6 @@ INSERT INTO "public"."category"(id, category_name) VALUES (7, 'Sun and Surf');
 
 6. //add password and user type
 
-
 NB Hey guys, I had to delete and reimplement the category_id in Question as a relation so pls re-add the following after youve done a migration:
 
 UPDATE "public"."question" SET category_id = 7 WHERE id = 1;

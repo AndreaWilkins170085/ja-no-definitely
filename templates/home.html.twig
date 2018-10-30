@@ -42,12 +42,7 @@
 
           
           
-          {# Answer Question #}
-          <br>
-          {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
-          {{ form_widget(answerForm) }}
-          {{ form_end(answerForm) }}
-          <br> 
+         
 
 
           
@@ -58,9 +53,12 @@
            {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
           </div>
           {{ form_end(answerForm) }}
-
-          {# Answers #}
           </div>
+           {# Answer Question #}
+
+
+          
+          {# Answers #}
           {% for answer in answers %}
           <div class="mui--text-black-54 mui--text-body2"><a href="/profile">{{ answer.answer_author }}</a></div>
           <div class="mui-divider"></div>
@@ -70,6 +68,7 @@
           
           {% endfor %}
           </div>
+          {# Answers #}
           
 
           {% endfor %}
