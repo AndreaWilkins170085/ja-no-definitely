@@ -54,6 +54,11 @@ class Question
      */
     public $answers;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\UserAccount", inversedBy="questions")
+     */
+    private $author;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
@@ -163,6 +168,18 @@ class Question
                 $answer->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAuthor(): ?UserAccount
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?UserAccount $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

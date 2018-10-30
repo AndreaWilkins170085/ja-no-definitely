@@ -23,17 +23,16 @@
           {{ form_end(questionForm) }}
           </div>
           </div>
-
           <br>
 
           <h3>Top Posts</h3>
+          
           <br>
-
 
           {% for question in questions %}
 
           <div class="mui-panel mui-col-sm-12">
-          <div class="mui--text-black-54"><div id="profile-image"></div> <a href="/profile" class="question-author">{{ question.question_author }}</a></div>
+          <div class="mui--text-black-54"><div id="profile-image"></div> <a href="/profile/{{question.author.id}}" class="question-author">{{ question.question_author }}</a></div>
           <a href="" class="right"><i class="fas fa-arrow-up"></i> 0 </a><a href="" class="right"><i class="fas fa-arrow-down"></i> 0 </a>
           <br>
           <div class="mui--text-title">{{ question.question_text }}</div>
@@ -46,10 +45,12 @@
            {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
           </div>
           {{ form_end(answerForm) }}
-          {# Answers #}
           </div>
+           {# Answer Question #}
+          
+          {# Answers #}
           {% for answer in answers %}
-          <div class="mui--text-black-54 mui--text-body2"><a href="/profile/{id}">{{ answer.answer_author }}</a></div>
+          <div class="mui--text-black-54 mui--text-body2"><a href="/profile/{{answer.author.id}}">{{ answer.answer_author }}</a></div>
           <div class="mui-divider"></div>
           <br>
           <div class="mui--text-black-54">{{ answer.answer_text }}</div>
@@ -57,6 +58,7 @@
           
           {% endfor %}
           </div>
+          {# Answers #}
           
 
           {% endfor %}

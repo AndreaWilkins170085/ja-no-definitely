@@ -46,6 +46,11 @@ class Answer
      */
     public $question;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\UserAccount", inversedBy="answers")
+     */
+    private $author;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,6 +124,18 @@ class Answer
     public function setQuestion(?Question $question): self
     {
         $this->question = $question;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?UserAccount
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?UserAccount $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }
