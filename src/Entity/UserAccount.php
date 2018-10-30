@@ -66,6 +66,13 @@ class UserAccount
 
     public $image_path;
 
+    /**
+    * @ORM\Column(type="string", length=255, options={"default":
+    "$2y$12$5k3JxMy1bQ7j5ixmHUwz/eDV6yM80ufXOptlduRt2lyWZuC3ZlLNK"})
+    */
+
+    private $encoded_password;
+
 
     public function getId(): ?int
     {
@@ -152,6 +159,18 @@ class UserAccount
     public function setImagePath(string $image_path): self
     {
         $this->image_path = $image_path;
+
+        return $this;
+    }
+
+    public function getEncodedPassword(): ?string
+    {
+        return $this->encoded_password;
+    }
+
+    public function setEncodedPassword(string $encoded_password): self
+    {
+        $this->encoded_password = $encoded_password;
 
         return $this;
     }
