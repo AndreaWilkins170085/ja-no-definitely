@@ -11,16 +11,16 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class AnswerType extends AbstractType
+class CommentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('answer_author', HiddenType::class)
-            ->add('answer_date', HiddenType::class)
+            ->add('comment_author', HiddenType::class)
+            ->add('comment_date', HiddenType::class)
             // ->add('question_id', HiddenType::class)
-            ->add('answer_text', TextareaType::class, ['label' => false])
-            ->add('submit', SubmitType::class, ['label' => 'Answer!','attr' => ['class' => 'mui-btn mui-btn--primary ask-bt']]);
+            ->add('comment_text', TextareaType::class, ['label' => false])
+            ->add('submit', SubmitType::class, ['label' => 'Comment','attr' => ['class' => 'mui-btn mui-btn--primary ask-bt']]);
         ;
     }
 }
