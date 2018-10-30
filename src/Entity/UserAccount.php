@@ -66,6 +66,16 @@ class UserAccount
 
     public $image_path;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Question", mappedBy="author")
+     */
+    private $questions;
+
+    public function __construct()
+    {
+        $this->questions = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -152,6 +162,37 @@ class UserAccount
     public function setImagePath(string $image_path): self
     {
         $this->image_path = $image_path;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Question[]
+     */
+    public function getQuestions(): Collection
+    {
+        return $this->questions;
+    }
+
+    public function addQuestion(Question $question): self
+    {
+        if (!$this->questions->contains($question)) {
+            $this->questions[] = $question;
+            $question->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestion(Question $question): self
+    {
+        if ($this->questions->contains($question)) {
+            $this->questions->removeElement($question);
+            // set the owning side to null (unless already changed)
+            if ($question->getAuthor() === $this) {
+                $question->setAuthor(null);
+            }
+        }
 
         return $this;
     }

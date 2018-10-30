@@ -21,13 +21,6 @@
           {{ form_widget(questionForm.category, {'attr': {'placeholder': 'Category' } }) }}
           </div>
           {{ form_end(questionForm) }}
-<<<<<<< HEAD
-          <br>
-          <br>
-=======
-          </div>
-          </div>
->>>>>>> master
 
           <br>
 
@@ -45,7 +38,7 @@
           <br>
           <div class="mui--text-title">{{ question.question_text }}</div>
           <div class="mui--text-black-54 mui--text-body2">{{ question.category.categoryName }}</div>
-<<<<<<< HEAD
+{# <<<<<<< HEAD
           <br>
           <div class="mui-divider"></div>
           <br>
@@ -63,7 +56,7 @@
           {{ form_end(answerForm) }}
           <br> 
 
-=======
+
           
           {# Answer Question #}
           <div class="mui-form">
@@ -72,11 +65,11 @@
            {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
           </div>
           {{ form_end(answerForm) }}
->>>>>>> master
+
           {# Answers #}
           </div>
           {% for answer in answers %}
-          <div class="mui--text-black-54 mui--text-body2"><a href="/profile/{id}">{{ answer.answer_author }}</a></div>
+          <div class="mui--text-black-54 mui--text-body2"><a href="/profile">{{ answer.answer_author }}</a></div>
           <div class="mui-divider"></div>
           <br>
           <div class="mui--text-black-54">{{ answer.answer_text }}</div>
