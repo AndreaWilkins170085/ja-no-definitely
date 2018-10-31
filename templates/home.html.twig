@@ -50,12 +50,13 @@
           
           {# Answers #}
           {% for answer in answers %}
+          {% if question.id == answer.question_id %}
           <div class="mui--text-black-54 mui--text-body2"><a href="/profile/{{answer.author.id}}">{{ answer.answer_author }}</a></div>
           <div class="mui-divider"></div>
           <br>
           <div class="mui--text-black-54">{{ answer.answer_text }}</div>
           <br>
-          
+          {% endif %}
           {% endfor %}
           </div>
           {# Answers #}

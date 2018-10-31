@@ -67,7 +67,7 @@ class UserAccount
     public $image_path;
 
     /**
-    * @ORM\Column(type="string", length=255)
+    * @ORM\Column(type="string", length=255, options={"default": "$2y$12$5k3JxMy1bQ7j5ixmHUwz/eDV6yM80ufXOptlduRt2lyWZuC3ZlLNK"})
     */
 
     private $encoded_password;
@@ -183,7 +183,7 @@ class UserAccount
 
     public function setEncodedPassword(string $encoded_password): self
     {
-        $this->encoded_password = $encoded_password;
+       $this->encoded_password = $encoded_password;
     }
 
     /**

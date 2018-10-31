@@ -50,8 +50,7 @@
     * @Route("/logout", name="session_destroy")
     */
 
-    public function destroySession(Request $request, SessionInterface
-    $session)
+    public function destroySession(Request $request, SessionInterface $session)
     {
         $session->invalidate();
         return $this->redirectToRoute('session_new');
