@@ -57,7 +57,7 @@ class Question
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\UserAccount", inversedBy="questions")
      */
-    private $author;
+    public $author;
 
     public function __construct()
     {
