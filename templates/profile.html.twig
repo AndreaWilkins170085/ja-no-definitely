@@ -35,7 +35,7 @@
           </div> 
         </div>
 
-        <div class="mui-tabs__pane" id="pane-justified-2">Posts
+        <div class="mui-tabs__pane" id="pane-justified-2">
           <br>
           <br>
 
@@ -45,8 +45,7 @@
               <div id="username" class="mui--text-headline">Questions Asked</div>
               <br>
               {% for question in questions %}
-              <div class="mui--text-title">{{ question.question_text }}</div>
-              <div class="mui--text-black-54 mui--text-body2">{{ question.category.categoryName }}</div>
+              <div class="mui--text-black-54 mui--text-body2">{{ question.category.categoryName }} - {{ question.question_text }}</div>
               <br>
               {% endfor %}
               <br>
@@ -58,10 +57,10 @@
               <div id="username" class="mui--text-headline">Answers Shared</div>
               <br>
               {% for answer in answers %}
-              <div class="mui--text-black-54">{{ answer.answer_text }}</div>
+              <div class="mui--text-black-54">Q : {{ answer.question.question_text }}</div>
+              <div class="mui--text-black-54">A : {{ answer.answer_text }}</div>
               <br>
               {% endfor %}
-              <br>
               <br>
           </div>
         </div>
