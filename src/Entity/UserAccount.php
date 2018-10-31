@@ -67,8 +67,7 @@ class UserAccount
     public $image_path;
 
     /**
-    * @ORM\Column(type="string", length=255, options={"default":
-    "$2y$12$5k3JxMy1bQ7j5ixmHUwz/eDV6yM80ufXOptlduRt2lyWZuC3ZlLNK"})
+    * @ORM\Column(type="string", length=255)
     */
 
     private $encoded_password;

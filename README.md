@@ -54,11 +54,15 @@ UPDATE "public"."answer" SET question_id = 3 WHERE id = 6;
 
 After running a migration, add the following for author_id in question :
 
+ALTER TABLE "public"."question" ADD author_id varchar(255);
+
 UPDATE "public"."question" SET author_id = 1 WHERE id = 1;
 UPDATE "public"."question" SET author_id = 2 WHERE id = 2;
 UPDATE "public"."question" SET author_id = 3 WHERE id = 3;
 
 After running a migration, add the following for author_id in answer :
+
+ALTER TABLE "public"."answer" ADD author_id varchar(255);
 
 UPDATE "public"."answer" SET author_id = 2 WHERE id = 1;
 UPDATE "public"."answer" SET author_id = 3 WHERE id = 2;
