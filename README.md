@@ -7,7 +7,7 @@ Follow these steps to get it running:
 3. php bin/console doctrine:migration:migrate
 4. 
 
-INSERT INTO "public"."user_account"(id, email, username, name, surname, image_path, type, password ) VALUES (1, 'asleigh@email.com', 'ashleighknowsbest', 'Ashleigh', 'Parsons', 'default_img.jpg', 'admin', 'alaska');
+INSERT INTO "public"."user_account"(id, email, username, name, surname, image_path, type, password ) VALUES (1, 'ashleigh@email.com', 'ashleighknowsbest', 'Ashleigh', 'Parsons', 'default_img.jpg', 'admin', 'alaska');
 INSERT INTO "public"."user_account"(id, email, username, name, surname, image_path, type, password ) VALUES (2, 'andrea@email.com', 'andreaknowsbest', 'Andrea', 'Wilkins', 'default_img.jpg', 'admin','togo');
 INSERT INTO "public"."user_account"(id, email, username, name, surname, image_path, type, password ) VALUES (3, 'leo@email.com', 'leoknowsbest', 'Leo', 'Kuyper', 'default_img.jpg', 'admin', 'max');
 

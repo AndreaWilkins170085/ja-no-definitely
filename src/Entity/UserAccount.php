@@ -72,6 +72,7 @@ class UserAccount
     */
 
     private $encoded_password;
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Question", mappedBy="author")
      */
     private $questions;
@@ -184,6 +185,8 @@ class UserAccount
     public function setEncodedPassword(string $encoded_password): self
     {
         $this->encoded_password = $encoded_password;
+    }
+
     /**
      * @return Collection|Question[]
      */
