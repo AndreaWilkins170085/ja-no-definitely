@@ -15,22 +15,56 @@
           <li><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Posts</a></li>
           <li><a data-mui-toggle="tab" data-mui-controls="pane-justified-3">Settings</a></li>
         </ul>
-        <div class="mui-tabs__pane mui--is-active" id="pane-justified-1">About me
+        <div class="mui-tabs__pane mui--is-active" id="pane-justified-1">
+        <br>
+        <br>
 
-        {# {% for useraccount in useraccount %} #}
-          <br>
-          <br>
-          <div class="mui--text-headline">Username : {{ useraccount.username }}</div>
-          <br>
-          <div class="mui--text-black-54">Full Name : {{ useraccount.name }} {{useraccount.surname}}</div>
-          <br>
-          <div class="mui--text-black-54">User Type : {{ useraccount.type }} </div>
-          <br>
-          <br>
-        {# {% endfor %} #}
-        </div> 
+        <div class="mui-panel mui-col-sm-12">
+            <br>
+            <br>
+            <div id="profile-pic-user" class="mui-col-sm-3"></div>
+            <div id="profile-about-info" class="mui-col-sm-9">
+              <div id="username" class="mui--text-headline"> {{ useraccount.username }}</div>
+              <br>
+              <div class="mui--text-black-54">Full Name : {{ useraccount.name }} {{useraccount.surname}}</div>
+              <br>
+              <div class="mui--text-black-54">User Type : {{ useraccount.type }} </div>
+            <br>
+            <br>
+            </div>
+          </div> 
+        </div>
 
-        <div class="mui-tabs__pane" id="pane-justified-2">Posts</div>
+        <div class="mui-tabs__pane" id="pane-justified-2">Posts
+          <br>
+          <br>
+
+          <div class="mui-panel mui-col-sm-12">
+              <br>
+              <br>
+              <div id="username" class="mui--text-headline">Questions Asked</div>
+              <br>
+              {% for question in questions %}
+              <div class="mui--text-title">{{ question.question_text }}</div>
+              <div class="mui--text-black-54 mui--text-body2">{{ question.category.categoryName }}</div>
+              <br>
+              {% endfor %}
+              <br>
+          </div>
+
+          <div class="mui-panel mui-col-sm-12">
+              <br>
+              <br>
+              <div id="username" class="mui--text-headline">Answers Shared</div>
+              <br>
+              {% for answer in answers %}
+              <div class="mui--text-black-54">{{ answer.answer_text }}</div>
+              <br>
+              {% endfor %}
+              <br>
+              <br>
+          </div>
+        </div>
 
         <div class="mui-tabs__pane" id="pane-justified-3">Settings</div>
     </div>

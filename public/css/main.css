@@ -272,3 +272,18 @@ textarea {
   margin: 0px;
   border-bottom: 1px solid rgba(0, 0, 0, .12);
 }
+
+/* PROFILE PAGE */
+
+#profile-pic-user{
+  background-color: white;
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border-color: gray;
+  border-style: solid;
+  float: left;
+  margin-right: 50px;
+  margin-top: 4px;
+  margin-bottom: 5px;
+}
