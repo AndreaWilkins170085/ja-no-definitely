@@ -17,7 +17,7 @@ class RegisterController extends AbstractController
     * @Route("/register", name="register_view")
     */
 
-    public function userRegister(Request $request)
+    public function userRegister(Request $request, SessionInterface $session)
     {
 
             $userReg = new UserAccount();
@@ -31,6 +31,11 @@ class RegisterController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($userReg);
                 $entityManager->flush();
+
+                $repository = $this->getDoctrine()->getRepository(UserAccount::class);
+                $loggedInUser = $repository->findOneBy(['email' => $userReg->getEmail()]);
+                $session->start();
+                $session->set('loggedInUser', $loggedInUser);
 
                 return $this->redirectToRoute('home_view');
             }

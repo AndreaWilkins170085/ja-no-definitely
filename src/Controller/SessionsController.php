@@ -28,9 +28,9 @@
             if ($loginForm->isSubmitted() && $loginForm->isValid()) {
 
                 $repository = $this->getDoctrine()->getRepository(UserAccount::class);
-                $formAccount = $loginForm->getData();
-                $databaseAccount = $repository->findOneBy(['email' => $formAccount['email']]);
-                if ($this->validCredentials($formAccount, $databaseAccount))
+                $formData = $loginForm->getData();
+                $databaseAccount = $repository->findOneBy(['email' => $formData['email']]);
+                if ($this->validCredentials($formData, $databaseAccount))
                 {
                     $session->start();
                     $session->set('loggedInUser', $databaseAccount);

@@ -49,6 +49,13 @@ class HomeController extends AbstractController
     ->getRepository(Answer::class)
     ->findAll(); 
 
+    //DELETE 
+    // $database = $this->getDoctrine()->getEntityManager();
+    // $qToBeDeleted = $database->getRepository(Question::class)->find($deleteId);
+    // $database->remove($qToBeDeleted);
+    // $database->flush();   
+
+
     // $category = $questions -> getCategory() -> getCategoryName();
 
     $view = 'home.html.twig';
