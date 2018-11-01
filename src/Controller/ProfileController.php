@@ -34,12 +34,12 @@ class ProfileController extends AbstractController
         ->getRepository(Answer::class)
         ->findAll(); 
 
-        $categorys = $this->getDoctrine()
+        $categories = $this->getDoctrine()
         ->getRepository(Category::class)
         ->findAll();
 
         $view = 'profile.html.twig';
-        $model = array('categorys' => $categorys, 'useraccount' => $useraccount, 'questions' => $questions, 'answers' => $answers);
+        $model = array('categories' => $categories, 'useraccount' => $useraccount, 'questions' => $questions, 'answers' => $answers);
         return $this->render($view, $model);
     }
 
