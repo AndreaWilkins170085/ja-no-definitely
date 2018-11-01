@@ -43,13 +43,13 @@ class CategoryController extends AbstractController
     ->getRepository(Answer::class)
     ->findAll(); 
 
-    $categorys = $this->getDoctrine()
+    $categories = $this->getDoctrine()
     ->getRepository(Category::class)
     ->findAll();
 
     $view = 'category.html.twig';
     $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 
-    'answers' => $answers, 'categorys' => $categorys, 'category' => $category);
+    'answers' => $answers, 'categories' => $categories, 'category' => $category);
     return $this->render($view, $model);
     }
 
