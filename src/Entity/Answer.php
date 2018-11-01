@@ -49,7 +49,7 @@ class Answer
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\UserAccount", inversedBy="answers")
      */
-    private $author;
+    public $author;
 
     public function getId(): ?int
     {
