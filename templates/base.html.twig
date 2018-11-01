@@ -42,7 +42,7 @@
           </ul>
         </li>
         <li>
-          <strong><a href="/profile">View Profile</a></strong>
+          <strong><a href="/profile/{{ app.session.get('loggedInUser').id }}">View Profile</a></strong>
         </li>
       </ul>
       <a class="mui-btn mui-btn--small mui-btn--primary" href="/logout" id="logout-button"><i class="fa fa-power-off"></i> Log out</a>
