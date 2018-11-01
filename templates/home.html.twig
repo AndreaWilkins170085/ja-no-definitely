@@ -35,8 +35,8 @@
           <div class="mui--text-black-54"><div id="profile-image"></div> <a href="/profile/{{question.author.id}}" class="question-author">{{ question.question_author }}</a></div>
           <a href="" class="right"><i class="fas fa-arrow-up"></i> 0 </a><a href="" class="right"><i class="fas fa-arrow-down"></i> 0 </a>
           <br>
-          <div class="mui--text-title">{{ question.question_text }}</div>
-          <div class="mui--text-black-54 mui--text-body2">{{ question.category.categoryName }}</div>
+          <div class="mui--text-title">{{ question.question_text }}</div> 
+          <div class="mui--text-black-54 mui--text-body2"><a href="/category/{{ question.category.id }}">{{ question.category.categoryName }}</a></div>
           
           {# Answer Question #}
           <div class="mui-form">
@@ -50,10 +50,15 @@
           
           {# Answers #}
           {% for answer in answers %}
-          <div class="mui--text-black-54 mui--text-body2"><a href="/profile/{{answer.author.id}}">{{ answer.answer_author }}</a></div>
           <div class="mui-divider"></div>
           <br>
-          <div class="mui--text-black-54">{{ answer.answer_text }}</div>
+          <div class="mui--text-black-54"> <a href="" class="right"><i class="fas fa-arrow-up"></i> 0 </a><a href="" class="right"><i class="fas fa-arrow-down"></i> 0 </a> {{ answer.answer_text }} - <a class="author-comment" href="/profile/{{answer.author.id}}">{{ answer.answer_author }}</a></div>
+          <div class="mui--text-black-54 mui--text-body2">
+          
+
+          
+          </div>
+
           <br>
           {% endfor %}
           </div>
