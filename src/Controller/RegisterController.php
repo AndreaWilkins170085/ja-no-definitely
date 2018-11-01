@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 use App\Entity\UserAccount;
 use App\Form\RegisterType;
 
@@ -29,7 +31,7 @@ class RegisterController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($userReg);
                 $entityManager->flush();
-                    
+
                 return $this->redirectToRoute('home_view');
             }
 
