@@ -52,8 +52,10 @@
 
     public function destroySession(Request $request, SessionInterface $session)
     {
-        $session->invalidate();
-        return $this->redirectToRoute('session_new');
+        if ($logoutForm->isSubmitted()) {
+            $session->invalidate();
+            return $this->redirectToRoute('session_new');
+        }
     }
 
 

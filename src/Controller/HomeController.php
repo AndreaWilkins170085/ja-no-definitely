@@ -21,10 +21,19 @@ class HomeController extends AbstractController
 
     public function viewHomepage(Request $request)
     {
+        $categories = $this->getDoctrine()
+        ->getRepository(Category::class)
+        ->findAll();
+
+        $categoryDropdownOptions = [];
+
+        foreach ($categories as $category) {
+            $categoryDropdownOptions[$category->category_name] = $category->id;
+        }
 
     // FORMS
     $question = new Question();
-    $questionForm = $this->createForm(QuestionType::class, $question);
+    $questionForm = $this->createForm(QuestionType::class, $question, ['categories' => $categoryDropdownOptions]);
     $questionForm->handleRequest($request);
 
     $answer = new Answer();
@@ -40,15 +49,11 @@ class HomeController extends AbstractController
     ->getRepository(Answer::class)
     ->findAll(); 
 
-    $categorys = $this->getDoctrine()
-    ->getRepository(Category::class)
-    ->findAll();
-
     // $category = $questions -> getCategory() -> getCategoryName();
 
     $view = 'home.html.twig';
     $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 'answers' => $answers, 
-    'categorys' => $categorys);
+    'categories' => $categories);
     return $this->render($view, $model);
     }
 

@@ -23,8 +23,8 @@
       <div id="sidedrawer-brand" class="mui--appbar-line-height">
        <div id="profile-header-image">
        </div>
-       <h3 id="profile-header-name">name</h3>
-       <h3 id="profile-header-surname">surname</h3>
+       <h3 id="profile-header-name">{{ app.session.get('loggedInUser').name }}</h3>
+       <h3 id="profile-header-surname">{{ app.session.get('loggedInUser').surname }}</h3>
 
       </div>
 
@@ -36,7 +36,7 @@
         <li>
           <strong>Categories</strong>
           <ul>
-            {% for category in categorys %}
+            {% for category in categories %}
               <li><a href="/category/{{ category.id }}">{{ category.category_name }}</a></li>
             {% endfor %}
           </ul>
