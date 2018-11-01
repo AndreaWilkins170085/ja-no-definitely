@@ -251,6 +251,38 @@ textarea {
   text-decoration: none;
 }
 
+.vote{
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+.delete-btn{
+  background: none;
+	color: black;
+  border: none;
+  margin: 0;
+	padding: 0;
+	
+}
+
+.vote-con{
+  margin: 0;
+	padding: 0;
+  height: 80%;
+  width: 10%;
+  float: right;
+  display: inline-grid;
+}
+
+.answer-vote-con{
+  width: 100%;
+  height: auto;
+  display: inline-flex;
+}
+
+.answer-con{
+  width: 90%;
+}
 
 
 
