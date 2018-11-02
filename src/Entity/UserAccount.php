@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 
 /**
 * @ORM\Entity(repositoryClass="App\Repository\UserAccountRepository")
@@ -67,7 +68,7 @@ class UserAccount
     public $image_path;
 
     /**
-    * @ORM\Column(type="string", length=255, options={"default": "$2y$12$5k3JxMy1bQ7j5ixmHUwz/eDV6yM80ufXOptlduRt2lyWZuC3ZlLNK"})
+    * @ORM\Column(type="string", length=255)
     */
 
     private $encoded_password;
@@ -183,7 +184,13 @@ class UserAccount
 
     public function setEncodedPassword(string $encoded_password): self
     {
-        $this->encoded_password = $encoded_password;
+
+        $encoder = new BCryptPasswordEncoder(12);
+        $raw = $encoded_password;
+        $salt = 12;
+        $encodedPassword = $encoder->encodePassword($raw, $salt);
+
+        $this->encoded_password = $encodedPassword;
         return $this;
     }
 
