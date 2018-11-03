@@ -21,12 +21,17 @@
         <div class="mui-container-fluid" id="reg-con">
         <h1 class="heading">Register</h1>
         <div class="regForm">
-          {{ form_start(registerForm, {'attr': {'novalidate': 'novalidate'}}) }}
+          {{ form_start(registerForm) }}
           {{ form_widget(registerForm.name, {'attr': {'placeholder': 'Name'} }) }}
+          <h5 class="errors"> {{ name }} </h5>
           {{ form_widget(registerForm.surname, {'attr': {'placeholder': 'Surname'} }) }}
+          <h5 class="errors"> {{ surname }} </h5>
           {{ form_widget(registerForm.username, {'attr': {'placeholder': 'Username'} }) }}
+          <h5 class="errors"> {{ usernameT }} </h5>
           {{ form_widget(registerForm.email, {'attr': {'placeholder': 'Email'} }) }}
-          {{ form_widget(registerForm.encoded_password, {'attr': {'placeholder': 'Password'} }) }}
+          <h5 class="errors"> {{ emailT }} </h5>
+          {{ form_widget(registerForm.password, {'attr': {'placeholder': 'Password'} }) }}
+          <h5 class="errors"> {{ errors }} </h5>
           {{ form_end(registerForm) }}
         </div>
         

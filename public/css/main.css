@@ -15,7 +15,7 @@
   background-color: white;
   border-radius: 1px;
   width: 380px;
-  height: 360px;
+  height: 410px;
   margin-left: 36%;
   margin-top: 13%;
   float: left;
@@ -118,7 +118,7 @@
   padding: 0;
   margin: 0;
   margin-left: 8%;
-  height: 30px;
+  height: 10px;
 }
 
 #profile-image{
@@ -207,7 +207,7 @@ textarea {
     display: block;
     margin-left: 8%;
     width: 210px;
-    margin-top: 20px;
+    margin-top: 10px;
   }
   
   #register_submit {

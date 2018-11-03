@@ -18,16 +18,54 @@ class RegisterController extends AbstractController
     */
 
     public function userRegister(Request $request, SessionInterface $session)
-    {
+    {  
+            $name = '';
+            $surname='';
+            $usernameT='';
+            $emailT='';
+            $errors='';
+            $valid= true;
+            $usernameCheck = '';
 
             $userReg = new UserAccount();
 
             $registerForm = $this->createForm(RegisterType::class, $userReg );
             $registerForm->handleRequest($request);
+            $data = $registerForm->getData();
 
 
             if ($registerForm->isSubmitted() && $registerForm->isValid()) {
+                
+                $email = $data->{'email'};
+                $username = $data->{'username'};
+                $password = $data->{'password'};
 
+                $repository = $this->getDoctrine()->getRepository(UserAccount::class);
+                
+                $emailCheck = $repository->findOneBy(['email' => $email]);
+                $usernameCheck = $repository->findOneBy(['username' => $username]);
+
+                // $usernameCheck->createQueryBuilder('a')
+                //     ->where('upper(a.username) = upper(:username)')
+                //     ->setParameter('username', $username)
+                //     ->getQuery()
+                //     ->execute();
+                
+                if (!$emailCheck == null){
+                    $emailT='This email has been already registered';
+                    $valid = false;
+                }
+                if (!$usernameCheck == null){
+                    $usernameT='This username has been already registered';
+                    $valid = false;
+                }
+                if (strlen($password) < 8) {
+                    $errors = "The password should be at least 8 characters";
+                    $valid = false;
+                }
+
+                if ($valid){
+                $userReg->setEncodedPassword($password);
                 $userReg = $registerForm->getData();
                 $entityManager = $this->getDoctrine()->getManager();
 
@@ -41,10 +79,13 @@ class RegisterController extends AbstractController
                 $session->set('loggedInUser', $loggedInUser);
 
                 return $this->redirectToRoute('home_view');
+                }
+                
             }
 
             $view = 'register.html.twig';
-            $model = array('registerForm' => $registerForm->createView());
+            $model = array('registerForm' => $registerForm->createView(), 'name'=>$name, 'surname'=>$surname, 'usernameT'=>$usernameT, 'emailT'=>$emailT, 'errors'=>$errors);
+            
 
             return $this->render($view, $model);
         }

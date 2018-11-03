@@ -20,9 +20,9 @@ class RegisterType extends AbstractType
             ->add('surname', TextType::class, array('label' => false))
             ->add('username', TextType::class, array('label' => false))
             ->add('email', EmailType::class, array('label' => false))
-            ->add('password', HiddenType::class, ['empty_data' => 'password1'])
+            ->add('password', PasswordType::class, array('label' => false))
             ->add('type', HiddenType::class, ['empty_data' => 'user'])
-            ->add('encoded_password', PasswordType::class)
+            ->add('encoded_password', HiddenType::class)
             ->add('image_path', HiddenType::class, ['empty_data' => 'default_img.jpg'])
             ->add('loginFB', SubmitType::class, ['label' => 'Sign Up with Facebook'])
             ->add('submit', SubmitType::class, ['label' => 'Register']);
