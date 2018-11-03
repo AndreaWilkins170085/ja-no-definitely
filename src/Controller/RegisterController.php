@@ -49,15 +49,5 @@ class RegisterController extends AbstractController
             return $this->render($view, $model);
         }
 
-
-        public function createCredentials() 
-    {
-
-        $encoder = new BCryptPasswordEncoder(12);
-        
-    }
-
-   
-
 }
 ?>

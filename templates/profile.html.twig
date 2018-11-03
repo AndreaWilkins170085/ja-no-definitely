@@ -65,6 +65,23 @@
           </div>
         </div>
 
-        <div class="mui-tabs__pane" id="pane-justified-3">Settings</div>
+        <div class="mui-tabs__pane" id="pane-justified-3">
+
+          <div class="regForm">
+            {{ form_start(profileForm, {'attr': {'novalidate': 'novalidate'}}) }}
+            {{ useraccount.name }}
+            {{ form_widget(profileForm.name, {'attr': {'placeholder': 'name'} }) }}
+            {{ useraccount.surname }}
+            {{ form_widget(profileForm.surname, {'attr': {'placeholder': 'surname'} }) }}
+            {{ useraccount.username }}
+            {{ form_widget(profileForm.username, {'attr': {'placeholder': 'username'} }) }}
+            {{ useraccount.email }}
+            {{ form_widget(profileForm.email, {'attr': {'placeholder': 'email'} }) }}
+            Password
+            {{ form_widget(profileForm.password, {'attr': {'placeholder': 'Password'} }) }}
+            {{ form_end(profileForm) }}
+          </div>
+        
+        </div>
     </div>
-{% endblock %}
+{% endblock %} 
