@@ -19,14 +19,15 @@
     public function newSession(Request $request, SessionInterface $session)
     {
 
+        $errors = '';
         $userProfile = new UserAccount();
 
         $loginForm = $this->createForm(LoginType::class);
         $loginForm->handleRequest($request);
+        
  
 
             if ($loginForm->isSubmitted() && $loginForm->isValid()) {
-
                 $repository = $this->getDoctrine()->getRepository(UserAccount::class);
                 $formData = $loginForm->getData();
                 $databaseAccount = $repository->findOneBy(['email' => $formData['email']]);
@@ -35,14 +36,21 @@
                     $session->start();
                     $session->set('loggedInUser', $databaseAccount);
                     return $this->redirectToRoute('home_view');
+                }else{
+                    $errors = 'Password or email incorrect';
+                    $view = 'login.html.twig';
+                    $model = array('loginForm' => $loginForm->createView(), 'errors'=>$errors);
+                    return $this->render($view, $model);
                 }
 
             }
     
-
-        $view = 'login.html.twig';
-        $model = array('loginForm' => $loginForm->createView());
-        return $this->render($view, $model);
+        if(!$loginForm->isSubmitted()){
+            $view = 'login.html.twig';
+            $model = array('loginForm' => $loginForm->createView(), 'errors'=>$errors);
+            return $this->render($view, $model);
+        }
+        
 
     }
 

@@ -46,6 +46,7 @@ class ProfileController extends AbstractController
                 $email = $data->{'email'};
                 $password = $data->{'password'};
 
+                //validation
                 if ($name){
                     $userPro->setName($name);
                 }
