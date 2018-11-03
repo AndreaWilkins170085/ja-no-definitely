@@ -12,6 +12,7 @@ use App\Form\QuestionType;
 use App\Entity\Answer;
 use App\Form\AnswerType;
 use App\Entity\Category;
+use App\Entity\UserAccount;
 
 class HomeController extends AbstractController
 {
@@ -28,17 +29,8 @@ class HomeController extends AbstractController
         $categoryDropdownOptions = [];
 
         foreach ($categories as $category) {
-            $categoryDropdownOptions[$category->category_name] = $category->id;
+            $categoryDropdownOptions[$category->category_name] = $category;
         }
-
-    // FORMS
-    $question = new Question();
-    $questionForm = $this->createForm(QuestionType::class, $question, ['categories' => $categoryDropdownOptions]);
-    $questionForm->handleRequest($request);
-
-    $answer = new Answer();
-    $answerForm = $this->createForm(AnswerType::class, $answer);
-    $answerForm->handleRequest($request);
 
     //DATA
     $questions = $this->getDoctrine()
@@ -49,6 +41,33 @@ class HomeController extends AbstractController
     ->getRepository(Answer::class)
     ->findAll(); 
 
+    // FORMS
+
+    // $username = $this->getUser();
+
+    $currentUsername = $this->get('session')->get('username');
+    $currentUserId = $this->get('session')->get('id');
+
+    $question = new Question();
+    $questionForm = $this->createForm(QuestionType::class, $question, ['categories' => $categoryDropdownOptions], 
+    array('currentUsername' => $currentUsername), array('currentUserId' => $currentUserId));
+    $questionForm->handleRequest($request);
+
+    if ($questionForm->isSubmitted() && $questionForm->isValid()) {
+
+        $question = $questionForm->getData();
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($question);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('home_view');
+    }
+
+    $answer = new Answer();
+    $answerForm = $this->createForm(AnswerType::class, $answer);
+    $answerForm->handleRequest($request);
+
+    
     //DELETE 
     // $database = $this->getDoctrine()->getEntityManager();
     // $qToBeDeleted = $database->getRepository(Question::class)->find($deleteId);
@@ -59,8 +78,8 @@ class HomeController extends AbstractController
     // $category = $questions -> getCategory() -> getCategoryName();
 
     $view = 'home.html.twig';
-    $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 'answers' => $answers, 
-    'categories' => $categories);
+    $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 
+    'answers' => $answers, 'categories' => $categories);
     return $this->render($view, $model);
     }
 

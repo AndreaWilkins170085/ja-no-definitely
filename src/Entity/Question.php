@@ -39,10 +39,10 @@ class Question
      */
     public $question_author;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    public $question_date;
+    // /**
+    //  * @ORM\Column(type="datetime")
+    //  */
+    // public $question_date;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="questions")
@@ -117,17 +117,17 @@ class Question
         return $this;
     }
 
-    public function getQuestionDate(): ?\DateTimeInterface
-    {
-        return $this->question_date;
-    }
+    // public function getQuestionDate(): ?\DateTimeInterface
+    // {
+    //     return $this->question_date;
+    // }
 
-    public function setQuestionDate(\DateTimeInterface $question_date): self
-    {
-        $this->question_date = $question_date;
+    // public function setQuestionDate(\DateTimeInterface $question_date): self
+    // {
+    //     $this->question_date = $question_date;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getCategory(): ?Category
     {

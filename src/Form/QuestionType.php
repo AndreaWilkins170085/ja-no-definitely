@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use App\Entity\Category;
+use App\Entity\UserAccount;
 
 class QuestionType extends AbstractType
 {
@@ -24,20 +25,11 @@ class QuestionType extends AbstractType
         // ->findAll();
 
         $builder
-            ->add('question_author', HiddenType::class, ['data' => '{{ user.id }}'])
-            ->add('question_date', HiddenType::class)
+            ->add('question_author', HiddenType::class, ['data' => $options['currentUsername']])
+            ->add('author', HiddenType::class, ['data' => $options['currentUserId']])
+            // ->add('question_date', HiddenType::class)
             ->add('category', ChoiceType::class, array(
                 'choices' => array(
-                    // 'Categories' => array (
-                    //     'Wildlife and plants' => 1, 
-                    //     'Geography and climate' => 2,
-                    //     'Food and shopping' => 3,
-                    //     'Adventure Experiences' => 4,
-                    //     'Cultural Experiences' => 5,
-                    //     'Big City Life' => 6,
-                    //     'Sun and Surf' => 7
-                    // ),
-                    // //$categories
                     'Categories' => $options['categories']
                 )
             ))
@@ -50,7 +42,9 @@ class QuestionType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'App\Entity\Question',
-            'categories' => null
+            'categories' => null,
+            'currentUsername' => 'currentUsername',
+            'currentUserId' => 'currentUserId'
         ));
     }
 }
