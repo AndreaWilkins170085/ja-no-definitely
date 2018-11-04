@@ -69,7 +69,8 @@ class HomeController extends AbstractController
     }
 
     $answer = new Answer();
-    $answerForm = $this->createForm(AnswerType::class, $answer, array('currentUsername' => $currentUsername));
+    $answerForm = $this->createForm(AnswerType::class, $answer);
+    $answerForm->get("answer_author")->setData($currentUsername);
     $answerForm->handleRequest($request);
 
     if ($answerForm->isSubmitted() && $answerForm->isValid()) {

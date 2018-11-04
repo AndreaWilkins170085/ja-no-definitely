@@ -36,10 +36,10 @@ class Answer
      */
     public $answer_author;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    public $answer_date;
+    // /**
+    //  * @ORM\Column(type="datetime")
+    //  */
+    // public $answer_date;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="answers")
@@ -104,17 +104,17 @@ class Answer
         return $this;
     }
 
-    public function getAnswerDate(): ?\DateTimeInterface
-    {
-        return $this->answer_date;
-    }
+    // public function getAnswerDate(): ?\DateTimeInterface
+    // {
+    //     return $this->answer_date;
+    // }
 
-    public function setAnswerDate(\DateTimeInterface $answer_date): self
-    {
-        $this->answer_date = $answer_date;
+    // public function setAnswerDate(\DateTimeInterface $answer_date): self
+    // {
+    //     $this->answer_date = $answer_date;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getQuestion(): ?Question
     {

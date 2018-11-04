@@ -19,7 +19,7 @@ class AnswerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('answer_author', HiddenType::class, ['data' => $options['currentUsername']])
+            ->add('answer_author', HiddenType::class)
             // ->add('answer_date', HiddenType::class)
             // ->add('question_id', HiddenType::class)
             ->add('answer_text', TextareaType::class, ['label' => false])
@@ -30,8 +30,7 @@ class AnswerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'App\Entity\Answer',
-            'currentUsername' => 'currentUsername'
+            'data_class' => 'App\Entity\Answer'
         ));
     }
 }
