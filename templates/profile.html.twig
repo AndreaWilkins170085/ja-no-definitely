@@ -13,7 +13,9 @@
          <ul class="mui-tabs__bar mui-tabs__bar--justified">
           <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">About me!</a></li>
           <li><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Posts</a></li>
-          <li><a data-mui-toggle="tab" data-mui-controls="pane-justified-3">Settings</a></li>
+          {% if app.session.get('loggedInUser').id == useraccount.id %}
+            <li><a data-mui-toggle="tab" data-mui-controls="pane-justified-3">Settings</a></li>
+          {% endif %}
         </ul>
         <div class="mui-tabs__pane mui--is-active" id="pane-justified-1">
         <br>
@@ -69,6 +71,7 @@
           </div>
         </div>
 
+        {% if app.session.get('loggedInUser').id == useraccount.id %}
         <div class="mui-tabs__pane" id="pane-justified-3">
 
           <div id="edit" class="mui--text-headline">Edit Profile</div>
@@ -96,5 +99,7 @@
           </div>
         
         </div>
+        {% endif %}
+
     </div>
 {% endblock %} 
