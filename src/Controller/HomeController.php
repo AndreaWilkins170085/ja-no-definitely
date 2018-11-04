@@ -5,8 +5,10 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+
 use App\Entity\Question;
 use App\Form\QuestionType;
 use App\Entity\Answer;
@@ -20,7 +22,7 @@ class HomeController extends AbstractController
     * @Route("/home", name="home_view")
     */
 
-    public function viewHomepage(Request $request)
+    public function viewHomepage(Request $request, SessionInterface $session)
     {
         $categories = $this->getDoctrine()
         ->getRepository(Category::class)
@@ -43,14 +45,17 @@ class HomeController extends AbstractController
 
     // FORMS
 
-    // $username = $this->getUser();
+    $currentUsername = $session->get('loggedInUser')->username;
+    $currentUserId = $session->get('loggedInUser')->id;
 
-    $currentUsername = $this->get('session')->get('username');
-    $currentUserId = $this->get('session')->get('id');
+    // $currentUsername = $this->get('session')->get('username');
+    // $currentUserId = $this->get('session')->get('id');
 
     $question = new Question();
-    $questionForm = $this->createForm(QuestionType::class, $question, ['categories' => $categoryDropdownOptions], 
-    array('currentUsername' => $currentUsername), array('currentUserId' => $currentUserId));
+    $questionForm = $this->createForm(QuestionType::class, $question, ['categories' => $categoryDropdownOptions]);
+    $questionForm->get("question_author")->setData($currentUsername);
+    // $questionForm->get("author")->setData($currentUserId);
+        
     $questionForm->handleRequest($request);
 
     if ($questionForm->isSubmitted() && $questionForm->isValid()) {
@@ -64,8 +69,18 @@ class HomeController extends AbstractController
     }
 
     $answer = new Answer();
-    $answerForm = $this->createForm(AnswerType::class, $answer);
+    $answerForm = $this->createForm(AnswerType::class, $answer, array('currentUsername' => $currentUsername));
     $answerForm->handleRequest($request);
+
+    if ($answerForm->isSubmitted() && $answerForm->isValid()) {
+
+        $answer = $answerForm->getData();
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($answer);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('home_view');
+    }
 
     
     //DELETE 

@@ -343,3 +343,9 @@ textarea {
   margin-top: 4px;
   margin-bottom: 5px;
 }
+
+#edit-con{
+  margin-top: 10%;
+  width: 400px;
+  height: 390px;
+}

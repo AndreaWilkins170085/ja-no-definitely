@@ -42,7 +42,7 @@
           <div class="mui-panel mui-col-sm-12">
               <br>
               <br>
-              <div id="username" class="mui--text-headline">Questions Asked</div>
+              <div id="asked" class="mui--text-headline">Questions Asked</div>
               <br>
               {% for question in questions %}
               <div class="mui--text-black-54 mui--text-body2">{{ question.category.categoryName }} - {{ question.question_text }}</div>
@@ -54,7 +54,7 @@
           <div class="mui-panel mui-col-sm-12">
               <br>
               <br>
-              <div id="username" class="mui--text-headline">Answers Shared</div>
+              <div id="answered" class="mui--text-headline">Answers Shared</div>
               <br>
               {% for answer in answers %}
               <div class="mui--text-black-54">Q : {{ answer.question.question_text }}</div>
@@ -67,19 +67,28 @@
 
         <div class="mui-tabs__pane" id="pane-justified-3">
 
+          <div id="edit" class="mui--text-headline">Edit Profile</div>
+
+          <div class="mui-container-fluid" id="edit-con">
           <div class="regForm">
             {{ form_start(profileForm, {'attr': {'novalidate': 'novalidate'}}) }}
             {{ useraccount.name }}
             {{ form_widget(profileForm.name, {'attr': {'placeholder': 'name'} }) }}
+            <br>
             {{ useraccount.surname }}
             {{ form_widget(profileForm.surname, {'attr': {'placeholder': 'surname'} }) }}
+            <br>
             {{ useraccount.username }}
             {{ form_widget(profileForm.username, {'attr': {'placeholder': 'username'} }) }}
+            <br>
             {{ useraccount.email }}
             {{ form_widget(profileForm.email, {'attr': {'placeholder': 'email'} }) }}
+            <br>
             Password
             {{ form_widget(profileForm.password, {'attr': {'placeholder': 'Password'} }) }}
+            <br>
             {{ form_end(profileForm) }}
+          </div>
           </div>
         
         </div>

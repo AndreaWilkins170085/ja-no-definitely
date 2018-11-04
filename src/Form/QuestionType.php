@@ -25,9 +25,11 @@ class QuestionType extends AbstractType
         // ->findAll();
 
         $builder
-            ->add('question_author', HiddenType::class, ['data' => $options['currentUsername']])
+            // ->add('question_author', HiddenType::class, ['data' => $options['currentUsername']])
             ->add('author', HiddenType::class, ['data' => $options['currentUserId']])
             // ->add('question_date', HiddenType::class)
+            ->add('question_author', HiddenType::class)
+            // ->add('author', HiddenType::class)
             ->add('category', ChoiceType::class, array(
                 'choices' => array(
                     'Categories' => $options['categories']
@@ -43,8 +45,8 @@ class QuestionType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'App\Entity\Question',
             'categories' => null,
-            'currentUsername' => 'currentUsername',
-            'currentUserId' => 'currentUserId'
+            'currentUsername' => null,
+            'currentUserId' => null
         ));
     }
 }
