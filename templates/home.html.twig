@@ -52,6 +52,7 @@
           
           {# Answers #}
           {% for answer in answers %}
+          {% if question.id == answer.question.id %}
           <div class="mui-divider"></div>
           <br>
           <div class="answer-vote-con">
@@ -60,6 +61,7 @@
           <div class="vote-con"> <a href="" class="vote"><i class="fas fa-arrow-up"></i> 0 </a><a href="" class="vote"><i class="fas fa-arrow-down"></i> 0 </a><a href="" class="delete-btn">Delete</a></div>
 
           </div>
+          {% endif %}
           {% endfor %}
           {# Answers #}
            </div>
