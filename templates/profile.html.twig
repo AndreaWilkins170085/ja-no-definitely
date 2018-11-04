@@ -45,8 +45,10 @@
               <div id="asked" class="mui--text-headline">Questions Asked</div>
               <br>
               {% for question in questions %}
+              {% if question.author.id == useraccount.id %}
               <div class="mui--text-black-54 mui--text-body2">{{ question.category.categoryName }} - {{ question.question_text }}</div>
               <br>
+              {% endif %}
               {% endfor %}
               <br>
           </div>
@@ -57,9 +59,11 @@
               <div id="answered" class="mui--text-headline">Answers Shared</div>
               <br>
               {% for answer in answers %}
+              {% if answer.author.id == useraccount.id %}
               <div class="mui--text-black-54">Q : {{ answer.question.question_text }}</div>
               <div class="mui--text-black-54">A : {{ answer.answer_text }}</div>
               <br>
+              {% endif %}
               {% endfor %}
               <br>
           </div>
