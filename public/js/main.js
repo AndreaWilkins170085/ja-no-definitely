@@ -59,7 +59,7 @@ jQuery(function($) {
     $(this).next().slideToggle(200);
   });
 
-  // $('.answer-btn').click(function() {
+  // $('.answer-btn').onclick(function() {
   //   $(this).parent().find('.answerForm').show();
   // })
 
@@ -75,12 +75,12 @@ jQuery(function($) {
   
 //Show/Hide Answer Form
 
-// function answerQuestion() {
-//   var x = document.getElementById("answerForm");
-//   if (x.style.display === "none") {
-//       x.style.display = "block";
-//   } else {
-//       x.style.display = "none";
-//   }
-// }
+function answerQuestion() {
+  var x = document.getElementById("answerForm");
+  if (x.style.display === "none") {
+      x.style.display = "block";
+  } else {
+      x.style.display = "none";
+  }
+}
 

@@ -112,61 +112,6 @@ class HomeController extends AbstractController
 
     }
 
-    
-    //DELETE 
-    // $database = $this->getDoctrine()->getEntityManager();
-    // $qToBeDeleted = $database->getRepository(Question::class)->find($deleteId);
-    // $database->remove($qToBeDeleted);
-    // $database->flush();   
-
-
-    // /**
-    // * @Route("/answer", name="answer_view")
-    // */
-    // public function viewAnswerForm(Request $request, SessionInterface $session)
-    // {
-    //     $categories = $this->getDoctrine()
-    //     ->getRepository(Category::class)
-    //     ->findAll();
-
-    //     $questions = $this->getDoctrine()
-    //     ->getRepository(Question::class)
-    //     ->findAll(); 
-        
-    //     $answers = $this->getDoctrine()
-    //     ->getRepository(Answer::class)
-    //     ->findAll(); 
-
-
-    //     $currentUsername = $session->get('loggedInUser')->username;
-    //     $currentUserId = $session->get('loggedInUser')->id;
-
-    //     $question = new Question();
-    //     $questionForm = $this->createForm(QuestionType::class, $question);
-    //     $questionForm->get("question_author")->setData($currentUsername);
-    //     $questionForm->get("author")->setData($currentUserId);
-            
-    //     $questionForm->handleRequest($request);
-
-    //     if ($questionForm->isSubmitted() && $questionForm->isValid()) {
-
-    //         $question = $questionForm->getData();
-    //         $entityManager = $this->getDoctrine()->getManager();
-    //         $entityManager->persist($question);
-    //         $entityManager->flush();
-
-    //         return $this->redirectToRoute('home_view');
-    //     }
-
-    //     $answer = new Answer();
-    //     $answerForm = $this->createForm(AnswerType::class, $answer);
-    //     $answerForm->get("answer_author")->setData($currentUsername);
-    //     // $answerForm->get("question")->setData();
-    //     $answerForm->handleRequest($request);
-
-    //     if ($answerForm->isSubmitted() && $answerForm->isValid()) {
-
-    
         /** 
          * @Route("/ajax/voteup", name="ajax") 
         */ 
