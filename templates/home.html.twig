@@ -57,9 +57,9 @@
           
           <div class="vote-con"> 
           <a href="" class="vote ajaxUpQ"  data-button-q="{{ question.id }}"><i class="fas fa-arrow-up"></i><p id="{{ question.id }}Q"> {{ question.question_upvotes - question.question_downvotes }}</p> </a><a href="" class="vote ajaxDoQ"  data-button-q="{{ question.id }}"><i class="fas fa-arrow-down"></i>  </a>
-          {% if useraccount.type == "admin" %}
+          {# {% if useraccount.type == "admin" %} #}
             <a href="" class="delete ajaxDeleteQ" data-button-deleteq="{{ question.id }}">Delete</a>
-          {% endif %}
+          {# {% endif %} #}
           </div>
 
           <div class="questionText mui--text-title">{{ question.question_text }}</div> 
@@ -78,9 +78,9 @@
           <div class="mui--text-black-54 answer-con"> {{ answer.answer_text }} - <a class="author-comment" href="/profile/{{answer.author.id}}">{{ answer.answer_author }}</a> </div>
 
           <div class="vote-con"> <a href="" class="vote ajaxUpA"  data-button-a="{{ answer.id }}"><i class="fas fa-arrow-up"></i><p id="{{ answer.id }}A"> {{ answer.answer_upvotes - answer.answer_downvotes }}</p> </a><a href="" class="vote ajaxDoA"  data-button-a="{{ answer.id }}"><i class="fas fa-arrow-down"></i>  </a>
-          {% if useraccount.type == "admin" %}
+          {# {% if useraccount.type == "admin" %} #}
           <a href="/delete" class="delete ajaxDeleteA" data-button-deletea="{{ answer.id }}">Delete</a>
-          {% endif %}
+          {# {% endif %} #}
           </div>
 
           </div>
@@ -215,7 +215,7 @@
             console.log(id);
             that = $(this);
             $.ajax({
-                url:'/ajax/delete',
+                url:'/ajax/vote',
                 type: "POST",
                 dataType: "json",
                 data: {
@@ -224,10 +224,9 @@
                 async: true,
                 success: function (data)
                 {
-                    id="#"+id+"A";
-                    console.log(id);
-                    $( id ).text(data);
+                    
                     console.log(data);
+                    location.reload();
                     
 
                 }
@@ -240,7 +239,7 @@
             console.log(id);
             that = $(this);
             $.ajax({
-                url:'/ajax/delete',
+                url:'/ajax/vote',
                 type: "POST",
                 dataType: "json",
                 data: {
@@ -249,10 +248,9 @@
                 async: true,
                 success: function (data)
                 {
-                    id="#"+id+"A";
-                    console.log(id);
-                    $( id ).text(data);
+                    
                     console.log(data);
+                    location.reload();
                     
 
                 }

@@ -123,42 +123,64 @@ class HomeController extends AbstractController
 
     }
 
-    /** 
-    * @Route("/ajax/delete", name="ajax") 
-    */ 
+        /**
+         * @Route("/ajax/delete", name="ajax")
+        */
 
-    public function Delete(Request $request, SessionInterface $session)
-    {
+        public function Delete(Request $request, SessionInterface $session){
 
-        if($request->request->get('deleteQ')){
-
-            $id = $request->request->get('deleteQ');
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $toBeDeleted = $database->getRepository(Question::class)->find($id);
-            $entityManager->remove($qToBeDeleted);
-            $entityManager->flush();
+            
 
         }
 
-        if($request->request->get('deleteA')){
 
-            $id = $request->request->get('deleteA');
+        /**
+         * @Route("/ajax/vote", name="ajax")
+        */
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $toBeDeleted = $database->getRepository(Question::class)->find($id);
-            $entityManager->remove($qToBeDeleted);
-            $entityManager->flush();
+        
 
-        }
- 
-    }  
+        public function Vote(Request $request, SessionInterface $session) {
 
-        /** 
-         * @Route("/ajax/vote", name="ajax") 
-        */ 
+            if($request->request->get('deleteQ')){
 
-        public function Vote(Request $request, SessionInterface $session) {  
+                $id = $request->request->get('deleteQ');
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $repository = $this->getDoctrine()->getRepository(Answer::class);
+                $data = $repository->findBy(['questionId' => $id]);
+                
+                foreach ($data as $set) {
+                $entityManager->remove($set);
+                 $entityManager->flush();
+                }
+
+                $repository = $this->getDoctrine()->getRepository(Question::class);
+                $data = $repository->findOneBy(['id' => $id]);
+
+                $entityManager->remove($data);
+                $entityManager->flush();
+
+                
+                
+
+                return new JsonResponse("done");
+            }
+
+            if($request->request->get('deleteA')){
+
+                $id = $request->request->get('deleteA');
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $repository = $this->getDoctrine()->getRepository(Answer::class);
+                $data = $repository->findOneBy(['id' => $id]);
+                
+                $entityManager->remove($data);
+                $entityManager->flush();
+
+
+                return new JsonResponse("done");
+            }
 
             if($request->request->get('voteupQ')){
 
@@ -229,7 +251,7 @@ class HomeController extends AbstractController
                 return new JsonResponse($value-$valueE);
             }
         
-    } 
+    }
 
 }
 
