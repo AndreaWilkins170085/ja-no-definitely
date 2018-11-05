@@ -13,6 +13,7 @@ use App\Form\QuestionType;
 use App\Entity\Answer;
 use App\Form\AnswerType;
 use App\Entity\Category;
+use App\Entity\UserAccount;
 
 class CategoryController extends AbstractController
 {
@@ -51,6 +52,10 @@ class CategoryController extends AbstractController
     $currentUsername = $session->get('loggedInUser')->username;
     $currentUserId = $session->get('loggedInUser')->id;
 
+    $useraccount = $this->getDoctrine()
+    ->getRepository(UserAccount::class)
+    ->find($currentUserId);
+
     $question = new Question();
     $questionForm = $this->createForm(QuestionType::class, $question, ['categories' => $categoryDropdownOptions]);
     $questionForm->get("question_author")->setData($currentUsername);
@@ -80,14 +85,12 @@ class CategoryController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($answer);
         $entityManager->flush();
-
         return $this->redirectToRoute('category_view');
     }
 
-
-
     $view = 'category.html.twig';
     $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 
+    'answers' => $answers, 'categories' => $categories, 'category' => $category, 'useraccount' => $useraccount);
     'answers' => $answers, 'categories' => $categories, 'thisCategory' => $thisCategory);
     return $this->render($view, $model);
     }

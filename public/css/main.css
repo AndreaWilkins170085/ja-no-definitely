@@ -385,3 +385,10 @@ textarea {
   width: 400px;
   height: 390px;
 }
+
+.p{
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+}

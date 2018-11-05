@@ -47,7 +47,11 @@
           <div class="answer-vote-con">
           <div class="mui--text-black-54 answer-con"> {{ answer.answer_text }} - <a class="author-comment" href="/profile/{{answer.author.id}}">{{ answer.answer_author }}</a> </div>
 
-          <div class="vote-con"> <a href="" class="vote"><i class="fas fa-arrow-up"></i> 0 </a><a href="" class="vote"><i class="fas fa-arrow-down"></i> 0 </a><a href="" class="delete-btn">Delete</a></div>
+          <div class="vote-con"> <a href="" class="vote"><i class="fas fa-arrow-up"></i> 0 </a><a href="" class="vote"><i class="fas fa-arrow-down"></i> 0 </a>
+          {% if useraccount.type == "admin" %}
+          <a href="/delete" class="delete-btn">Delete</a>
+          {% endif %}
+          </div>
 
           </div>
           {% endif %}
