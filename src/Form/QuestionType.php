@@ -26,7 +26,7 @@ class QuestionType extends AbstractType
 
         $builder
             // ->add('question_author', HiddenType::class, ['data' => $options['currentUsername']])
-            ->add('author', HiddenType::class)
+            ->add('authorId', HiddenType::class)
             // ->add('question_date', HiddenType::class)
             ->add('question_author', HiddenType::class)
             // ->add('author', HiddenType::class)

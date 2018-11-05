@@ -34,58 +34,134 @@ class HomeController extends AbstractController
             $categoryDropdownOptions[$category->category_name] = $category;
         }
 
-    //DATA
-    $questions = $this->getDoctrine()
-    ->getRepository(Question::class)
-    ->findAll(); 
-    
-    $answers = $this->getDoctrine()
-    ->getRepository(Answer::class)
-    ->findAll(); 
-
-    // FORMS
-
-    $currentUsername = $session->get('loggedInUser')->username;
-    $currentUserId = $session->get('loggedInUser')->id;
-
-    $question = new Question();
-    $questionForm = $this->createForm(QuestionType::class, $question, ['categories' => $categoryDropdownOptions]);
-    $questionForm->get("question_author")->setData($currentUsername);
-    $questionForm->get("author")->setData($currentUserId);
+        //DATA
+        $questions = $this->getDoctrine()
+        ->getRepository(Question::class)
+        ->findAll(); 
         
-    $questionForm->handleRequest($request);
+        $answers = $this->getDoctrine()
+        ->getRepository(Answer::class)
+        ->findAll(); 
 
-    if ($questionForm->isSubmitted() && $questionForm->isValid()) {
+        // FORMS
 
-        $question = $questionForm->getData();
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($question);
-        $entityManager->flush();
+        $currentUsername = $session->get('loggedInUser')->username;
+        $currentUserId = $session->get('loggedInUser')->id;
 
-        return $this->redirectToRoute('home_view');
+        $question = new Question();
+        $questionForm = $this->createForm(QuestionType::class, $question, ['categories' => $categoryDropdownOptions]);
+        $questionForm->get("question_author")->setData($currentUsername);
+        $questionForm->get("authorId")->setData($currentUserId);
+            
+        $questionForm->handleRequest($request);
+
+        if ($questionForm->isSubmitted() && $questionForm->isValid()) {
+
+            $authorId = intval($questionForm->get("authorId")->getData());
+
+            $author = $this->getDoctrine()
+            ->getRepository(UserAccount::class)
+            ->find($authorId);
+
+            $question = $questionForm->getData();
+            $question->setAuthor($author);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($question);
+            $entityManager->flush();
+        }
+
+        $answer = new Answer();
+        $answerForm = $this->createForm(AnswerType::class, $answer);
+        $answerForm->get("answer_author")->setData($currentUsername);
+        // $answerForm->get("question")->setData();
+        $answerForm->handleRequest($request);
+
+        if ($answerForm->isSubmitted() && $answerForm->isValid()) {
+
+            $answer = $answerForm->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($answer);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home_view');
+        }
+
+
+
+        $view = 'home.html.twig';
+        $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 
+        'answers' => $answers, 'categories' => $categories);
+        return $this->render($view, $model);
+
     }
 
-    $answer = new Answer();
-    $answerForm = $this->createForm(AnswerType::class, $answer);
-    $answerForm->get("answer_author")->setData($currentUsername);
-    // $answerForm->get("question")->setData();
-    $answerForm->handleRequest($request);
+    
+    //DELETE 
+    // $database = $this->getDoctrine()->getEntityManager();
+    // $qToBeDeleted = $database->getRepository(Question::class)->find($deleteId);
+    // $database->remove($qToBeDeleted);
+    // $database->flush();   
 
-    if ($answerForm->isSubmitted() && $answerForm->isValid()) {
 
-        $answer = $answerForm->getData();
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($answer);
-        $entityManager->flush();
+    // /**
+    // * @Route("/answer", name="answer_view")
+    // */
+    // public function viewAnswerForm(Request $request, SessionInterface $session)
+    // {
+    //     $categories = $this->getDoctrine()
+    //     ->getRepository(Category::class)
+    //     ->findAll();
 
-        return $this->redirectToRoute('home_view');
-    }
+    //     $questions = $this->getDoctrine()
+    //     ->getRepository(Question::class)
+    //     ->findAll(); 
+        
+    //     $answers = $this->getDoctrine()
+    //     ->getRepository(Answer::class)
+    //     ->findAll(); 
 
-    $view = 'home.html.twig';
-    $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 
-    'answers' => $answers, 'categories' => $categories);
-    return $this->render($view, $model);
-    }
+
+    //     $currentUsername = $session->get('loggedInUser')->username;
+    //     $currentUserId = $session->get('loggedInUser')->id;
+
+    //     $question = new Question();
+    //     $questionForm = $this->createForm(QuestionType::class, $question);
+    //     $questionForm->get("question_author")->setData($currentUsername);
+    //     $questionForm->get("author")->setData($currentUserId);
+            
+    //     $questionForm->handleRequest($request);
+
+    //     if ($questionForm->isSubmitted() && $questionForm->isValid()) {
+
+    //         $question = $questionForm->getData();
+    //         $entityManager = $this->getDoctrine()->getManager();
+    //         $entityManager->persist($question);
+    //         $entityManager->flush();
+
+    //         return $this->redirectToRoute('home_view');
+    //     }
+
+    //     $answer = new Answer();
+    //     $answerForm = $this->createForm(AnswerType::class, $answer);
+    //     $answerForm->get("answer_author")->setData($currentUsername);
+    //     // $answerForm->get("question")->setData();
+    //     $answerForm->handleRequest($request);
+
+    //     if ($answerForm->isSubmitted() && $answerForm->isValid()) {
+
+    //         $answer = $answerForm->getData();
+    //         $entityManager = $this->getDoctrine()->getManager();
+    //         $entityManager->persist($answer);
+    //         $entityManager->flush();
+
+    //         return $this->redirectToRoute('home_view');
+    //     }
+
+    //     $view = 'home.html.twig';
+    //     $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 
+    //     'answers' => $answers, 'categories' => $categories);
+    //     return $this->render($view, $model);
+    // }
 
 }
 
