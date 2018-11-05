@@ -90,8 +90,7 @@ class CategoryController extends AbstractController
 
     $view = 'category.html.twig';
     $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 
-    'answers' => $answers, 'categories' => $categories, 'category' => $category, 'useraccount' => $useraccount);
-    'answers' => $answers, 'categories' => $categories, 'thisCategory' => $thisCategory);
+    'answers' => $answers, 'categories' => $categories, 'category' => $category, 'useraccount' => $useraccount, 'thisCategory' => $thisCategory);
     return $this->render($view, $model);
     }
 
