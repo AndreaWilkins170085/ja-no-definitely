@@ -82,7 +82,7 @@
         <div class="mui-tabs__pane" id="pane-justified-3">
           
           <div class="updateProfileForm">
-            {{ form_start(profileForm, {'attr': {'novalidate': 'novalidate'}}) }}
+            {{ form_start(profileForm) }}
             <p class="profile-text">Name</p>
             {{ form_widget(profileForm.name, {'attr': {'placeholder':  useraccount.name  } }) }}
             <h5 class="errors"> {{ name }} </h5>
@@ -99,6 +99,14 @@
             {{ form_widget(profileForm.password, {'attr': {'placeholder': 'Password'} }) }}
             <h5 class="errors"> {{ errors }} </h5>
             {{ form_end(profileForm) }}
+
+            {# {{ form_start(imageForm) }}
+            <p class="profile-text">Upload image</p>
+            {{ form_widget(imageForm.name) }}
+            {{ form_widget(imageForm.file) }}
+            
+            
+            {{ form_end(imageForm) }} #}
           
         </div>
         </div>

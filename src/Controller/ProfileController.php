@@ -15,6 +15,7 @@ use App\Entity\Question;
 use App\Entity\Answer;
 use App\Form\ProfileType;
 use App\Form\BanType;
+use App\Form\ImageType;
 
 class ProfileController extends AbstractController
 {
@@ -40,6 +41,9 @@ class ProfileController extends AbstractController
 
             $banForm = $this->createForm(BanType::class);
             $banForm->handleRequest($request);
+
+            $imageForm = $this->createForm(ImageType::class);
+            $imageForm->handleRequest($request);
 
             if ($banForm->get('submitBan')->isClicked()) {
 
@@ -144,7 +148,7 @@ class ProfileController extends AbstractController
         ->findAll();
 
         $view = 'profile.html.twig';
-        $model = array('categories' => $categories, 'useraccount' => $useraccount, 'questions' => $questions, 'answers' => $answers, 'profileForm' => $profileForm->createView(), 'name'=>$name, 'surname'=>$surname, 'usernameT'=>$usernameT, 'emailT'=>$emailT, 'errors'=>$errors);
+        $model = array('categories' => $categories, 'useraccount' => $useraccount, 'questions' => $questions, 'answers' => $answers, 'profileForm' => $profileForm->createView(), $imageForm->createView(), 'name'=>$name, 'surname'=>$surname, 'usernameT'=>$usernameT, 'emailT'=>$emailT, 'errors'=>$errors);
         return $this->render($view, $model);
     }
 
