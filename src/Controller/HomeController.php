@@ -40,6 +40,12 @@ class HomeController extends AbstractController
         $questions = $this->getDoctrine()
         ->getRepository(Question::class)
         ->findAll(); 
+
+        // $questionDropdownOptions = [];
+
+        // foreach ($questions as $question) {
+        //     $questionDropdownOptions[$question->question_text] = $question;
+        // }
         
         $answers = $this->getDoctrine()
         ->getRepository(Answer::class)
@@ -80,25 +86,32 @@ class HomeController extends AbstractController
         $answer = new Answer();
         $answerForm = $this->createForm(AnswerType::class, $answer);
         $answerForm->get("answer_author")->setData($currentUsername);
-        $answerForm->get("questionId")->setData($currentQuestionId);
+        $answerForm->get("authorId")->setData($currentUserId);
+        // $answerForm->get("questionId")->setData($currentQuestionId);
+
         $answerForm->handleRequest($request);
 
         if ($answerForm->isSubmitted() && $answerForm->isValid()) {
 
-            $authorId = intval($questionForm->get("authorId")->getData());
+            $authorId = intval($answerForm->get("authorId")->getData());
             $questionId = intval($answerForm->get("questionId")->getData());
 
             $author = $this->getDoctrine()
             ->getRepository(UserAccount::class)
             ->find($authorId);
 
+            $question = $this->getDoctrine()
+            ->getRepository(Question::class)
+            ->find($questionId);
+
             $answer = $answerForm->getData();
-            $question->setAuthor($author);
+            $answer->setAuthor($author);
+            $answer->setQuestion($question);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($answer);
             $entityManager->flush();
 
-            return $this->redirectToRoute('home_view');
+            // return $this->redirectToRoute('home_view');
         }
 
 

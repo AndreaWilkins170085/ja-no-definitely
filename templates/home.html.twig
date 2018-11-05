@@ -34,6 +34,18 @@
         </div>
         <br>
 
+        {# Answer Question #}
+        <br>
+        <div class="answerForm mui-form">
+        {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="mui-textfield">
+        {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
+        </div>
+        {{ form_end(answerForm) }}
+        </div>
+        <br>
+        {# Answer Question #}
+
         <h3>Top Posts</h3>
         
         <br>
@@ -57,16 +69,6 @@
           <button class="answer-btn" onclick="answerQuestion()">Answer!</button>
           <br>
           
-          {# Answer Question #}
-          <div id="answerForm" class="mui-form">
-           {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
-           <div class="mui-textfield">
-           {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
-          </div>
-          {{ form_end(answerForm) }}
-          </div>
-           {# Answer Question #}
-          
           {# Answers #}
           {% for answer in answers %}
           {% if question.id == answer.question.id %}
@@ -86,17 +88,19 @@
           {% endfor %}
         
         {# Answer Question #}
-        <div class="answerForm mui-form">
+        {# <div class="answerForm mui-form">
         {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
         <div class="mui-textfield">
         {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
         </div>
         {{ form_end(answerForm) }}
-        </div>
+        </div> #}
         {# Answer Question #}
     </div>
 
           {% endfor %}
+
+
 
         <script>
 
