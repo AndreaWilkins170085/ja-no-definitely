@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\Question;
@@ -149,19 +150,32 @@ class HomeController extends AbstractController
 
     //     if ($answerForm->isSubmitted() && $answerForm->isValid()) {
 
-    //         $answer = $answerForm->getData();
-    //         $entityManager = $this->getDoctrine()->getManager();
-    //         $entityManager->persist($answer);
-    //         $entityManager->flush();
+    
+        /** 
+         * @Route("/ajax/voteup", name="ajax") 
+        */ 
+        public function upVote(Request $request) {  
 
-    //         return $this->redirectToRoute('home_view');
-    //     }
+            if($request->request->get('some_var_name')){
+                $entityManager = $this->getDoctrine()->getManager();
+                $repository = $this->getDoctrine()->getRepository(Question::class);
+                $id=1;
+                $data = $repository->findOneBy(['id' => $id]);
+                $userPro = $entityManager->getRepository(Question::class)->find($id);
 
-    //     $view = 'home.html.twig';
-    //     $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 
-    //     'answers' => $answers, 'categories' => $categories);
-    //     return $this->render($view, $model);
-    // }
+               
+                
+                $vote = $request->request->get('voteup');
+                $test = $data->{'question_upvotes'};
+                $test++;
+                $data->setQuestionUpvotes($test);
+
+                $entityManager->flush();
+            }
+        
+            return $this->render('app/main/index.html.twig');
+        
+        } 
 
 }
 

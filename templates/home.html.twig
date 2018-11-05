@@ -80,9 +80,35 @@
         {# Answers #}
     </div>
 
-    {% endfor %}
-        
-    
+          {% endfor %}
+          
+
+          <button class="ajax" data-button-up="1">click me!</button>
+    <div id="ajax-results">here comes the result</div>
+    <script>
+        $(document).on('click', 'button.ajax', function(){
+            that = $(this);
+            $.ajax({
+                url:'/ajax/voteup',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "some_var_name": "some_var_value",
+                    "voteup":"1"
+                },
+                async: true,
+                success: function (data)
+                {
+                    console.log(data)
+                    $('div#ajax-results').html(data.output);
+
+                }
+            });
+            return false;
+
+        });
+    </script>
+     
 
 
   </div>
