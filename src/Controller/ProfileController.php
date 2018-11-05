@@ -24,6 +24,13 @@ class ProfileController extends AbstractController
     public function viewProfilepage(Request $request, $id="1", SessionInterface $session)
     {
 
+        $name = '';
+        $surname='';
+        $usernameT='';
+        $emailT='';
+        $errors='';
+        $valid= true;
+        $usernameCheck = '';
         
         $userPro = new UserAccount();
 
@@ -40,13 +47,32 @@ class ProfileController extends AbstractController
                 // $session->get('loggedInUser', $loggedInUser);
 
                 $data = $profileForm->getData();
-                $name = $data->{'name'};
-                $surname = $data->{'surname'};
                 $username = $data->{'username'};
                 $email = $data->{'email'};
                 $password = $data->{'password'};
 
+                $repository = $this->getDoctrine()->getRepository(UserAccount::class);
+
+                $emailCheck = $repository->findOneBy(['email' => $email]);
+                $usernameCheck = $repository->findOneBy(['username' => $username]);
+
+
                 //validation
+                if (!$emailCheck == null){
+                    $emailT='This email has been already registered';
+                    $valid = false;
+                }
+                if (!$usernameCheck == null){
+                    $usernameT='This username has been already registered';
+                    $valid = false;
+                }
+                
+                if (!$password==''){
+                if (strlen($password) < 8) {
+                    $errors = "The password should be at least 8 characters";
+                    $valid = false;
+                }
+            }
                 if ($name){
                     $userPro->setName($name);
                 }
@@ -63,10 +89,10 @@ class ProfileController extends AbstractController
                     $userPro->setEncodedPassword($password);
                 }
 
-
+                if ($valid){
 
                 $entityManager->flush();
-
+                }
             }
 
         $userId = (int) $id;
@@ -87,9 +113,10 @@ class ProfileController extends AbstractController
         ->findAll();
 
         $view = 'profile.html.twig';
-        $model = array('categories' => $categories, 'useraccount' => $useraccount, 'questions' => $questions, 'answers' => $answers, 'profileForm' => $profileForm->createView());
+        $model = array('categories' => $categories, 'useraccount' => $useraccount, 'questions' => $questions, 'answers' => $answers, 'profileForm' => $profileForm->createView(), 'name'=>$name, 'surname'=>$surname, 'usernameT'=>$usernameT, 'emailT'=>$emailT, 'errors'=>$errors);
         return $this->render($view, $model);
     }
+
 
 }
 

@@ -22,7 +22,7 @@ class ProfileType extends AbstractType
         ->add('email', EmailType::class, array('label' => false))
         ->add('password', PasswordType::class)
         ->add('image_path', HiddenType::class, ['empty_data' => 'default_img.jpg'])
-        ->add('submit', SubmitType::class, ['label' => 'Register']);
+        ->add('submit', SubmitType::class, ['label' => 'Update profile']);
         ;
     }
 }
