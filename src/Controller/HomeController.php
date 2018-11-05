@@ -51,6 +51,7 @@ class HomeController extends AbstractController
 
         $currentUsername = $session->get('loggedInUser')->username;
         $currentUserId = $session->get('loggedInUser')->id;
+        $currentQuestionId = $session->get('loggedInUser')->id;
 
         $useraccount = $this->getDoctrine()
         ->getRepository(UserAccount::class)
@@ -81,12 +82,20 @@ class HomeController extends AbstractController
         $answer = new Answer();
         $answerForm = $this->createForm(AnswerType::class, $answer);
         $answerForm->get("answer_author")->setData($currentUsername);
-        // $answerForm->get("question")->setData();
+        $answerForm->get("questionId")->setData($currentQuestionId);
         $answerForm->handleRequest($request);
 
         if ($answerForm->isSubmitted() && $answerForm->isValid()) {
 
+            $authorId = intval($questionForm->get("authorId")->getData());
+            $questionId = intval($answerForm->get("questionId")->getData());
+
+            $author = $this->getDoctrine()
+            ->getRepository(UserAccount::class)
+            ->find($authorId);
+
             $answer = $answerForm->getData();
+            $question->setAuthor($author);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($answer);
             $entityManager->flush();

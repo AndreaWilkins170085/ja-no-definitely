@@ -51,6 +51,10 @@ class Answer
      */
     public $author;
 
+    public $questionId;
+
+    public $authorId;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -136,6 +140,30 @@ class Answer
     public function setAuthor(?UserAccount $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getQuestionId(): ?int
+    {
+        return $this->questionId;
+    }
+
+    public function setQuestionId(?int $questionId): self
+    {
+        $this->questionId = $questionId;
+
+        return $this;
+    }
+
+    public function getAuthorId(): ?int
+    {
+        return $this->authorId;
+    }
+
+    public function setAuthorId(?int $authorId): self
+    {
+        $this->authorId = $authorId;
 
         return $this;
     }

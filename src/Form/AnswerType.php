@@ -20,8 +20,8 @@ class AnswerType extends AbstractType
     {
         $builder
             ->add('answer_author', HiddenType::class)
-            // ->add('answer_date', HiddenType::class)
-            ->add('question', HiddenType::class)
+            ->add('authorId', HiddenType::class)
+            ->add('questionId', HiddenType::class)
             ->add('answer_text', TextareaType::class, ['label' => false])
             ->add('submit', SubmitType::class, ['label' => 'Answer!','attr' => ['class' => 'mui-btn mui-btn--primary ask-bt']]);
         ;
