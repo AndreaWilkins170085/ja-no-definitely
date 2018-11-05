@@ -59,6 +59,8 @@ class Question
      */
     public $author;
 
+    public $authorId;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
@@ -180,6 +182,18 @@ class Question
     public function setAuthor(?UserAccount $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getAuthorId(): ?int
+    {
+        return $this->authorId;
+    }
+
+    public function setAuthorId(?int $authorId): self
+    {
+        $this->authorId = $authorId;
 
         return $this;
     }

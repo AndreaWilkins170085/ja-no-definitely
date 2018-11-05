@@ -22,6 +22,17 @@
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+#upPro-con{
+  background-color: white;
+  border-radius: 1px;
+  width: 380px;
+  height: 410px;
+  margin-left: 36%;
+  margin-top: 5%;
+  float: left;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
 .side-bar {
   width: 15%;
   height: 100vh;
@@ -65,11 +76,24 @@
   margin-top: 15px;
 }
 
+#upPro-con input {
+  display: block;
+  margin-left: 8%;
+  width: 290px;
+  margin-top: 5px;
+}
+
+.profile-text {
+  display: block;
+  width: 290px;
+  margin-top: 5px;
+}
+
 #login_submit {
   display: block;
   margin-left: 8%;
   width: 295px;
-  margin-top: 0px;
+  margin-top: 20px;
   height: 30px;
   background-color: #D46948;
   cursor: pointer;
@@ -177,6 +201,13 @@ textarea {
   #reg-con{
     margin-left: 13%;
     margin-top: 22%;
+    width: 300px;
+    height: 390px;
+  }
+  
+  #upPro-con{
+    margin-left: 13%;
+    margin-top: 0%;
     width: 300px;
     height: 390px;
   }

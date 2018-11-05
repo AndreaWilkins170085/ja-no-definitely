@@ -80,33 +80,28 @@
 
         {% if app.session.get('loggedInUser').id == useraccount.id %}
         <div class="mui-tabs__pane" id="pane-justified-3">
-
-          <div id="edit" class="mui--text-headline">Edit Profile</div>
-
-          <div class="mui-container-fluid" id="edit-con">
-          <div class="regForm">
+          
+          <div class="updateProfileForm">
             {{ form_start(profileForm, {'attr': {'novalidate': 'novalidate'}}) }}
-            {{ useraccount.name }}
-            {{ form_widget(profileForm.name, {'attr': {'placeholder': 'name'} }) }}
-            <br>
-            {{ useraccount.surname }}
-            {{ form_widget(profileForm.surname, {'attr': {'placeholder': 'surname'} }) }}
-            <br>
-            {{ useraccount.username }}
-            {{ form_widget(profileForm.username, {'attr': {'placeholder': 'username'} }) }}
-            <br>
-            {{ useraccount.email }}
-            {{ form_widget(profileForm.email, {'attr': {'placeholder': 'email'} }) }}
-            <br>
-            Password
+            <p class="profile-text">Name</p>
+            {{ form_widget(profileForm.name, {'attr': {'placeholder':  useraccount.name  } }) }}
+            <h5 class="errors"> {{ name }} </h5>
+            <p class="profile-text">Surname</p>
+            {{ form_widget(profileForm.surname, {'attr': {'placeholder': useraccount.surname} }) }}
+            <h5 class="errors"> {{ surname }} </h5>
+            <p class="profile-text">Username</p>
+            {{ form_widget(profileForm.username, {'attr': {'placeholder': useraccount.username} }) }}
+            <h5 class="errors"> {{ usernameT }} </h5>
+            <p class="profile-text">Email</p>
+            {{ form_widget(profileForm.email, {'attr': {'placeholder': useraccount.email} }) }}
+            <h5 class="errors"> {{ emailT }} </h5>
+            <p class="profile-text">Password</p>
             {{ form_widget(profileForm.password, {'attr': {'placeholder': 'Password'} }) }}
-            <br>
+            <h5 class="errors"> {{ errors }} </h5>
             {{ form_end(profileForm) }}
-          </div>
-          </div>
-        
+          
         </div>
-        {% endif %}
-
+        </div>
     </div>
+    {% endif %}
 {% endblock %} 

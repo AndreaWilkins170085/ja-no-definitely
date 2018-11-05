@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Ja no definitely {% endblock %}
+
+{% block body %}
+<div>
+
+<span class="mui--text-title" id="category_title">{{ question.question_text}}</span>
+
+    {# Answer Question #}
+    <div id="answerForm" class="mui-form">
+    {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="mui-textfield">
+    {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
+    </div>
+    {{ form_end(answerForm) }}
+    </div>
+    {# Answer Question #}
+
+</div>
+{% endblock %}

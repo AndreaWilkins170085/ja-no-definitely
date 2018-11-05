@@ -58,15 +58,20 @@ jQuery(function($) {
     $titleEls.on('click', function() {
       $(this).next().slideToggle(200);
     });
+
+    // $('.answer-btn').click(function() {
+    //   $(this).parent().find('.answerForm').show();
+    // })
   });
   
 //Show/Hide Answer Form
 
-function answerQuestion() {
-  var x = document.getElementById("answerForm");
-  if (x.style.display === "none") {
-      x.style.display = "block";
-  } else {
-      x.style.display = "none";
-  }
-} 
+// function answerQuestion() {
+//   var x = document.getElementById("answerForm");
+//   if (x.style.display === "none") {
+//       x.style.display = "block";
+//   } else {
+//       x.style.display = "none";
+//   }
+// }
+

@@ -5,32 +5,37 @@
 {% block body %}
 <div>
 
-    <!--Questions-->
-    <div id="content" class="mui-container-fluid">
+  <div>
     <br>
-      <div class="mui-row">
-        <div class="mui-col-sm-10 mui-col-sm-offset-1">
-          <div class="mui-panel mui-col-sm-12">
+    <input id="search-input" placeholder="Search for keywords">
+    <br>
+  </div>
+
+  <!--Questions-->
+  <div id="content" class="mui-container-fluid">
+  <br>
+    <div class="mui-row">
+      <div class="mui-col-sm-10 mui-col-sm-offset-1">
+        <div class="mui-panel mui-col-sm-12">
+      
+        <div class="mui-form">
+        {{ form_start(questionForm, {'attr': {'novalidate': 'novalidate' }}) }}
+        <div class="mui-textfield">
+        {{ form_widget(questionForm.question_text, {'attr': {'placeholder': 'Ask a question...'} }) }}
+        </div>
+        <div class="mui-select" id="category-drop">
+        {{ form_widget(questionForm.category, {'attr': {'placeholder': 'Category' } }) }}
+        </div>
+        {{ form_end(questionForm) }}
+        </div>
+        </div>
+        <br>
+
+        <h3>Top Posts</h3>
         
-          <div class="mui-form">
-          {{ form_start(questionForm, {'attr': {'novalidate': 'novalidate' }}) }}
-          <div class="mui-textfield">
-          {{ form_widget(questionForm.question_text, {'attr': {'placeholder': 'Ask a question...'} }) }}
-          </div>
-          <div class="mui-select" id="category-drop">
-          {{ form_widget(questionForm.category, {'attr': {'placeholder': 'Category' } }) }}
-          </div>
-          {{ form_end(questionForm) }}
-          </div>
-          </div>
-          <br>
+        <br>
 
-          <h3>Top Posts</h3>
-          
-          <br>
-
-          {% for question in questions %}
-
+        {% for question in questions %}
           <div class="mui-panel mui-col-sm-12">
           <div class="mui--text-black-54"><div id="profile-image"></div> <a href="/profile/{{question.author.id}}" class="question-author">{{ question.question_author }}</a></div>
           <br>
@@ -69,13 +74,76 @@
           {% endfor %}
           {# Answers #}
            </div>
+        <div class="mui-panel mui-col-sm-12">
+        <div class="mui--text-black-54"><div id="profile-image"></div> <a href="/profile/{{question.author.id}}" class="question-author">{{ question.question_author }}</a></div>
+        <div class="vote-con"> <a href="" class="vote"><i class="fas fa-arrow-up"></i> 0 </a><a href="" class="vote"><i class="fas fa-arrow-down"></i> 0 </a><a href="" class="delete-btn">Delete</a></div>
+        <div class="mui--text-title">{{ question.question_text }}</div> 
+        <div class="mui--text-black-54 mui--text-body2"><a href="/category/{{ question.category.id }}">{{ question.category.categoryName }}</a></div>
+        <button class="answer-btn" onclick="answerQuestion()">Answer!</button>
+        <br>
+
+        {# <div class="mui--text-black-54"><a href="/answer" >Answer!</a></div>
+        <br> #}
+        
+        {# Answer Question #}
+        <div class="answerForm mui-form">
+        {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="mui-textfield">
+        {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
+        </div>
+        {{ form_end(answerForm) }}
+        </div>
+        {# Answer Question #}
+        
+        
+        {# Answers #}
+        {% for answer in answers %}
+        {% if question.id == answer.question.id %}
+        <div class="mui-divider"></div>
+        <br>
+        <div class="answer-vote-con">
+        <div class="mui--text-black-54 answer-con"> {{ answer.answer_text }} - <a class="author-comment" href="/profile/{{answer.author.id}}">{{ answer.answer_author }}</a> </div>
+
+          <div class="vote-con"> <a href="" class="vote"><i class="fas fa-arrow-up"></i> 0 </a><a href="" class="vote"><i class="fas fa-arrow-down"></i> 0 </a><a href="/delete" class="delete-btn">Delete</a></div>
+
+        </div>
+        {% endif %}
+        {% endfor %}
+        {# Answers #}
+    </div>
 
           {% endfor %}
           
+
+          <button class="ajax" data-button-up="1">click me!</button>
+    <div id="ajax-results">here comes the result</div>
+    <script>
+        $(document).on('click', 'button.ajax', function(){
+            that = $(this);
+            $.ajax({
+                url:'/ajax/voteup',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "some_var_name": "some_var_value",
+                    "voteup":"1"
+                },
+                async: true,
+                success: function (data)
+                {
+                    console.log(data)
+                    $('div#ajax-results').html(data.output);
+
+                }
+            });
+            return false;
+
+        });
+    </script>
      
 
 
-    </div>
+  </div>
 
    
 
