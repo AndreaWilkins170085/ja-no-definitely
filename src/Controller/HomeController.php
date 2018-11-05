@@ -43,6 +43,11 @@ class HomeController extends AbstractController
     ->getRepository(Answer::class)
     ->findAll(); 
 
+    $userId = (int) $id;
+    $useraccount = $this->getDoctrine()
+    ->getRepository(UserAccount::class)
+    ->find($userId);
+
     // FORMS
 
     $currentUsername = $session->get('loggedInUser')->username;

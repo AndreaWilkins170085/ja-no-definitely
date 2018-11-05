@@ -34,8 +34,9 @@
           <div class="mui-panel mui-col-sm-12">
           <div class="mui--text-black-54"><div id="profile-image"></div> <a href="/profile/{{question.author.id}}" class="question-author">{{ question.question_author }}</a></div>
           <br>
+          {% if useraccount.type == "admin" %}
           <div class="vote-con"> <a href="" class="vote"><i class="fas fa-arrow-up"></i> 0 </a><a href="" class="vote"><i class="fas fa-arrow-down"></i> 0 </a><a href="/delete" class="delete-btn">Delete</a></div>
-
+          {% endif %}
           <div class="mui--text-title">{{ question.question_text }}</div> 
           <div class="mui--text-black-54 mui--text-body2"><a href="/category/{{ question.category.id }}">{{ question.category.categoryName }}</a></div>
           
@@ -60,9 +61,9 @@
           <br>
           <div class="answer-vote-con">
           <div class="mui--text-black-54 answer-con"> {{ answer.answer_text }} - <a class="author-comment" href="/profile/{{answer.author.id}}">{{ answer.answer_author }}</a> </div>
-
+          {% if useraccount.type == "admin" %}
           <div class="vote-con"> <a href="" class="vote"><i class="fas fa-arrow-up"></i> 0 </a><a href="" class="vote"><i class="fas fa-arrow-down"></i> 0 </a><a href="/delete" class="delete-btn">Delete</a></div>
-
+          {% endif %}
           </div>
           {% endif %}
           {% endfor %}
