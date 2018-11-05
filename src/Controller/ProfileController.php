@@ -14,6 +14,7 @@ use App\Entity\Category;
 use App\Entity\Question;
 use App\Entity\Answer;
 use App\Form\ProfileType;
+use App\Form\BanType;
 
 class ProfileController extends AbstractController
 {
@@ -27,9 +28,37 @@ class ProfileController extends AbstractController
         
         $userPro = new UserAccount();
 
-             $profileForm = $this->createForm(ProfileType::class, $userPro );
+            $profileForm = $this->createForm(ProfileType::class, $userPro);
             $profileForm->handleRequest($request);
 
+            $banForm = $this->createForm(BanType::class);
+            $banForm->handleRequest($request);
+
+            if ($banForm->get('submitBan')->isClicked()) {
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $banned = $entityManager->getRepository(UserAccount::class)->find($id);
+
+                $user_type = "banned";
+
+                $banned->setType($user_type);
+
+                $entityManager->flush();
+
+            }
+
+            if ($banForm->get('submitUnban')->isClicked()) {
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $unbanned = $entityManager->getRepository(UserAccount::class)->find($id);
+
+                $user_type = "user";
+
+                $unbanned->setType($user_type);
+
+                $entityManager->flush();
+
+            }
 
             if ($profileForm->isSubmitted()) {
 
@@ -63,11 +92,11 @@ class ProfileController extends AbstractController
                     $userPro->setEncodedPassword($password);
                 }
 
-
-
                 $entityManager->flush();
 
             }
+
+
 
         $userId = (int) $id;
         $useraccount = $this->getDoctrine()
@@ -87,7 +116,8 @@ class ProfileController extends AbstractController
         ->findAll();
 
         $view = 'profile.html.twig';
-        $model = array('categories' => $categories, 'useraccount' => $useraccount, 'questions' => $questions, 'answers' => $answers, 'profileForm' => $profileForm->createView());
+        $model = array('categories' => $categories, 'useraccount' => $useraccount, 'questions' => $questions, 
+        'answers' => $answers, 'banForm' => $banForm->createView(), 'profileForm' => $profileForm->createView());
         return $this->render($view, $model);
     }
 

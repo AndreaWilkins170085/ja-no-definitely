@@ -80,16 +80,6 @@ class HomeController extends AbstractController
         return $this->redirectToRoute('home_view');
     }
 
-    
-    //DELETE 
-    // $database = $this->getDoctrine()->getEntityManager();
-    // $qToBeDeleted = $database->getRepository(Question::class)->find($deleteId);
-    // $database->remove($qToBeDeleted);
-    // $database->flush();   
-
-
-    // $category = $questions -> getCategory() -> getCategoryName();
-
     $view = 'home.html.twig';
     $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 
     'answers' => $answers, 'categories' => $categories);

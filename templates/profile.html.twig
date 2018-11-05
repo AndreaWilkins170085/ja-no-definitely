@@ -31,6 +31,13 @@
               <div class="mui--text-black-54">Full Name : {{ useraccount.name }} {{useraccount.surname}}</div>
               <br>
               <div class="mui--text-black-54">User Type : {{ useraccount.type }} </div>
+              {% if app.session.get('loggedInUser').type == "admin" %}
+                {% if useraccount.type == "user" %}
+                  {{ form_start(banForm, {'attr': {'novalidate': 'novalidate'}}) }}
+                  {{ form_widget(banForm) }}
+                  {{ form_end(banForm) }}
+                {% endif %}
+              {% endif %}
             <br>
             <br>
             </div>
