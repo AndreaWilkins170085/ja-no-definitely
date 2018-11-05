@@ -44,20 +44,6 @@ class HomeController extends AbstractController
         $answers = $this->getDoctrine()
         ->getRepository(Answer::class)
         ->findAll(); 
-
-        //DELETE
-
-        $deleteForm = $this->createForm(DeleteType::class);
-        $deleteForm->handleRequest($request);
-
-        if ($deleteForm->get('submitDelete')->isClicked()) {
-
-            $entityManager = $this->getDoctrine()->getManager();
-            //$toBeDeleted = $database->getRepository(Question::class)->find($id);
-            $entityManager->remove($qToBeDeleted);
-            $entityManager->flush();
-
-        }
         
         // FORMS
 
@@ -119,11 +105,54 @@ class HomeController extends AbstractController
 
         $view = 'home.html.twig';
         $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 
-        'answers' => $answers, 'categories' => $categories, 'useraccount' => $useraccount, 'deleteForm' => $deleteForm->createView());
+        'answers' => $answers, 'categories' => $categories, 'useraccount' => $useraccount);
         return $this->render($view, $model);
 
     }
 
+    /** 
+    * @Route("/ajax/delete", name="ajax") 
+    */ 
+
+    public function Delete(Request $request, SessionInterface $session)
+    {
+
+        if($request->request->get('deleteQ')){
+
+            $id = $request->request->get('deleteQ');
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $toBeDeleted = $database->getRepository(Question::class)->find($id);
+            $entityManager->remove($qToBeDeleted);
+            $entityManager->flush();
+
+        }
+
+        if($request->request->get('deleteA')){
+
+            $id = $request->request->get('deleteA');
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $toBeDeleted = $database->getRepository(Question::class)->find($id);
+            $entityManager->remove($qToBeDeleted);
+            $entityManager->flush();
+
+        }
+ 
+    }  
+
+    
+    /** 
+     * @Route("/ajax/vote", name="ajax") 
+    */ 
+    public function Vote(Request $request, SessionInterface $session) {  
+
+        if($request->request->get('voteupQ')){
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $repository = $this->getDoctrine()->getRepository(Question::class);
+            $id=$request->request->get('voteupQ');
+            $data = $repository->findOneBy(['id' => $id]);
         /** 
          * @Route("/ajax/vote", name="ajax") 
         */ 
@@ -197,8 +226,69 @@ class HomeController extends AbstractController
                 return new JsonResponse($value-$valueE);
             }
             
+            $vote = $request->request->get('voteupQ');
+            $value = $data->{'question_upvotes'};
+            $valueE = $data->{'question_downvotes'};
+            $value++;
+            $data->setQuestionUpvotes($value);
+
+            $entityManager->flush();
+            return new JsonResponse($value-$valueE);
+        }
+        if($request->request->get('votedoQ')){
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $repository = $this->getDoctrine()->getRepository(Question::class);
+            $id=$request->request->get('votedoQ');
+            $data = $repository->findOneBy(['id' => $id]);
             
-        } 
+            $vote = $request->request->get('votedoQ');
+            $value = $data->{'question_upvotes'};
+            $valueE = $data->{'question_downvotes'};
+            $valueE++;
+            $data->setQuestionDownvotes($valueE);
+
+            $entityManager->flush();
+            return new JsonResponse($value-$valueE);
+            return new JsonResponse($valueE-$valueE);
+        }
+
+        if($request->request->get('voteupA')){
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $repository = $this->getDoctrine()->getRepository(Answer::class);
+            $id=$request->request->get('voteupA');
+            $data = $repository->findOneBy(['id' => $id]);
+            
+            $vote = $request->request->get('voteupA');
+            $value = $data->{'answer_upvotes'};
+            $valueE = $data->{'answer_downvotes'};
+            $value++;
+            $data->setAnswerUpvotes($value);
+
+            $entityManager->flush();
+            return new JsonResponse($value-$valueE);
+        }
+
+        if($request->request->get('votedoA')){
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $repository = $this->getDoctrine()->getRepository(Answer::class);
+            $id=$request->request->get('votedoA');
+            $data = $repository->findOneBy(['id' => $id]);
+            
+            $vote = $request->request->get('votedoA');
+            $value = $data->{'answer_upvotes'};
+            $valueE = $data->{'answer_downvotes'};
+            $valueE++;
+            $data->setAnswerDownvotes($valueE);
+
+            $entityManager->flush();
+            return new JsonResponse($value-$valueE);
+        }
+        
+        
+    } 
 
 }
 
