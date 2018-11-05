@@ -34,23 +34,26 @@
         </div>
         <br>
 
-        {# Answer Question #}
-        <br>
-        <div class="answerForm mui-form">
-        {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
-        <div class="mui-textfield">
-        {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
-        </div>
-        {{ form_end(answerForm) }}
-        </div>
-        <br>
-        {# Answer Question #}
-
         <h3>Top Posts</h3>
         
         <br>
 
         {% for question in questions %}
+
+          <div class="mui-panel mui-col-sm-12">
+          {# Answer Question #}
+          <br>
+          <div class="answerForm mui-form">
+          {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
+          <div class="mui-textfield">
+          {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
+          </div>
+          {{ form_end(answerForm) }}
+          </div>
+          <br>
+          {# Answer Question #}
+          </div>
+
           <div class="questionAsked mui-panel mui-col-sm-12">
           <div class="authorInfo mui--text-black-54"><div id="profile-image"></div> <a href="/profile/{{question.author.id}}" class="question-author">{{ question.question_author }}</a></div>
           <br>
@@ -65,9 +68,9 @@
           <div class="questionText mui--text-title">{{ question.question_text }}</div> 
           <div class="mui--text-black-54 mui--text-body2"><a href="/category/{{ question.category.id }}">{{ question.category.categoryName }}</a></div>
           
-          <br>
+          {# <br>
           <button class="answer-btn" onclick="answerQuestion()">Answer!</button>
-          <br>
+          <br> #}
           
           {# Answers #}
           {% for answer in answers %}
