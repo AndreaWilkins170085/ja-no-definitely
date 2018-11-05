@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Ja no definitely - Message Board {% endblock %}
+
+{% block body %}
+<div>
+
+    <div class="mui-panel mui-col-sm-12">
+        <br>
+        <span class="mui--text-title" id="category_title">Message Board!</span>
+        <br>
+        <br>
+        <div class="mui--text-title">Please use this as a space to talk about :
+            <ul>
+                <li>Trips to South Africa</li>
+                <li>Trips across/around South Africa</li>
+                <li>Interesting Stories about South Africa</li>
+                <li>Your favourite parts of our beautiful country</li>
+            </ul>
+        </div>
+    </div>
+
+    {# POST COMMENT #}
+    <div class="mui-panel mui-col-sm-12">
+        <br>
+        <div class="commentForm mui-form">
+            {{ form_start(commentForm, {'attr': {'novalidate': 'novalidate'}}) }}
+            <div class="mui-textfield">
+            {{ form_widget(commentForm.comment_text, {'attr': {'placeholder': 'Make a comment...'} }) }}
+            </div>
+            {{ form_end(commentForm) }}
+        </div>
+        <br>
+    </div>
+
+    {# COMMENTS #}
+    {% for comment in comments %}
+    <div class="commentsmade mui-panel mui-col-sm-4">
+        <div class="mui--text-black-54 mui--text-body2">
+            {{ comment.comment_author }}
+            <br>
+            {{ comment.commentText }}
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

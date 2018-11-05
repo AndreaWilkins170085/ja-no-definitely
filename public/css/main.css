@@ -392,3 +392,9 @@ textarea {
   width: auto;
   height: auto;
 }
+
+/* COMMENT PAGE */
+
+.commentsmade{
+  min-height: 80px;
+}

@@ -19,12 +19,12 @@ class Comment
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $comment_author;
+    public $comment_author;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $commentText;
+    public $commentText;
 
     public function getId(): ?int
     {

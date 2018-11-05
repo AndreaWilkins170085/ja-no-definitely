@@ -17,7 +17,6 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('comment_author', HiddenType::class)
-            ->add('comment_date', HiddenType::class)
             ->add('comment_text', TextareaType::class, ['label' => false])
             ->add('submit', SubmitType::class, ['label' => 'Comment','attr' => ['class' => 'mui-btn mui-btn--primary ask-bt']]);
         ;

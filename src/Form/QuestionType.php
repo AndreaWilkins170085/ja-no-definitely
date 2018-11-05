@@ -25,11 +25,8 @@ class QuestionType extends AbstractType
         // ->findAll();
 
         $builder
-            // ->add('question_author', HiddenType::class, ['data' => $options['currentUsername']])
             ->add('authorId', HiddenType::class)
-            // ->add('question_date', HiddenType::class)
             ->add('question_author', HiddenType::class)
-            // ->add('author', HiddenType::class)
             ->add('category', ChoiceType::class, array(
                 'choices' => array(
                     'Categories' => $options['categories']
