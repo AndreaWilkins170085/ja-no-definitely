@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\Question;
@@ -99,27 +100,29 @@ class HomeController extends AbstractController
 
     
         /** 
-         * @Route("/student/ajax") 
+         * @Route("/ajax/voteup", name="ajax") 
         */ 
-        public function ajaxAction(Request $request) {  
-            $students = $this->getDoctrine() 
-            ->getRepository('AppBundle:Student') 
-            ->findAll();  
-            
-            if ($request->isXmlHttpRequest() || $request->query->get('showJson') == 1) {  
-            $jsonData = array();  
-            $idx = 0;  
-            foreach($students as $student) {  
-                $temp = array(
-                    'name' => $student->getName(),  
-                    'address' => $student->getAddress(),  
-                );   
-                $jsonData[$idx++] = $temp;  
-            } 
-            return new JsonResponse($jsonData); 
-            } else { 
-            return $this->render('student/ajax.html.twig'); 
-            } 
+        public function upVote(Request $request) {  
+
+            if($request->request->get('some_var_name')){
+                $entityManager = $this->getDoctrine()->getManager();
+                $repository = $this->getDoctrine()->getRepository(Question::class);
+                $id=1;
+                $data = $repository->findOneBy(['id' => $id]);
+                $userPro = $entityManager->getRepository(Question::class)->find($id);
+
+               
+                
+                $vote = $request->request->get('voteup');
+                $test = $data->{'question_upvotes'};
+                $test++;
+                $data->setQuestionUpvotes($test);
+
+                $entityManager->flush();
+            }
+        
+            return $this->render('app/main/index.html.twig');
+        
         } 
 
 }
