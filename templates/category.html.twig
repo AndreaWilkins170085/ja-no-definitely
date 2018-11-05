@@ -30,6 +30,7 @@
           <br> #}
 
           {% for question in questions %}
+          {% if question.category.id == category.id %}
           {# <div class="mui--text-black-54 mui--text-body2">{{ question.category_id }}</div> #}
           <div class="mui-divider"></div>
           <br>
@@ -38,6 +39,22 @@
           <br>
           <br>
 
+          {# Answers #}
+          {% for answer in answers %}
+          {% if question.id == answer.question.id %}
+          <div class="mui-divider"></div>
+          <br>
+          <div class="answer-vote-con">
+          <div class="mui--text-black-54 answer-con"> {{ answer.answer_text }} - <a class="author-comment" href="/profile/{{answer.author.id}}">{{ answer.answer_author }}</a> </div>
+
+          <div class="vote-con"> <a href="" class="vote"><i class="fas fa-arrow-up"></i> 0 </a><a href="" class="vote"><i class="fas fa-arrow-down"></i> 0 </a><a href="" class="delete-btn">Delete</a></div>
+
+          </div>
+          {% endif %}
+          {% endfor %}
+          {# Answers #}
+
+          {% endif %}
           {% endfor %}
           
       </div>
