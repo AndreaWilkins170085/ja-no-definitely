@@ -34,13 +34,7 @@
         </div>
         <br>
 
-        <h3>Top Posts</h3>
-        
-        <br>
-
-        {% for question in questions %}
-
-          <div class="mui-panel mui-col-sm-12">
+        <div class="mui-panel mui-col-sm-12">
           {# Answer Question #}
           <br>
           <div class="answerForm mui-form">
@@ -53,6 +47,13 @@
           <br>
           {# Answer Question #}
           </div>
+
+
+        <h3>Top Posts</h3>
+        
+        <br>
+
+        {% for question in questions %}
 
           <div class="questionAsked mui-panel mui-col-sm-12">
           <div class="authorInfo mui--text-black-54"><div id="profile-image"></div> <a href="/profile/{{question.author.id}}" class="question-author">{{ question.question_author }}</a></div>

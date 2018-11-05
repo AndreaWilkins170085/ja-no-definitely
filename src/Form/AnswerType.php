@@ -23,19 +23,6 @@ class AnswerType extends AbstractType
         $builder
             ->add('answer_author', HiddenType::class)
             ->add('authorId', HiddenType::class)
-            // ->add('questionId', ChoiceType::class, array(
-            //     'choices' => array(
-            //         'Questions' => array (
-            //             'At which nature reserves am I most likely to spot the Big Five?' => '1', 
-            //             'Are there any venues where I can see some gumboot dancing?' => '2',
-            //             'What are some of the best family beaches along the North Coast in KZN?' => '3',
-            //             'Where can I find a good stylist in Petermaritzberg?' => '4',
-            //             'Looking for the best burgers in Pretoria! Any suggestions?' => '5',
-            //             // 'Big City Life' => '6',
-            //             // 'Sun and Surf' => '7''
-            //         ),
-            //     )
-            // ))
             ->add('question', ChoiceType::class, array(
                 'choices' => array(
                     'Questions' => $options['questions']
