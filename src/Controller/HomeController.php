@@ -43,11 +43,7 @@ class HomeController extends AbstractController
         $answers = $this->getDoctrine()
         ->getRepository(Answer::class)
         ->findAll(); 
-
-    $userId = (int) $id;
-    $useraccount = $this->getDoctrine()
-    ->getRepository(UserAccount::class)
-    ->find($userId);
+        
 
     // FORMS
         // FORMS
@@ -55,6 +51,10 @@ class HomeController extends AbstractController
 
         $currentUsername = $session->get('loggedInUser')->username;
         $currentUserId = $session->get('loggedInUser')->id;
+
+        $useraccount = $this->getDoctrine()
+        ->getRepository(UserAccount::class)
+        ->find($currentUserId);
 
         $question = new Question();
         $questionForm = $this->createForm(QuestionType::class, $question, ['categories' => $categoryDropdownOptions]);
@@ -98,7 +98,7 @@ class HomeController extends AbstractController
 
         $view = 'home.html.twig';
         $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 
-        'answers' => $answers, 'categories' => $categories);
+        'answers' => $answers, 'categories' => $categories, 'useraccount' => $useraccount);
         return $this->render($view, $model);
 
     }
