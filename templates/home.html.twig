@@ -77,7 +77,7 @@
 
           <div class="vote-con"> <a href="" class="vote ajaxUpA"  data-button-a="{{ answer.id }}"><i class="fas fa-arrow-up"></i><p id="{{ answer.id }}A"> {{ answer.answer_upvotes - answer.answer_downvotes }}</p> </a><a href="" class="vote ajaxDoA"  data-button-a="{{ answer.id }}"><i class="fas fa-arrow-down"></i>  </a>
           {% if useraccount.type == "admin" %}
-          <a href="/delete" class="delete ajaxDeleteA" data-button-deletea="{{ answer.id }}">Delete</a>
+          <a href="" class="delete ajaxDeleteA" data-button-deletea="{{ answer.id }}">Delete</a>
           {% endif %}
           </div>
 
@@ -224,8 +224,6 @@
                     console.log(id);
                     $( id ).text(data);
                     console.log(data);
-                    
-
                 }
             });
             return false;
@@ -249,8 +247,6 @@
                     console.log(id);
                     $( id ).text(data);
                     console.log(data);
-                    
-
                 }
             });
             return false;

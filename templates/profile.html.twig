@@ -11,7 +11,7 @@
         
 
          <ul class="mui-tabs__bar mui-tabs__bar--justified">
-          <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">About me!</a></li>
+          <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">About</a></li>
           <li><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Posts</a></li>
           {% if app.session.get('loggedInUser').id == useraccount.id %}
             <li><a data-mui-toggle="tab" data-mui-controls="pane-justified-3">Settings</a></li>
@@ -100,13 +100,11 @@
             <h5 class="errors"> {{ errors }} </h5>
             {{ form_end(profileForm) }}
 
-            {# {{ form_start(imageForm) }}
+            {{ form_start(imageForm) }}
             <p class="profile-text">Upload image</p>
             {{ form_widget(imageForm.name) }}
             {{ form_widget(imageForm.file) }}
-            
-            
-            {{ form_end(imageForm) }} #}
+            {{ form_end(imageForm) }}
           
         </div>
         </div>
