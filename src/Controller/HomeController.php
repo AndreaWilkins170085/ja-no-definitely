@@ -14,6 +14,7 @@ use App\Entity\Question;
 use App\Form\QuestionType;
 use App\Entity\Answer;
 use App\Form\AnswerType;
+use App\Form\DeleteType;
 use App\Entity\Category;
 use App\Entity\UserAccount;
 
@@ -43,11 +44,22 @@ class HomeController extends AbstractController
         $answers = $this->getDoctrine()
         ->getRepository(Answer::class)
         ->findAll(); 
+
+        //DELETE
+
+        $deleteForm = $this->createForm(DeleteType::class);
+        $deleteForm->handleRequest($request);
+
+        if ($deleteForm->get('submitDelete')->isClicked()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            //$toBeDeleted = $database->getRepository(Question::class)->find($id);
+            $entityManager->remove($qToBeDeleted);
+            $entityManager->flush();
+
+        }
         
-
-    // FORMS
         // FORMS
-
 
         $currentUsername = $session->get('loggedInUser')->username;
         $currentUserId = $session->get('loggedInUser')->id;
@@ -107,7 +119,7 @@ class HomeController extends AbstractController
 
         $view = 'home.html.twig';
         $model = array('questionForm' => $questionForm->createView(), 'answerForm' => $answerForm->createView(), 'questions' => $questions, 
-        'answers' => $answers, 'categories' => $categories, 'useraccount' => $useraccount);
+        'answers' => $answers, 'categories' => $categories, 'useraccount' => $useraccount, 'deleteForm' => $deleteForm->createView());
         return $this->render($view, $model);
 
     }
