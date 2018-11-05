@@ -273,6 +273,9 @@ textarea {
 	
 }
 
+/* .answer-btn{
+} */
+
 .vote-con{
   margin: 0;
 	padding: 0;
@@ -292,7 +295,9 @@ textarea {
   width: 90%;
 }
 
-
+#answerForm {
+  display: none;
+}
 
 /* CATEGORY PAGE */
 

@@ -48,9 +48,6 @@ class HomeController extends AbstractController
     $currentUsername = $session->get('loggedInUser')->username;
     $currentUserId = $session->get('loggedInUser')->id;
 
-    // $currentUsername = $this->get('session')->get('username');
-    // $currentUserId = $this->get('session')->get('id');
-
     $question = new Question();
     $questionForm = $this->createForm(QuestionType::class, $question, ['categories' => $categoryDropdownOptions]);
     $questionForm->get("question_author")->setData($currentUsername);
