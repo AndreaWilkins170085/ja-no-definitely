@@ -5,11 +5,14 @@
 {% block body %}
 <div>
 
-  <div>
-    <br>
-    <input id="search-input" placeholder="Search for keywords">
-    <br>
+{# SearchBar #}
+  <div> 
+  <br>
+    <div class="mui--text-black-54"> Search for posts by any user :</div>
+    <input type="text" id="search" placeholder="Search by Username"/>
+  <br>
   </div>
+{# SearchBar #}
 
   <!--Questions-->
   <div id="content" class="mui-container-fluid">
@@ -36,8 +39,8 @@
         <br>
 
         {% for question in questions %}
-          <div class="mui-panel mui-col-sm-12">
-          <div class="mui--text-black-54"><div id="profile-image"></div> <a href="/profile/{{question.author.id}}" class="question-author">{{ question.question_author }}</a></div>
+          <div class="questionAsked mui-panel mui-col-sm-12">
+          <div class="authorInfo mui--text-black-54"><div id="profile-image"></div> <a href="/profile/{{question.author.id}}" class="question-author">{{ question.question_author }}</a></div>
           <br>
           
           <div class="vote-con"> <a href="" class="vote"><i class="fas fa-arrow-up"></i> 0 </a><a href="" class="vote"><i class="fas fa-arrow-down"></i> 0 </a>
@@ -46,7 +49,7 @@
           {% endif %}
           </div>
 
-          <div class="mui--text-title">{{ question.question_text }}</div> 
+          <div class="questionText mui--text-title">{{ question.question_text }}</div> 
           <div class="mui--text-black-54 mui--text-body2"><a href="/category/{{ question.category.id }}">{{ question.category.categoryName }}</a></div>
           
           <br>
