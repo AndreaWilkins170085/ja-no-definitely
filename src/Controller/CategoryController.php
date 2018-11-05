@@ -54,7 +54,7 @@ class CategoryController extends AbstractController
     $question = new Question();
     $questionForm = $this->createForm(QuestionType::class, $question, ['categories' => $categoryDropdownOptions]);
     $questionForm->get("question_author")->setData($currentUsername);
-    $questionForm->get("author")->setData($currentUserId);
+    $questionForm->get("authorId")->setData($currentUserId);
         
     $questionForm->handleRequest($request);
 

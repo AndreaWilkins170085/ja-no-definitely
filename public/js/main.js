@@ -59,9 +59,9 @@ jQuery(function($) {
       $(this).next().slideToggle(200);
     });
 
-    $('.answer-btn').click(function() {
-      $(this).parent().find('.answerForm').show();
-    })
+    // $('.answer-btn').click(function() {
+    //   $(this).parent().find('.answerForm').show();
+    // })
   });
   
 //Show/Hide Answer Form
