@@ -1,11 +1,11 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Ja no definitely - {{ category.category_name}} {% endblock %}
+{% block title %}Ja no definitely - {{ thisCategory.category_name}} {% endblock %}
 
 {% block body %}
 <div>
 
-<span class="mui--text-title" id="category_title">{{ category.category_name}}</span>
+<span class="mui--text-title" id="category_title">{{ thisCategory.category_name}}</span>
 
     <!--Questions-->
     <div id="content" class="mui-container-fluid">
@@ -30,7 +30,7 @@
           <br> #}
 
           {% for question in questions %}
-          {% if question.category.id == category.id %}
+          {% if question.category.id == thisCategory.id %}
           {# <div class="mui--text-black-54 mui--text-body2">{{ question.category_id }}</div> #}
           <div class="mui-divider"></div>
           <br>
