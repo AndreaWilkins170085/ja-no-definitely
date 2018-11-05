@@ -34,6 +34,18 @@
         </div>
         <br>
 
+        {# Answer Question #}
+        <br>
+        <div class="answerForm mui-form">
+        {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="mui-textfield">
+        {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
+        </div>
+        {{ form_end(answerForm) }}
+        </div>
+        <br>
+        {# Answer Question #}
+
         <h3>Top Posts</h3>
         
         <br>
@@ -45,9 +57,9 @@
           
           <div class="vote-con"> 
           <a href="" class="vote ajaxUpQ"  data-button-q="{{ question.id }}"><i class="fas fa-arrow-up"></i><p id="{{ question.id }}Q"> {{ question.question_upvotes - question.question_downvotes }}</p> </a><a href="" class="vote ajaxDoQ"  data-button-q="{{ question.id }}"><i class="fas fa-arrow-down"></i>  </a>
-          {% if useraccount.type == "admin" %}
+          {# {% if useraccount.type == "admin" %} #}
             <a href="" class="delete ajaxDeleteQ" data-button-deleteq="{{ question.id }}">Delete</a>
-          {% endif %}
+          {# {% endif %} #}
           </div>
 
           <div class="questionText mui--text-title">{{ question.question_text }}</div> 
@@ -56,16 +68,6 @@
           <br>
           <button class="answer-btn" onclick="answerQuestion()">Answer!</button>
           <br>
-          
-          {# Answer Question #}
-          <div id="answerForm" class="mui-form">
-           {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
-           <div class="mui-textfield">
-           {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
-          </div>
-          {{ form_end(answerForm) }}
-          </div>
-           {# Answer Question #}
           
           {# Answers #}
           {% for answer in answers %}
@@ -79,6 +81,11 @@
           {% if useraccount.type == "admin" %}
           <a href="" class="delete ajaxDeleteA" data-button-deletea="{{ answer.id }}">Delete</a>
           {% endif %}
+
+          {# {% if useraccount.type == "admin" %} #}
+          <a href="/delete" class="delete ajaxDeleteA" data-button-deletea="{{ answer.id }}">Delete</a>
+          {# {% endif %} #}
+
           </div>
 
           </div>
@@ -86,17 +93,19 @@
           {% endfor %}
         
         {# Answer Question #}
-        <div class="answerForm mui-form">
+        {# <div class="answerForm mui-form">
         {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
         <div class="mui-textfield">
         {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
         </div>
         {{ form_end(answerForm) }}
-        </div>
+        </div> #}
         {# Answer Question #}
     </div>
 
           {% endfor %}
+
+
 
         <script>
 
@@ -211,7 +220,7 @@
             console.log(id);
             that = $(this);
             $.ajax({
-                url:'/ajax/delete',
+                url:'/ajax/vote',
                 type: "POST",
                 dataType: "json",
                 data: {
@@ -220,10 +229,10 @@
                 async: true,
                 success: function (data)
                 {
-                    id="#"+id+"A";
-                    console.log(id);
-                    $( id ).text(data);
+                    
                     console.log(data);
+                    location.reload();
+                    
                 }
             });
             return false;
@@ -234,7 +243,7 @@
             console.log(id);
             that = $(this);
             $.ajax({
-                url:'/ajax/delete',
+                url:'/ajax/vote',
                 type: "POST",
                 dataType: "json",
                 data: {
@@ -243,10 +252,10 @@
                 async: true,
                 success: function (data)
                 {
-                    id="#"+id+"A";
-                    console.log(id);
-                    $( id ).text(data);
+                    
                     console.log(data);
+                    location.reload();
+                
                 }
             });
             return false;

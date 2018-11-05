@@ -50,7 +50,10 @@ class Answer
      * @ORM\ManyToOne(targetEntity="App\Entity\UserAccount", inversedBy="answers")
      */
     public $author;
-
+    
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
     public $questionId;
 
     public $authorId;
