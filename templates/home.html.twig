@@ -43,7 +43,7 @@
           <div class="authorInfo mui--text-black-54"><div id="profile-image"></div> <a href="/profile/{{question.author.id}}" class="question-author">{{ question.question_author }}</a></div>
           <br>
           
-          <div class="vote-con"> <a href="" class="vote"><i class="fas fa-arrow-up"></i> 0 </a><a href="" class="vote"><i class="fas fa-arrow-down"></i> 0 </a>
+          <div class="vote-con"> <a href="" class="vote ajaxUpQ"  data-button-q="{{ question.id }}"><i class="fas fa-arrow-up"></i><p id="{{ question.id }}Q"> {{ question.question_upvotes - question.question_downvotes }}</p> </a><a href="" class="vote ajaxDoQ"  data-button-q="{{ question.id }}"><i class="fas fa-arrow-down"></i>  </a>
           {% if useraccount.type == "admin" %}
           <a href="/delete" class="delete-btn">Delete</a>
           {% endif %}
@@ -74,7 +74,7 @@
           <div class="answer-vote-con">
           <div class="mui--text-black-54 answer-con"> {{ answer.answer_text }} - <a class="author-comment" href="/profile/{{answer.author.id}}">{{ answer.answer_author }}</a> </div>
 
-          <div class="vote-con"> <a href="" class="vote"><i class="fas fa-arrow-up"></i> 0 </a><a href="" class="vote"><i class="fas fa-arrow-down"></i> 0 </a>
+          <div class="vote-con"> <a href="" class="vote ajaxUpA"  data-button-a="{{ answer.id }}"><i class="fas fa-arrow-up"></i><p id="{{ answer.id }}A"> {{ answer.answer_upvotes - answer.answer_downvotes }}</p> </a><a href="" class="vote ajaxDoA"  data-button-a="{{ answer.id }}"><i class="fas fa-arrow-down"></i>  </a>
           {% if useraccount.type == "admin" %}
           <a href="/delete" class="delete-btn">Delete</a>
           {% endif %}
@@ -96,26 +96,106 @@
     </div>
 
           {% endfor %}
-          
 
-          <button class="ajax" data-button-up="1">click me!</button>
-        <div id="ajax-results">here comes the result</div>
         <script>
-        $(document).on('click', 'button.ajax', function(){
+
+        $(document).on('click', 'a.ajaxUpQ', function(){
+            var id = this.getAttribute('data-button-q');
+            console.log(id);
             that = $(this);
             $.ajax({
-                url:'/ajax/voteup',
+                url:'/ajax/vote',
                 type: "POST",
                 dataType: "json",
                 data: {
-                    "some_var_name": "some_var_value",
-                    "voteup":"1"
+                    "voteupQ":id
                 },
                 async: true,
                 success: function (data)
                 {
-                    console.log(data)
-                    $('div#ajax-results').html(data.output);
+                    
+                    id="#"+id+"Q";
+                    console.log(id);
+                    $( id ).text(data);
+                    console.log(data);
+
+                }
+            });
+            return false;
+
+        });
+
+        $(document).on('click', 'a.ajaxDoQ', function(){
+            var id = this.getAttribute('data-button-q');
+            console.log(id);
+            that = $(this);
+            $.ajax({
+                url:'/ajax/vote',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "votedoQ":id
+                },
+                async: true,
+                success: function (data)
+                {
+                    id="#"+id+"Q";
+                    console.log(id);
+                    $( id ).text(data);
+                    console.log(data);
+                    
+
+                }
+            });
+            return false;
+
+        });
+
+        $(document).on('click', 'a.ajaxUpA', function(){
+            var id = this.getAttribute('data-button-a');
+            console.log(id);
+            that = $(this);
+            $.ajax({
+                url:'/ajax/vote',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "voteupA":id
+                },
+                async: true,
+                success: function (data)
+                {
+                    
+                    id="#"+id+"A";
+                    console.log(id);
+                    $( id ).text(data);
+                    console.log(data);
+
+                }
+            });
+            return false;
+
+        });
+
+        $(document).on('click', 'a.ajaxDoA', function(){
+            var id = this.getAttribute('data-button-a');
+            console.log(id);
+            that = $(this);
+            $.ajax({
+                url:'/ajax/vote',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "votedoA":id
+                },
+                async: true,
+                success: function (data)
+                {
+                    id="#"+id+"A";
+                    console.log(id);
+                    $( id ).text(data);
+                    console.log(data);
+                    
 
                 }
             });
