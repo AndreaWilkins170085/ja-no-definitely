@@ -51,7 +51,7 @@ class HomeController extends AbstractController
     $question = new Question();
     $questionForm = $this->createForm(QuestionType::class, $question, ['categories' => $categoryDropdownOptions]);
     $questionForm->get("question_author")->setData($currentUsername);
-    // $questionForm->get("author")->setData($currentUserId);
+    $questionForm->get("author")->setData($currentUserId);
         
     $questionForm->handleRequest($request);
 
@@ -68,6 +68,7 @@ class HomeController extends AbstractController
     $answer = new Answer();
     $answerForm = $this->createForm(AnswerType::class, $answer);
     $answerForm->get("answer_author")->setData($currentUsername);
+    // $answerForm->get("question")->setData();
     $answerForm->handleRequest($request);
 
     if ($answerForm->isSubmitted() && $answerForm->isValid()) {
