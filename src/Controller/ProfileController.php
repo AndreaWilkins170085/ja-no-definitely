@@ -148,7 +148,9 @@ class ProfileController extends AbstractController
         ->findAll();
 
         $view = 'profile.html.twig';
-        $model = array('categories' => $categories, 'useraccount' => $useraccount, 'questions' => $questions, 'answers' => $answers, 'profileForm' => $profileForm->createView(), $imageForm->createView(), 'name'=>$name, 'surname'=>$surname, 'usernameT'=>$usernameT, 'emailT'=>$emailT, 'errors'=>$errors);
+        $model = array('categories' => $categories, 'useraccount' => $useraccount, 'questions' => $questions, 
+        'answers' => $answers, 'profileForm' => $profileForm->createView(), 'imageForm' => $imageForm->createView(), 
+        'name'=>$name, 'surname'=>$surname, 'usernameT'=>$usernameT, 'emailT'=>$emailT, 'errors'=>$errors);
         return $this->render($view, $model);
     }
 
