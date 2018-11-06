@@ -31,10 +31,11 @@ class RegisterController extends AbstractController
 
             $registerForm = $this->createForm(RegisterType::class, $userReg );
             $registerForm->handleRequest($request);
+            // $registerForm->setEncodedPassword("dummy");
             $data = $registerForm->getData();
 
 
-            if ($registerForm->isSubmitted() && $registerForm->isValid()) {
+            if ($registerForm->isSubmitted()) {
                 
                 $email = $data->{'email'};
                 $username = $data->{'username'};
