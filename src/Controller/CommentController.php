@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Entity\Category;
+use App\Entity\UserAccount;
 
 class CommentController extends AbstractController
 {
@@ -31,6 +32,12 @@ class CommentController extends AbstractController
         ->getRepository(Comment::class)
         ->findAll();
 
+        $currentUserId = $session->get('loggedInUser')->id;
+
+        $useraccount = $this->getDoctrine()
+        ->getRepository(UserAccount::class)
+        ->find($currentUserId);
+
         $currentUsername = $session->get('loggedInUser')->username;
 
         $comment = new Comment();
@@ -48,7 +55,8 @@ class CommentController extends AbstractController
         }
         
         $view = 'comment.html.twig';
-        $model = array('commentForm' => $commentForm->createView(),'categories' => $categories, 'comments' => $comments);
+        $model = array('commentForm' => $commentForm->createView(),'categories' => $categories, 'comments' => $comments,
+    'useraccount' => $useraccount);
         return $this->render($view, $model);
     }
 
