@@ -58,7 +58,7 @@
         {% for question in questions %}
 
           <div class="questionAsked mui-panel mui-col-sm-12">
-          <div class="authorInfo mui--text-black-54"><div id="profile-image"><img style="border-radius:50%" src='/public/images/{{ useraccount.image_path }}'></div> <a href="/profile/{{question.author.id}}" class="question-author">{{ question.question_author }}</a></div>
+          <div class="authorInfo mui--text-black-54"><div id="profile-image"><img style="border-radius:50%" class="profile-img" src="{{ ('/images/') }}{{ useraccount.image_path }}"></div> <a href="/profile/{{question.author.id}}" class="question-author">{{ question.question_author }}</a></div>
           <br>
           
           <div class="vote-con"> 
