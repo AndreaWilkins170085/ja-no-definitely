@@ -429,6 +429,22 @@ textarea {
   float: right;
 }
 
+#comment_submit {
+  background-color: #d54950;
+  color: white;
+  float: right;
+}
+
+#profile_submit {
+  background-color: #d54950;
+  color: white;
+  float: right;
+}
+
+#comment_input {
+  width: 400px;
+}
+
 .question-author {
   color: black;
 }
@@ -462,4 +478,8 @@ textarea {
 
 #category-text {
   color: #d58a49;
+}
+
+.updateProfileForm {
+  margin-left: 40%;
 }
