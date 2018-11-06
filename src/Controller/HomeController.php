@@ -128,10 +128,7 @@ class HomeController extends AbstractController
         
         public function Vote(Request $request, SessionInterface $session) {
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $toBeDeleted = $entityManager->getRepository(Answer::class)->find($id);
-            $entityManager->remove($toBeDeleted);
-            $entityManager->flush();
+            
 
             if($request->request->get('deleteQ')){
 
