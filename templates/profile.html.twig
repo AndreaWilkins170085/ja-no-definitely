@@ -78,9 +78,10 @@
           </div>
         </div>
 
+        
         {% if app.session.get('loggedInUser').id == useraccount.id %}
         <div class="mui-tabs__pane" id="pane-justified-3">
-          
+           <div class="mui-panel mui-col-sm-12">
           <div class="updateProfileForm">
             {{ form_start(profileForm) }}
             <p class="profile-text">Name</p>
@@ -106,6 +107,7 @@
             {{ form_widget(imageForm.file) }}
             {{ form_end(imageForm) }} #}
           
+        </div>
         </div>
         </div>
     </div>
