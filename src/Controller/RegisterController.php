@@ -31,7 +31,6 @@ class RegisterController extends AbstractController
 
             $registerForm = $this->createForm(RegisterType::class, $userReg );
             $registerForm->handleRequest($request);
-            // $registerForm->setEncodedPassword("dummy");
             $data = $registerForm->getData();
 
 
