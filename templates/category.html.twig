@@ -7,38 +7,77 @@
 
 <span class="mui--text-title" id="category_title">{{ thisCategory.category_name}}</span>
 
-    <!--Questions-->
-    <div id="content" class="mui-container-fluid">
-    <br>
-      <div class="mui-row">
-        <div class="mui-col-sm-10 mui-col-sm-offset-1">
+    {# SearchBar #}
+  <div> 
+  <br>
+    <div class="mui--text-black-54"></div>
+    <input type="text" id="search" placeholder="Search by Username"/>
+  <br>
+  </div>
+{# SearchBar #}
 
-          {{ form_start(questionForm, {'attr': {'novalidate': 'novalidate'}}) }}
-          {{ form_widget(questionForm.question_text, {'attr': {'placeholder': 'Ask a question...'} }) }}
-          {{ form_widget(questionForm.category, {'attr': {'placeholder': 'Category'} }) }}
-          {{ form_end(questionForm) }}
+  <!--Questions-->
+  <div id="content" class="mui-container-fluid">
+  <br>
+  <h1 class="question-text">Would you like to ask a question?</h1>
+    <div class="mui-row">
+      <div class="mui-col-sm-12 mui-col-sm-offset-1">
+        <div class="mui-panel mui-col-sm-12">
+      
+        <div class="mui-form">
+        {{ form_start(questionForm, {'attr': {'novalidate': 'novalidate' }}) }}
+        <div class="mui-textfield">
+        {{ form_widget(questionForm.question_text, {'attr': {'placeholder': 'Ask a question...'} }) }}
+        </div>
+        <div class="mui-select" id="category-drop">
+        {{ form_widget(questionForm.category, {'attr': {'placeholder': 'Category' } }) }}
+        </div>
+        {{ form_end(questionForm) }}
+        </div>
+        </div>
+        <br>
+
+        <h1 class="answer-text">Would you like to answer a question?</h1>
+        <div class="mui-panel mui-col-sm-12">
+          {# Answer Question #}
           <br>
+          <div class="answerForm mui-form">
+          {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
+          <div class="mui-textfield">
+          {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer a question...'} }) }}
+          </div>
+          {{ form_end(answerForm) }}
+          </div>
+          <br>
+          {# Answer Question #}
+          </div>
 
+
+        <h3>Top Posts</h3>
+        
+        <br>
+
+        {% for question in questions %}
+        {% if question.category.id == thisCategory.id %}
+
+          <div class="questionAsked mui-panel mui-col-sm-12">
+          <div class="authorInfo mui--text-black-54"><div id="profile-image"><img style="border-radius:50%" src='/public/images/{{ useraccount.image_path }}'></div> <a href="/profile/{{question.author.id}}" class="question-author">{{ question.question_author }}</a></div>
+          <br>
+          
+          <div class="vote-con"> 
+          <a href="" class="vote ajaxUpQ"  data-button-q="{{ question.id }}"><i class="fas fa-arrow-up"></i><p class="upvote-value" id="{{ question.id }}Q"> {{ question.question_upvotes - question.question_downvotes }}</p> </a><a href="" class="vote ajaxDoQ"  data-button-q="{{ question.id }}"><i class="fas fa-arrow-down"></i>  </a>
+          {% if useraccount.type == "admin" %}
+            <a href="" class="delete ajaxDeleteQ" data-button-deleteq="{{ question.id }}">Delete</a>
+          {% endif %}
+          </div>
+
+          <div class="questionText mui--text-title">{{ question.question_text }}</div> 
+          <div class="mui--text-black-54 mui--text-body2" ><a id="category-text" href="/category/{{ question.category.id }}">{{ question.category.categoryName }}</a></div>
+          
           {# <br>
-          <br>
-          <div class="mui-divider"></div>
-          <br>
-          <div class="mui--text-headline test">{{ question.question_text }}</div>
-          <div class="mui--text-black-54">Asked By <a href="#">{{ question.question_author }}</a> on {{ question.question_date }}</div>
-          <br>
-          <div> <a>See answers</a> </div>
+          <button class="answer-btn" onclick="answerQuestion()">Answer!</button>
           <br> #}
-
-          {% for question in questions %}
-          {% if question.category.id == thisCategory.id %}
-          {# <div class="mui--text-black-54 mui--text-body2">{{ question.category_id }}</div> #}
-          <div class="mui-divider"></div>
-          <br>
-          <div class="mui--text-headline">{{ question.question_text }}</div>
-          <div class="mui--text-black-54">Asked By <a href="/profile">{{ question.question_author }}</a></div>
-          <br>
-          <br>
-
+          
           {# Answers #}
           {% for answer in answers %}
           {% if question.id == answer.question.id %}
@@ -47,22 +86,192 @@
           <div class="answer-vote-con">
           <div class="mui--text-black-54 answer-con"> {{ answer.answer_text }} - <a class="author-comment" href="/profile/{{answer.author.id}}">{{ answer.answer_author }}</a> </div>
 
-          <div class="vote-con"> <a href="" class="vote"><i class="fas fa-arrow-up"></i> 0 </a><a href="" class="vote"><i class="fas fa-arrow-down"></i> 0 </a>
+          <div class="vote-con"> <a href="" class="vote ajaxUpA"  data-button-a="{{ answer.id }}"><i class="fas fa-arrow-up"></i><p class="upvote-value" id="{{ answer.id }}A"> {{ answer.answer_upvotes - answer.answer_downvotes }}</p> </a><a href="" class="vote ajaxDoA"  data-button-a="{{ answer.id }}"><i class="fas fa-arrow-down"></i>  </a>
           {% if useraccount.type == "admin" %}
-          <a href="/delete" class="delete-btn">Delete</a>
+          <a href="" class="delete ajaxDeleteA" data-button-deletea="{{ answer.id }}">Delete</a>
           {% endif %}
+
+          {# {% if useraccount.type == "admin" %} #}
+          {# <a href="/delete" class="delete ajaxDeleteA" data-button-deletea="{{ answer.id }}">Delete</a> #}
+          {# {% endif %} #}
+
           </div>
 
           </div>
           {% endif %}
           {% endfor %}
-          {# Answers #}
-
-          {% endif %}
-          {% endfor %}
-          
-      </div>
+        
+        {# Answer Question #}
+        {# <div class="answerForm mui-form">
+        {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="mui-textfield">
+        {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
+        </div>
+        {{ form_end(answerForm) }}
+        </div> #}
+        {# Answer Question #}
     </div>
+          {% endif %}
+          {% endfor %}
+
+
+
+        <script>
+
+        $(document).on('click', 'a.ajaxUpQ', function(){
+            var id = this.getAttribute('data-button-q');
+            console.log(id);
+            that = $(this);
+            $.ajax({
+                url:'/ajax/vote',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "voteupQ":id
+                },
+                async: true,
+                success: function (data)
+                {
+                    
+                    id="#"+id+"Q";
+                    console.log(id);
+                    $( id ).text(data);
+                    console.log(data);
+
+                }
+            });
+            return false;
+
+        });
+
+        $(document).on('click', 'a.ajaxDoQ', function(){
+            var id = this.getAttribute('data-button-q');
+            console.log(id);
+            that = $(this);
+            $.ajax({
+                url:'/ajax/vote',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "votedoQ":id
+                },
+                async: true,
+                success: function (data)
+                {
+                    id="#"+id+"Q";
+                    console.log(id);
+                    $( id ).text(data);
+                    console.log(data);
+                    
+
+                }
+            });
+            return false;
+
+        });
+
+        $(document).on('click', 'a.ajaxUpA', function(){
+            var id = this.getAttribute('data-button-a');
+            console.log(id);
+            that = $(this);
+            $.ajax({
+                url:'/ajax/vote',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "voteupA":id
+                },
+                async: true,
+                success: function (data)
+                {
+                    
+                    id="#"+id+"A";
+                    console.log(id);
+                    $( id ).text(data);
+                    console.log(data);
+
+                }
+            });
+            return false;
+
+        });
+
+        $(document).on('click', 'a.ajaxDoA', function(){
+            var id = this.getAttribute('data-button-a');
+            console.log(id);
+            that = $(this);
+            $.ajax({
+                url:'/ajax/vote',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "votedoA":id
+                },
+                async: true,
+                success: function (data)
+                {
+                    id="#"+id+"A";
+                    console.log(id);
+                    $( id ).text(data);
+                    console.log(data);
+                    
+
+                }
+            });
+            return false;
+
+        });
+
+        {# Deleting #}
+
+        $(document).on('click', 'a.ajaxDeleteQ', function(){
+            var id = this.getAttribute('data-button-deleteq');
+            console.log(id);
+            that = $(this);
+            $.ajax({
+                url:'/ajax/vote',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "deleteQ":id
+                },
+                async: true,
+                success: function (data)
+                {
+                    
+                    console.log(data);
+                    location.reload();
+                    
+                }
+            });
+            return false;
+        });
+
+        $(document).on('click', 'a.ajaxDeleteA', function(){
+            var id = this.getAttribute('data-button-deletea');
+            console.log(id);
+            that = $(this);
+            $.ajax({
+                url:'/ajax/vote',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "deleteA":id
+                },
+                async: true,
+                success: function (data)
+                {
+                    
+                    console.log(data);
+                    location.reload();
+                
+                }
+            });
+            return false;
+
+        });
+    </script>
+     
 
    
 
