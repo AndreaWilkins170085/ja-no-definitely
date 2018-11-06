@@ -83,7 +83,7 @@
         <div class="mui-tabs__pane" id="pane-justified-3">
            <div class="mui-panel mui-col-sm-12">
           <div class="updateProfileForm">
-            {{ form_start(profileForm) }}
+            {{ form_start(profileForm, {'attr': {'novalidate': 'novalidate'}}) }}
             <p class="profile-text">Name</p>
             {{ form_widget(profileForm.name, {'attr': {'placeholder':  useraccount.name  } }) }}
             <h5 class="errors"> {{ name }} </h5>
