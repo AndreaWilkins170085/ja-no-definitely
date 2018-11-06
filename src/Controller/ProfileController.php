@@ -73,12 +73,6 @@ class ProfileController extends AbstractController
 
             if ($profileForm->isSubmitted()) {
 
-                $entityManager = $this->getDoctrine()->getManager();
-                $userPro = $entityManager->getRepository(UserAccount::class)->find($id);
-
-                // $session->start();
-                // $session->get('loggedInUser', $loggedInUser);
-
                 $data = $profileForm->getData();
                 $username = $data->{'username'};
                 $email = $data->{'email'};
@@ -122,9 +116,36 @@ class ProfileController extends AbstractController
                     $userPro->setEncodedPassword($password);
                 }
 
-                if ($valid){
+                // PROFILE PIC UPDATE
 
-                $entityManager->flush();
+                $entityManager = $this->getDoctrine()->getManager();
+                $userPro = $entityManager->getRepository(UserAccount::class)->find($id);
+
+                $userR = $this->getDoctrine()
+                ->getRepository(UserAccount::class)
+                ->findOneBy(['id' => $request->get('id')]); 
+
+
+                $data = $profileForm->getData();
+                $file = $userR->getImagePath();
+
+
+                $file = $userR->getImagePath();
+                $data->setImagePath($file); 
+                if ($file instanceof UploadedFile) {
+                    $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                    $file->move(
+                        $this->getParameter('profile.picture.attachment.dir'),
+                        $fileName
+                    );
+                    $data->setPicture($fileName);
+                }
+                $entityManager->persist($data);
+
+                // PROFILE PIC UPDATE
+
+                if ($valid){
+                    $entityManager->flush();
                 }
             }
 

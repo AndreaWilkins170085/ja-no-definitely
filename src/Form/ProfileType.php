@@ -21,9 +21,31 @@ class ProfileType extends AbstractType
         ->add('username', TextType::class, array('label' => false))
         ->add('email', EmailType::class, array('label' => false))
         ->add('password', PasswordType::class)
-        ->add('image_path', HiddenType::class, ['empty_data' => 'default_img.jpg'])
+        // ->add('image_path', HiddenType::class, ['empty_data' => 'default_img.jpg'])
+
+        ->add('image_path', FileType::class, [
+            'label' => 'Profile Picture',
+            'attr' => [
+                'class' => 'form-control filestyle',
+                'data-iconName' => 'glyphicon glyphicon-camera',
+                'data-buttonText' => null,
+                'accept' => 'image/*'
+            ],
+            'label_attr' => [
+                'class' => 'col-md-2 professional-attr'
+            ],
+            'data_class' => null
+        ])
+
         ->add('submit', SubmitType::class, ['label' => 'Update profile']);
         ;
+    }
+
+    public function setDefaultOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => 'App\Entity\UserAccount'
+        ]);
     }
 }
 ?>
