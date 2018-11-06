@@ -63,6 +63,8 @@ class UserAccount
 
     /**
     * @ORM\Column(type="string", length=255, nullable=true)
+    * @Assert\Image
+    * @Assert\File(maxSize = "2M")
     */
 
     public $image_path;
@@ -165,16 +167,27 @@ class UserAccount
         return $this;
     }
 
-    public function getImagePath(): ?string
+    // public function getImagePath(): ?string
+    // {
+    //     return $this->image_path;
+    // }
+
+    // public function setImagePath(string $image_path): self
+    // {
+    //     $this->image_path = $image_path;
+
+    //     return $this;
+    // }
+
+    public function setImagePath($file)
     {
-        return $this->image_path;
+        $this->image_path = $file;
+        return $this;
     }
 
-    public function setImagePath(string $image_path): self
+    public function getImagePath()
     {
-        $this->image_path = $image_path;
-
-        return $this;
+        return $this->image_path;
     }
 
     public function getAbsolutePath()
