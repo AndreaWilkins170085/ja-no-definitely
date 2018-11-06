@@ -95,7 +95,7 @@
   width: 295px;
   margin-top: 20px;
   height: 30px;
-  background-color: #D46948;
+  background-color: #D56849;
   cursor: pointer;
   color: white;
 }
@@ -106,7 +106,7 @@
   width: 295px;
   margin-top: 5px;
   height: 30px;
-  background-color: #D46948;
+  background-color: #D56849;
   cursor: pointer;
   color: white;
 }
@@ -229,7 +229,7 @@ textarea {
     width: 215px;
     margin-top: 20px;
     height: 30px;
-    background-color: #D46948;
+    background-color: #D56849;
     cursor: pointer;
     color: white;
   }
@@ -247,7 +247,7 @@ textarea {
     width: 215px;
     margin-top: 5px;
     height: 30px;
-    background-color: #D46948;
+    background-color: #D56849;
     cursor: pointer;
     color: white;
   }
@@ -397,4 +397,69 @@ textarea {
 
 .commentsmade{
   min-height: 80px;
+}
+
+#search {
+  float: right;
+  height: 20px;
+  width: 230px;
+  margin-right: -9%;
+}
+
+.question-text {
+  margin-left: 9%;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.answer-text {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+#question_submit {
+  background-color: #d54950;
+  color: white;
+  float: right;
+}
+
+#answer_submit {
+  background-color: #d54950;
+  color: white;
+  float: right;
+}
+
+.question-author {
+  color: black;
+}
+
+.fa-arrow-up {
+  color: #d54950;
+}
+
+.fa-arrow-down {
+  color: #d54950;
+}
+
+.ajaxDeleteQ {
+  color: black;
+  margin-left: 10%;
+}
+
+.ajaxDeleteA {
+  color: black;
+}
+
+.author-comment {
+  color: black;
+}
+
+.upvote-value {
+  color: black;
+  text-decoration: none;
+  cursor: default;
+}
+
+#category-text {
+  color: #d58a49;
 }
