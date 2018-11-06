@@ -81,7 +81,7 @@
  }
 
  body.hide-sidedrawer #header-color{
-  background-color: #D46948;
+  background-color: #D56849;
  }
 
  body.hide-sidedrawer #sidedrawer {
@@ -175,7 +175,7 @@
   */
  
  #sidedrawer-brand {
-  background-color: #D46948;
+  background-color: #D56849;
   margin-top: -40px;
   height: 200px;
  }
@@ -288,7 +288,7 @@
 
 #logout-button{
   margin-left: 50px;
-  background-color: #D46948;
+  background-color: #D56849;
   position: fixed;
   bottom: 10%;
 }
@@ -314,7 +314,7 @@
     box-shadow: 0px 0px 0px 0px;
   }
   #header-color{
-    background-color: #D46948;
+    background-color: #D56849;
    }
    body.mui-scroll-lock #header-color{
     background-color: white;
@@ -340,11 +340,26 @@
 
   .mui-appbar{
     color: white;
-    background-color: #D46948;
+    background-color: #D56849;
   }
 }
 
 #content{
   padding: 0;
   margin: 0;
+}
+
+#profile-header-username {
+  font-size: 17px;
+  float:right;
+  padding-right: 10px;
+  
+}
+
+#profile-header-name {
+  font-weight: 900;
+}
+
+#profile-header-surname {
+  font-weight: 900;
 }

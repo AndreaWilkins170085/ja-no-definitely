@@ -8,7 +8,7 @@
 {# SearchBar #}
   <div> 
   <br>
-    <div class="mui--text-black-54"> Search for posts by any user :</div>
+    <div class="mui--text-black-54"></div>
     <input type="text" id="search" placeholder="Search by Username"/>
   <br>
   </div>
@@ -17,8 +17,9 @@
   <!--Questions-->
   <div id="content" class="mui-container-fluid">
   <br>
+  <h1 class="question-text">Would you like to ask a question?</h1>
     <div class="mui-row">
-      <div class="mui-col-sm-10 mui-col-sm-offset-1">
+      <div class="mui-col-sm-12 mui-col-sm-offset-1">
         <div class="mui-panel mui-col-sm-12">
       
         <div class="mui-form">
@@ -34,13 +35,14 @@
         </div>
         <br>
 
+        <h1 class="answer-text">Would you like to answer a question?</h1>
         <div class="mui-panel mui-col-sm-12">
           {# Answer Question #}
           <br>
           <div class="answerForm mui-form">
           {{ form_start(answerForm, {'attr': {'novalidate': 'novalidate'}}) }}
           <div class="mui-textfield">
-          {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer the question...'} }) }}
+          {{ form_widget(answerForm.answer_text, {'attr': {'placeholder': 'Answer a question...'} }) }}
           </div>
           {{ form_end(answerForm) }}
           </div>
@@ -60,14 +62,14 @@
           <br>
           
           <div class="vote-con"> 
-          <a href="" class="vote ajaxUpQ"  data-button-q="{{ question.id }}"><i class="fas fa-arrow-up"></i><p id="{{ question.id }}Q"> {{ question.question_upvotes - question.question_downvotes }}</p> </a><a href="" class="vote ajaxDoQ"  data-button-q="{{ question.id }}"><i class="fas fa-arrow-down"></i>  </a>
-          {# {% if useraccount.type == "admin" %} #}
+          <a href="" class="vote ajaxUpQ"  data-button-q="{{ question.id }}"><i class="fas fa-arrow-up"></i><p class="upvote-value" id="{{ question.id }}Q"> {{ question.question_upvotes - question.question_downvotes }}</p> </a><a href="" class="vote ajaxDoQ"  data-button-q="{{ question.id }}"><i class="fas fa-arrow-down"></i>  </a>
+          {% if useraccount.type == "admin" %}
             <a href="" class="delete ajaxDeleteQ" data-button-deleteq="{{ question.id }}">Delete</a>
-          {# {% endif %} #}
+          {% endif %}
           </div>
 
           <div class="questionText mui--text-title">{{ question.question_text }}</div> 
-          <div class="mui--text-black-54 mui--text-body2"><a href="/category/{{ question.category.id }}">{{ question.category.categoryName }}</a></div>
+          <div class="mui--text-black-54 mui--text-body2" ><a id="category-text" href="/category/{{ question.category.id }}">{{ question.category.categoryName }}</a></div>
           
           {# <br>
           <button class="answer-btn" onclick="answerQuestion()">Answer!</button>
@@ -81,13 +83,13 @@
           <div class="answer-vote-con">
           <div class="mui--text-black-54 answer-con"> {{ answer.answer_text }} - <a class="author-comment" href="/profile/{{answer.author.id}}">{{ answer.answer_author }}</a> </div>
 
-          <div class="vote-con"> <a href="" class="vote ajaxUpA"  data-button-a="{{ answer.id }}"><i class="fas fa-arrow-up"></i><p id="{{ answer.id }}A"> {{ answer.answer_upvotes - answer.answer_downvotes }}</p> </a><a href="" class="vote ajaxDoA"  data-button-a="{{ answer.id }}"><i class="fas fa-arrow-down"></i>  </a>
+          <div class="vote-con"> <a href="" class="vote ajaxUpA"  data-button-a="{{ answer.id }}"><i class="fas fa-arrow-up"></i><p class="upvote-value" id="{{ answer.id }}A"> {{ answer.answer_upvotes - answer.answer_downvotes }}</p> </a><a href="" class="vote ajaxDoA"  data-button-a="{{ answer.id }}"><i class="fas fa-arrow-down"></i>  </a>
           {% if useraccount.type == "admin" %}
           <a href="" class="delete ajaxDeleteA" data-button-deletea="{{ answer.id }}">Delete</a>
           {% endif %}
 
           {# {% if useraccount.type == "admin" %} #}
-          <a href="/delete" class="delete ajaxDeleteA" data-button-deletea="{{ answer.id }}">Delete</a>
+          {# <a href="/delete" class="delete ajaxDeleteA" data-button-deletea="{{ answer.id }}">Delete</a> #}
           {# {% endif %} #}
 
           </div>

@@ -23,7 +23,7 @@ class AnswerType extends AbstractType
         $builder
             ->add('answer_author', HiddenType::class)
             ->add('authorId', HiddenType::class)
-            ->add('question', ChoiceType::class, array(
+            ->add('question', ChoiceType::class,  array(
                 'choices' => array(
                     'Questions' => $options['questions']
                 )
