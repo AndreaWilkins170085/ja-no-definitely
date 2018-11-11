@@ -429,7 +429,13 @@ textarea {
   float: right;
 }
 
-#ban_submit {
+#ban_submitBan {
+  background-color: #d54950;
+  color: white;
+  float: right;
+}
+
+#ban_submitUnban {
   background-color: #d54950;
   color: white;
   float: right;
