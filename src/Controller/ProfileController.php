@@ -142,7 +142,7 @@ class ProfileController extends AbstractController
                 }
                 $entityManager->persist($data);
 
-                // PROFILE PIC UPDATE
+            //     // PROFILE PIC UPDATE
 
                 if ($valid){
                     $entityManager->flush();
@@ -170,7 +170,7 @@ class ProfileController extends AbstractController
 
         $view = 'profile.html.twig';
         $model = array('categories' => $categories, 'useraccount' => $useraccount, 'questions' => $questions, 
-        'answers' => $answers, 'profileForm' => $profileForm->createView(), 'imageForm' => $imageForm->createView(), 
+        'answers' => $answers, 'profileForm' => $profileForm->createView(), 'banForm' => $banForm->createView(), 'imageForm' => $imageForm->createView(), 
         'name'=>$name, 'surname'=>$surname, 'usernameT'=>$usernameT, 'emailT'=>$emailT, 'errors'=>$errors);
         return $this->render($view, $model);
     }

@@ -32,7 +32,7 @@
               <br>
               <div class="mui--text-black-54">User Type : {{ useraccount.type }} </div>
               {% if app.session.get('loggedInUser').type == "admin" %}
-                {% if useraccount.type == "user" %}
+                {% if useraccount.type == "user" or useraccount.type == "banned" %}
                   {{ form_start(banForm, {'attr': {'novalidate': 'novalidate'}}) }}
                   {{ form_widget(banForm) }}
                   {{ form_end(banForm) }}
