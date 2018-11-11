@@ -31,11 +31,21 @@
                 $repository = $this->getDoctrine()->getRepository(UserAccount::class);
                 $formData = $loginForm->getData();
                 $databaseAccount = $repository->findOneBy(['email' => $formData['email']]);
+                
                 if ($this->validCredentials($formData, $databaseAccount))
                 {
-                    $session->start();
+                    $type = $databaseAccount->{'type'};
+                    if ($type == "banned"){
+                        $errors = 'You have been banned!';
+                    $view = 'login.html.twig';
+                    $model = array('loginForm' => $loginForm->createView(), 'errors'=>$errors);
+                    return $this->render($view, $model);
+                    }else{
+                        $session->start();
                     $session->set('loggedInUser', $databaseAccount);
                     return $this->redirectToRoute('home_view');
+                    }
+                    
                 }else{
                     $errors = 'Password or email incorrect';
                     $view = 'login.html.twig';

@@ -123,24 +123,22 @@ class ProfileController extends AbstractController
 
                 $userR = $this->getDoctrine()
                 ->getRepository(UserAccount::class)
-                ->findOneBy(['id' => $request->get('id')]); 
-
-
-                $data = $profileForm->getData();
-                $file = $userR->getImagePath();
+                ->findOneBy(['id' => $request->get('id')]);
 
 
                 $file = $userR->getImagePath();
-                $data->setImagePath($file); 
+                $userPro->setImagePath($file);
+
                 if ($file instanceof UploadedFile) {
                     $fileName = md5(uniqid()).'.'.$file->guessExtension();
                     $file->move(
                         $this->getParameter('profile.picture.attachment.dir'),
                         $fileName
                     );
-                    $data->setPicture($fileName);
+                    $userPro->setPicture($fileName);
                 }
-                $entityManager->persist($data);
+
+                $entityManager->persist($userPro);
 
             // PROFILE PIC UPDATE
 
