@@ -243,8 +243,6 @@
     margin-top: 40px;
     margin-bottom: 10px;
     border-radius: 100px;
-    border-color: gray;
-    border-style: solid;
   }
 
 #profile-header-name{
@@ -287,6 +285,33 @@
   }
 }
 
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  img.profile-img{
+    width: 20%;
+    height: 20%;
+  }
+
+  #profile-header-image{
+    background-color: white;
+    width: 10px;
+    height: 10px;
+    margin-bottom: 10px;
+    border-radius: 100px;
+  }
+
+  #logout-button{
+    margin-left: 50px;
+    background-color: #D56849;
+    position: fixed;
+    bottom: 2%;
+  }
+
+  #header {
+    background-color: #D56849;
+   }
+  
+}
 
 
 
