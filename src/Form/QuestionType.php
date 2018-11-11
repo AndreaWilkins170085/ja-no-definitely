@@ -33,6 +33,8 @@ class QuestionType extends AbstractType
                 )
             ))
             ->add('question_text', TextareaType::class, ['label' => false])
+            ->add('question_upvotes', HiddenType::class, ['empty_data' => 0])
+            ->add('question_downvotes', HiddenType::class, ['empty_data' => 0])
             ->add('submit', SubmitType::class, ['label' => "Ask!", 'attr' => ['class' => 'mui-btn mui-btn--primary ask-bt']]);
         ;
     }
