@@ -142,7 +142,7 @@ class ProfileController extends AbstractController
                 }
                 $entityManager->persist($data);
 
-            //     // PROFILE PIC UPDATE
+            // PROFILE PIC UPDATE
 
                 if ($valid){
                     $entityManager->flush();

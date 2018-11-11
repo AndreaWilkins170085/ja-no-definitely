@@ -429,6 +429,12 @@ textarea {
   float: right;
 }
 
+#ban_submit {
+  background-color: #d54950;
+  color: white;
+  float: right;
+}
+
 #comment_submit {
   background-color: #d54950;
   color: white;
